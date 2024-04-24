@@ -18,7 +18,8 @@ import Dropdown from "@/app/UX/dropdown/dropdown"
 import getGenderAPI from "@/app/api/getGenders"
 import Button from "@/app/UX/button/button"
 import registerAPI from "@/app/api/register"
-import { useRouter, useSearchParams } from "next/navigation"
+import { redirect, usePathname, useRouter, useSearchParams } from "next/navigation"
+import Close from "@/app/Icons/close"
 
 export default function RegisterModal() {
     const [email, setEmail] = useState('')
@@ -204,11 +205,18 @@ export default function RegisterModal() {
         getGenderaAPI()
     }, [])
 
+    const pathname = usePathname()
+
     return (
         openModal && (
             <div className="fixed inset-0 bg-palette-11 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
                 <div className="p-8 border shadow-lg rounded-md bg-palette-1">
                     <div className="text-center">
+                        <div className="text-palette-11 flex justify-end">
+                            <a href={pathname}>
+                                <Close />
+                            </a>
+                        </div>
                         <div className="flex flex-row justify-between">
                             <div className='text-palette-11 content-center justify-center items-center'>
                                 <div onClick={() => setStep(step - 1)}>
