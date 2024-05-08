@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import styles from './RegisterModal.module.css'
 import Imput from "@/app/UX/imput/imput"
-import { log } from "@tensorflow/tfjs"
 import { emit } from "process"
 import Email from "@/app/Icons/email"
 import Phone from "@/app/Icons/phone"

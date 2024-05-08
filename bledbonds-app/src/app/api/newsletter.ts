@@ -1,22 +1,17 @@
-interface RegisterInterface {
+interface newsletterInterface {
     email: string;
-    phone: string;
-    password: string;
-    name: string;
-    birthDate: string;
-    genre: string;
 }
 
-const registerAPI = async (user:RegisterInterface) => {
+const newsletterAPI = async (newsletter:newsletterInterface) => {
     try {
         const API_URL = 'http://localhost:3001/api/v1';
-        const resp = await fetch(`${API_URL}/users/register`, {
+        const resp = await fetch(`${API_URL}/newsletters/create`, {
             method: 'POST',
             headers: {
                 'x-api-key': '6d83d4496c0010950eb2f3a0db79004c',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(newsletter)
         });
         if (!resp.ok) {
             throw new Error('Network response was not ok');
@@ -29,4 +24,4 @@ const registerAPI = async (user:RegisterInterface) => {
     }
 }
 
-export default registerAPI;
+export default newsletterAPI;

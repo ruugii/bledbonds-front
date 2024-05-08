@@ -1,4 +1,4 @@
-const activateUser = async (code) => {
+const activateUser = async (code:string) => {
     try {
         const API_URL = 'http://localhost:3001/api/v1';
         const resp = await fetch(`${API_URL}/activate/${code}`, {

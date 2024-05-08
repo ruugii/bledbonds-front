@@ -4,12 +4,13 @@ interface ImputProps {
     type?: string;
     isValueValid?: boolean;
     onChange: (value: string) => void;
+    divClassName?: string;
 }
 
 export default function Imput(props: ImputProps) {
     const { label, value, onChange } = props;
     return (
-        <div className="flex flex-col">
+        <div className={`flex flex-col ${props.divClassName}`}>
             <label className="text-palette-11">{label}</label>
             <input
                 type={props.type || 'text'}
