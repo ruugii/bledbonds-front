@@ -3,6 +3,7 @@ interface DropdownProps {
     value: string;
     options: string[];
     onChange: (value: string) => void;
+    isValueValid?: boolean;
 }
 
 export default function Dropdown(props: DropdownProps) {
@@ -11,7 +12,7 @@ export default function Dropdown(props: DropdownProps) {
         <div className="flex flex-col">
             <label className="text-palette-11">{label}</label>
             <select
-                className="text-palette-7 p-2 rounded-lg border-solid border-2 border-palette-7 w-full mb-3"
+                className={`p-2 rounded-lg border-solid border-2 w-full mb-3 ${props.isValueValid ? 'text-palette-7 border-palette-7' : 'text-red-500 border-red-500'} focus:outline-none`}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
             >

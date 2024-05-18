@@ -20,7 +20,12 @@ import registerAPI from "@/app/api/register"
 import { redirect, usePathname, useRouter, useSearchParams } from "next/navigation"
 import Close from "@/app/Icons/close"
 
-export default function RegisterModal() {
+interface RegisterInterface {
+    isOpen?: boolean,
+    setIsOpen?: Function
+}
+
+export default function RegisterModal(props : RegisterInterface) {
     const [email, setEmail] = useState('')
     const [emailValid, setEmailValid] = useState(false)
     const [phone, setPhone] = useState('')
@@ -41,7 +46,7 @@ export default function RegisterModal() {
 
     const searchParams = useSearchParams()
 
-    const [openModal, setOpenModal] = useState(searchParams.get('register'));
+    const [openModal, setOpenModal] = useState(searchParams.get('register') ? true : false);
 
     useEffect(() => {
         const aux = setTimeout(() => {
@@ -206,15 +211,20 @@ export default function RegisterModal() {
 
     const pathname = usePathname()
 
+    const close = () => {
+        setOpenModal(false)
+        props.setIsOpen ? props.setIsOpen(false) : null
+    }
+
     return (
-        openModal && (
+        (props.isOpen || openModal) && (
             <div className="fixed inset-0 bg-palette-11 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
                 <div className="p-8 border shadow-lg rounded-md bg-palette-1">
                     <div className="text-center">
                         <div className="text-palette-11 flex justify-end">
-                            <a href={pathname}>
+                            <Link onClick={() => close()} href={pathname}>
                                 <Close />
-                            </a>
+                            </Link>
                         </div>
                         <div className="flex flex-row justify-between">
                             <div className='text-palette-11 content-center justify-center items-center'>
@@ -228,21 +238,22 @@ export default function RegisterModal() {
                                     {
                                         step === 1 ? (
                                             <Imput
-                                                label="Email"
+                                                label="Inserte su correo electronico"
                                                 value={email}
                                                 onChange={setEmail}
                                                 isValueValid={emailValid}
                                             />
                                         ) : step === 2 ? (
                                             <Imput
-                                                label="Phone"
+                                                label="Inserte su numero de telefono"
                                                 value={phone}
                                                 onChange={setPhone}
                                                 isValueValid={phoneValid}
+                                                type="number"
                                             />
                                         ) : step === 3 ? (
                                             <Imput
-                                                label="Password"
+                                                label="Inserte su contraseña"
                                                 value={password}
                                                 onChange={setPassword}
                                                 isValueValid={passwordValid}
@@ -250,7 +261,7 @@ export default function RegisterModal() {
                                             />
                                         ) : step === 4 ? (
                                             <Imput
-                                                label="Password Confirmation"
+                                                label="Repita su contraseña"
                                                 value={passwordConfirmation}
                                                 onChange={setPasswordConfirmation}
                                                 isValueValid={passwordConfirmationValid}
@@ -258,7 +269,7 @@ export default function RegisterModal() {
                                             />
                                         ) : step === 5 ? (
                                             <Imput
-                                                label="Name"
+                                                label="Inserte su nombre completo"
                                                 value={name}
                                                 onChange={setName}
                                                 isValueValid={nameValid}
@@ -266,17 +277,18 @@ export default function RegisterModal() {
                                         ) : step === 6 ? (
                                             <Imput
                                                 type="date"
-                                                label="Birth Date"
+                                                label="Inserte su fecha de nacimiento"
                                                 value={birthDate}
                                                 onChange={setBirthDate}
                                                 isValueValid={birthDateValid}
                                             />
                                         ) : step === 7 ? (
                                             <Dropdown
-                                                label="genre"
+                                                label="Genero"
                                                 value={gender}
                                                 onChange={setGender}
                                                 options={genderList}
+                                                isValueValid={gendreValid}
                                             />
                                         ) : (
                                             <></>
@@ -322,11 +334,17 @@ export default function RegisterModal() {
                                                 genre: gender
                                             }
                                             console.log(user);
-                                            await registerAPI(user)
+                                            const resp = await registerAPI(user)
+                                            if (resp) {
+                                                console.log('Usuario registrado correctamente');
+                                                close()
+                                            }
                                         }
 
                                         register()
                                     }}
+
+                                    className=""
                                 />
                             </div>
                             <div className='text-palette-11 content-center justify-center items-center'>
