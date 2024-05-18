@@ -4,7 +4,7 @@ interface newsletterInterface {
 
 const newsletterAPI = async (newsletter:newsletterInterface) => {
     try {
-        const API_URL = 'http://localhost:3001/api/v1';
+        const API_URL = 'http://api.bledbonds.es/api/v1';
         const resp = await fetch(`${API_URL}/newsletters/create`, {
             method: 'POST',
             headers: {
