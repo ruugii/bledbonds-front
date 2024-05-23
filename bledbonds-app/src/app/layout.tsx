@@ -3,6 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Head from "next/head";
+import Newsletter from "./components/Newsletter";
+import Footer from "./components/Footer";
+import { Suspense } from "react";
+import RegisterModal from "./components/RegisterModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +22,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
+      <body className={inter.className}>
+        <Header />
+        {/* <Newsletter /> */}
+        <Suspense fallback={<div></div>}>
+          <Newsletter />
+          <RegisterModal />
+        </Suspense>
+        {children}
+        {/* <Footer /> */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0JN17KS2T"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -29,10 +41,6 @@ export default function RootLayout({
   gtag('config', 'G-W0JN17KS2T');
   `
         }} />
-      </Head>
-      <body className={inter.className}>
-        {/* <Header /> */}
-        {children}
       </body>
     </html>
   );

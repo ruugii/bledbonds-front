@@ -46,7 +46,7 @@ export default function RegisterModal(props : RegisterInterface) {
 
     const searchParams = useSearchParams()
 
-    const [openModal, setOpenModal] = useState(searchParams.get('register') ? true : false);
+    const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
         const aux = setTimeout(() => {
@@ -215,6 +215,13 @@ export default function RegisterModal(props : RegisterInterface) {
         setOpenModal(false)
         props.setIsOpen ? props.setIsOpen(false) : null
     }
+
+    useEffect(() => {
+        setOpenModal(searchParams.get('register') ? true : false)
+        console.log(searchParams);
+        console.log(pathname);
+        
+    }, [searchParams])
 
     return (
         (props.isOpen || openModal) && (
