@@ -30,7 +30,7 @@ export default function RootLayout({
           <RegisterModal />
         </Suspense>
         {children}
-        {/* <Footer /> */}
+        <Footer />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0JN17KS2T"></script>
         <script dangerouslySetInnerHTML={{
           __html: `

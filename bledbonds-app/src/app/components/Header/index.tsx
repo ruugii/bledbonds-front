@@ -20,6 +20,14 @@ export default function Header() {
         {
             name: 'newsletter',
             url: '/newsletter'
+        },
+        {
+            name: 'register',
+            url: '/register'
+        },
+        {
+            name: 'login',
+            url: '/login'
         }
         // Add more menu items as needed...
     ] as Menu[]
@@ -30,7 +38,7 @@ export default function Header() {
 
     return (
         <>
-            <header>
+            <header className="fixed top-0 w-full">
                 <nav className="border-palette-1 dark:border-palette-10 bg-palette-3">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -94,8 +102,8 @@ export default function Header() {
                         </div>
                     </div>
                 </nav>
+                <hr className="border-palette-10" />
             </header>
-            <hr className="border-palette-10" />
         </>
     )
 }

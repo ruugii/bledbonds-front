@@ -1,15 +1,13 @@
-'use client'
+import { Metadata } from "next";
+import EmailInput from "../components/EmailInput";
 
-import { useEffect, useState } from "react";
-import Imput from "../UX/imput/imput";
-import Newsletter from "../components/Newsletter";
-import Button from "../UX/button/button";
-import newsletterAPI from "../api/newsletter";
+export const metadata: Metadata = {
+    title: "Bled Bonds - Citas para personas con discapacidad - suscribete a nuestra newsletter",
+    description: "Bled Bonds es la primera red social para conocer a personas con discapacidad y suscribirte a nuestra newsletter para estar informado de todas nuestras novedades",
+    keywords: "discapacidad, citas, red social, bled bonds, citas para personas con discapacidad, bled bonds citas, bled bonds red social, bled bonds discapacidad",
+  };
 
 export default function Page() {
-    const [email, setEmail] = useState('');
-    const [emailValid, setEmailValid] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
 
     return (
         <main className='bg-palette-3 h-screen flex flex-col content-center justify-center items-center'>
@@ -23,35 +21,7 @@ export default function Page() {
                                         REGISTRATE A LA NEWSLETTER DE BLEDBONDS Y VAS A ESTAR INFORMADO DE TODAS NUESTRAS NOVEDADES
                                     </h3>
                                 </div>
-                                <div className="flex flex-row content-center justify-center items-center">
-                                    <Imput
-                                        label="Email"
-                                        value={email}
-                                        onChange={setEmail}
-                                        isValueValid={emailValid}
-                                        type="email"
-                                        divClassName='w-[80%]'
-                                    />
-                                </div>
-                                <div className="flex flex-row content-center justify-center items-center">
-                                    <Button
-                                        label="Register"
-                                        onClick={() => {
-                                            const register = async () => {
-                                                const user = {
-                                                    email,
-                                                };
-                                                console.log(user);
-                                                const data = await newsletterAPI(user);
-                                                if (data) {
-                                                    setOpenModal(false);
-                                                }
-                                            };
-                                            register();
-                                        }}
-                                        className="w-[80%]"
-                                    />
-                                </div>
+                                <EmailInput />
                             </div>
                         </div>
                     </div>

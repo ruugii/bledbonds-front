@@ -1,3 +1,10 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Bled Bonds - Citas para personas con discapacidad - pagina principal",
+  description: "Bled Bonds es la primera red social para conocer a personas con discapacidad",
+  keywords: "discapacidad, citas, red social, bled bonds, citas para personas con discapacidad, bled bonds citas, bled bonds red social, bled bonds discapacidad",
+};
 
 export default function Home() {
   return (

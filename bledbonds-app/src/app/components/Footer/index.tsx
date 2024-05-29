@@ -1,3 +1,4 @@
+import Instagram from "@/app/Icons/instagram"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -8,21 +9,21 @@ export default function Footer() {
             url: '/newsletter'
         },
         {
-            name: 'register',
-            url: '?register=true'
+            name: 'blog',
+            url: '/blog'
         }
         // {
-        //     name: 'login',
-        //     url: '/login'
-        // },
-        // {
-        //     name: 'about',
-        //     url: '/about'
-        // },
-        // {
-        //     name: 'contact',
-        //     url: '/contact'
+        //     name: 'register',
+        //     url: '?register=true'
         // }
+    ]
+
+    const social = [
+        {
+            name: 'Instagram',
+            url: 'https://www.instagram.com/bledbonds_app/',
+            icon: 'instagram'
+        }
     ]
     return (
 
@@ -47,6 +48,22 @@ export default function Footer() {
                         }
                     </ul>
                 </div>
+                <hr className="my-6 border-palette-11 sm:mx-auto lg:my-8" />
+                <ul className="flex content-center justify-center items-center mb-6 text-sm font-medium text-palette-11 sm:mb-0">
+                        {
+                            social.map((item, index) => (
+                                <li key={index} className="flex">
+                                    <Link href={item.url} className="hover:underline me-4 md:me-6">
+                                        {
+                                            item.icon === 'instagram' ? (
+                                                <Instagram />
+                                            ) : item.name
+                                        }
+                                    </Link>
+                                </li>
+                            ))
+                        }
+                    </ul>
                 <hr className="my-6 border-palette-11 sm:mx-auto lg:my-8" />
                 <span className="block text-sm text-palette-11 sm:text-center">© {new Date().getFullYear()} <a href="/" className="hover:underline">BLEDBONDS™</a>. All Rights Reserved.</span>
             </div>
