@@ -34,7 +34,7 @@ export default function Newsletter(props: NewsletterProps) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (searchParams.get('register') || props.isOpen) {
+      if (searchParams.get('register') || pathname === '/register' || props.isOpen || pathname === '/login') {
         setOpenModal(false);
       } else if (!pathname.includes('newsletter')) {
         setOpenModal(true);
@@ -58,7 +58,7 @@ export default function Newsletter(props: NewsletterProps) {
 
   return (
     (openModal && (props.isOpen === false || props.isOpen === undefined)) && (
-      <div className="fixed inset-0 bg-palette-11 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+      <div className="fixed inset-0 bg-palette-11 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
         <div className="p-8 border shadow-lg rounded-md bg-palette-1 h-[80%] w-[80%]">
           <div className="text-center h-full">
             <div className="text-palette-11 flex justify-end">

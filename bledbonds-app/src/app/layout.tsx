@@ -7,6 +7,7 @@ import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import { Suspense } from "react";
 import RegisterModal from "./components/RegisterModal";
+import HeaderMovil from "./components/HeaderMovil";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
+        <HeaderMovil />
         {/* <Newsletter /> */}
         <Suspense fallback={<div></div>}>
           <Newsletter />

@@ -1,5 +1,9 @@
+'use client';
+
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation";
+import { useState } from "react"
 
 interface Menu {
     name: string,
@@ -7,7 +11,7 @@ interface Menu {
     dropdown?: Menu[]
 }
 
-export default function Header() {
+export default function HeaderMovil() {
     const menu = [
         {
             name: 'home',
@@ -28,15 +32,25 @@ export default function Header() {
         // Add more menu items as needed...
     ] as Menu[]
 
+    const [openMovilMenu, setOpenMovilMenu] = useState(false)
+
+    const pathname = usePathname();
+
     return (
-        <header className="sticky top-0 w-full z-10 hidden md:block">
+        <header className="sticky top-0 w-full z-10 md:hidden">
             <nav className="border-palette-1 dark:border-palette-10 bg-palette-3">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                         <Image src="/logo.png" alt="Flowbite Logo" width={32} height={32} className="h-8" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-palette-11">BLEDBONDS</span>
                     </a>
-                    <div className={`w-full md:block md:w-auto hidden`} id="navbar-dropdown">
+                    <button data-collapse-toggle="navbar-dropdown" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-palette-11 rounded-lg md:hidden hover:bg-palette-1 focus:outline-none focus:ring-2 focus:ring-palette-1 dark:hover:bg-palette-10 dark:focus:ring-palette-10" aria-controls="navbar-dropdown" aria-expanded="false" onClick={() => setOpenMovilMenu(!openMovilMenu)}>
+                        <span className="sr-only">Open main menu</span>
+                        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button>
+                    <div className={`w-full md:block md:w-auto ${openMovilMenu ? 'block' : 'hidden'}`} id="navbar-dropdown">
                         <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-palette-1 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-palette-7">
                             {
                                 menu.map((item, index) => item.dropdown ? (
@@ -67,13 +81,21 @@ export default function Header() {
                                         </li>
                                     </>
                                 ) : (
-                                    <li key={index}>
-                                        <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline">
-                                            {item.name}
-                                        </Link>
-                                    </li>
-                                )
-                                )
+                                    item.url === pathname ? (
+                                        <li key={index}>
+                                            <Link href={item.url} className="block py-2 px-3 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline text-palette-10 underline">
+                                                {item.name}
+                                            </Link>
+                                        </li>
+                                    ) : (
+                                        <li key={index}>
+                                            <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline">
+                                                {item.name}
+                                            </Link>
+                                        </li>
+                                    )
+
+                                ))
                             }
                         </ul>
                     </div>

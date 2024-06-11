@@ -1,6 +1,6 @@
 const getGenderAPI = async () => {
     try {
-        const API_URL = 'http://localhost:3001/api/v1';
+        const API_URL = 'https://api.bledbonds.es/api/v1';
         const resp = await fetch(`${API_URL}/genders`, {
             method: 'GET',
             headers: {

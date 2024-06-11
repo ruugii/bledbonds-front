@@ -2,15 +2,12 @@ interface RegisterInterface {
     email: string;
     phone: string;
     password: string;
-    name: string;
-    birthDate: string;
-    genre: string;
 }
 
-const registerAPI = async (user:RegisterInterface) => {
+const loginAPI = async (user:RegisterInterface) => {
     try {
         const API_URL = 'https://api.bledbonds.es/api/v1';
-        const resp = await fetch(`${API_URL}/users/register`, {
+        const resp = await fetch(`${API_URL}/users/login`, {
             method: 'POST',
             headers: {
                 'x-api-key': '6d83d4496c0010950eb2f3a0db79004c',
@@ -29,4 +26,4 @@ const registerAPI = async (user:RegisterInterface) => {
     }
 }
 
-export default registerAPI;
+export default loginAPI;

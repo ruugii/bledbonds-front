@@ -8,10 +8,10 @@ export default function Footer() {
             name: 'newsletter',
             url: '/newsletter'
         },
-        {
-            name: 'blog',
-            url: '/blog'
-        }
+        // {
+        //     name: 'blog',
+        //     url: '/blog'
+        // }
         // {
         //     name: 'register',
         //     url: '?register=true'

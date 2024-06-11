@@ -5,7 +5,7 @@ interface newsletterInterface {
 const deleteNewsletter = async (newsletter:newsletterInterface) => {
     
     try {
-        const API_URL = 'https://bledbonds.es/api/v1';
+        const API_URL = 'https://api.bledbonds.es/api/v1';
         const resp = await fetch(`${API_URL}/newsletters/delete/${newsletter.token}`, {
             method: 'DELETE',
             headers: {
