@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import { Suspense } from "react";
 import RegisterModal from "./components/RegisterModal";
 import HeaderMovil from "./components/HeaderMovil";
+import Menu from "./interfaces/menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,34 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const menu = [
+    {
+        name: 'home',
+        url: '/'
+    },
+    {
+        name: 'newsletter',
+        url: '/newsletter'
+    },
+    {
+        name: 'register',
+        url: '/register'
+    },
+    // {
+    //     name: 'login',
+    //     url: '/login'
+    // }
+    // Add more menu items as needed...
+  ] as Menu[]
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        <HeaderMovil />
+        <Header
+          menu={menu}
+        />
+        <HeaderMovil
+          menu={menu}
+        />
         {/* <Newsletter /> */}
         <Suspense fallback={<div></div>}>
           <Newsletter />

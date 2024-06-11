@@ -25,6 +25,7 @@ export default function EmailInput() {
                     isValueValid={emailValid}
                     type="email"
                     divClassName='w-[80%]'
+                    
                 />
             </div>
             <div className="flex flex-row content-center justify-center items-center">
@@ -40,7 +41,7 @@ export default function EmailInput() {
                         };
                         register();
                     }}
-                    className="w-[80%]"
+                    className="w-[80%] bg-palette-6 border-palette-6"
                 />
             </div>
         </>

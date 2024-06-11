@@ -1,33 +1,13 @@
+import Menu from "@/app/interfaces/menu"
 import Image from "next/image"
 import Link from "next/link"
 
-interface Menu {
-    name: string,
-    url: string,
-    dropdown?: Menu[]
+interface HeaderProps {
+    menu: Menu[]
 }
 
-export default function Header() {
-    const menu = [
-        {
-            name: 'home',
-            url: '/'
-        },
-        {
-            name: 'newsletter',
-            url: '/newsletter'
-        },
-        {
-            name: 'register',
-            url: '/register'
-        },
-        // {
-        //     name: 'login',
-        //     url: '/login'
-        // }
-        // Add more menu items as needed...
-    ] as Menu[]
-
+export default function Header(props: HeaderProps) {
+    const { menu } = props
     return (
         <header className="sticky top-0 w-full z-10 hidden md:block">
             <nav className="border-palette-1 dark:border-palette-10 bg-palette-3">
@@ -68,7 +48,7 @@ export default function Header() {
                                     </>
                                 ) : (
                                     <li key={index}>
-                                        <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline">
+                                        <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline" aria-label={`${item.alternative}_d`}>
                                             {item.name}
                                         </Link>
                                     </li>

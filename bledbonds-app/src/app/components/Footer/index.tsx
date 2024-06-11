@@ -1,4 +1,5 @@
 import Instagram from "@/app/Icons/instagram"
+import Menu from "@/app/interfaces/menu"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -6,11 +7,13 @@ export default function Footer() {
     const footer = [
         {
             name: 'newsletter',
-            url: '/newsletter'
+            url: '/newsletter',
+            alternative: 'Suscribete a nuestro newsletter'
         },
         {
             name: 'register',
-            url: '/register'
+            url: '/register',
+            alternative: 'Registrate'
         },
         // {
         //     name: 'login',
@@ -24,13 +27,14 @@ export default function Footer() {
         //     name: 'register',
         //     url: '?register=true'
         // }
-    ]
+    ] as Menu[]
 
     const social = [
         {
             name: 'Instagram',
             url: 'https://www.instagram.com/bledbonds_app/',
-            icon: 'instagram'
+            icon: 'instagram',
+            alternative: 'Instagram'
         }
     ]
     return (
@@ -48,7 +52,7 @@ export default function Footer() {
                         {
                             footer.map((item, index) => (
                                 <li key={index}>
-                                    <Link href={item.url} className="hover:underline me-4 md:me-6">
+                                    <Link href={item.url} className="hover:underline me-4 md:me-6" aria-label={item.alternative}>
                                         {item.name}
                                     </Link>
                                 </li>
@@ -61,7 +65,7 @@ export default function Footer() {
                         {
                             social.map((item, index) => (
                                 <li key={index} className="flex">
-                                    <Link href={item.url} className="hover:underline me-4 md:me-6">
+                                    <Link href={item.url} className="hover:underline me-4 md:me-6" aria-label={item.alternative}>
                                         {
                                             item.icon === 'instagram' ? (
                                                 <Instagram />

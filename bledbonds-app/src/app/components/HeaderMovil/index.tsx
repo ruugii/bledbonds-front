@@ -1,36 +1,17 @@
 'use client';
 
+import Menu from "@/app/interfaces/menu";
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 import { useState } from "react"
 
-interface Menu {
-    name: string,
-    url: string,
-    dropdown?: Menu[]
+interface HeaderProps {
+    menu: Menu[]
 }
 
-export default function HeaderMovil() {
-    const menu = [
-        {
-            name: 'home',
-            url: '/'
-        },
-        {
-            name: 'newsletter',
-            url: '/newsletter'
-        },
-        {
-            name: 'register',
-            url: '/register'
-        },
-        {
-            name: 'login',
-            url: '/login'
-        }
-        // Add more menu items as needed...
-    ] as Menu[]
+export default function HeaderMovil(props: HeaderProps) {
+    const { menu } = props
 
     const [openMovilMenu, setOpenMovilMenu] = useState(false)
 
@@ -83,13 +64,13 @@ export default function HeaderMovil() {
                                 ) : (
                                     item.url === pathname ? (
                                         <li key={index}>
-                                            <Link href={item.url} className="block py-2 px-3 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline text-palette-10 underline">
+                                            <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 underline" aria-label={`${item.alternative}_m`}>
                                                 {item.name}
                                             </Link>
                                         </li>
                                     ) : (
                                         <li key={index}>
-                                            <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline">
+                                            <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline" aria-label={`${item.alternative}_m`}>
                                                 {item.name}
                                             </Link>
                                         </li>
