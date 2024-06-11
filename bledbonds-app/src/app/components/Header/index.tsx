@@ -21,10 +21,10 @@ export default function Header() {
             name: 'register',
             url: '/register'
         },
-        {
-            name: 'login',
-            url: '/login'
-        }
+        // {
+        //     name: 'login',
+        //     url: '/login'
+        // }
         // Add more menu items as needed...
     ] as Menu[]
 
