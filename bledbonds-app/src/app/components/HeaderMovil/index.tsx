@@ -5,9 +5,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 import { useState } from "react"
+import MenuAdmin from "../Header/MenuAdmin";
 
 interface HeaderProps {
-    menu: Menu[]
+    menu: Menu[],
+    menuAdmin: Menu[]
 }
 
 export default function HeaderMovil(props: HeaderProps) {
@@ -78,6 +80,7 @@ export default function HeaderMovil(props: HeaderProps) {
 
                                 ))
                             }
+                            <MenuAdmin menuAdmin={props.menuAdmin} />
                         </ul>
                     </div>
                 </div>

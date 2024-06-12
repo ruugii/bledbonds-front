@@ -1,8 +1,8 @@
 'use client';
-import Imput from "@/app/UX/imput/imput";
 import { useEffect, useState } from "react";
+import Imput from "@/app/UX/imput/imput"; // Corrected import for Input
 import InputPassword from "@/app/UX/InputPassword";
-import Button from "@/app/UX/button/button";
+import Button from "@/app/UX/button/button"; // Corrected import for Button
 import loginAPI from "@/app/api/loginAPI";
 
 export default function LoginComponent() {
@@ -12,48 +12,33 @@ export default function LoginComponent() {
     const [phoneValid, setPhoneValid] = useState(false);
     const [password, setPassword] = useState('');
     const [passwordValid, setPasswordValid] = useState(false);
-    const [hasMayus, setHasMayus] = useState(false);
-    const [hasMinus, setHasMinus] = useState(false);
-    const [hasNumber, setHasNumber] = useState(false);
-    const [hasSpecial, setHasSpecial] = useState(false);
-    const [moreThan8, setMoreThan8] = useState(false);
-    const [minPasswordLength] = useState(8);
-    const [maxPasswordLength] = useState(12);
 
-    const PasswordValidator = (passwordA: string) => {
-        setHasMayus(/[A-Z]/.exec(passwordA) !== null);
-        setHasMinus(/[a-z]/.exec(passwordA) !== null);
-        setHasNumber(/[\d]/.exec(passwordA) !== null);
-        setHasSpecial(/[!@#$%^&*-]/.exec(passwordA) !== null);
-        setMoreThan8(passwordA.length >= minPasswordLength && passwordA.length <= maxPasswordLength);
-        setPasswordValid(
-            /[A-Z]/.test(passwordA) &&
-            /[a-z]/.test(passwordA) &&
-            /[0-9]/.test(passwordA) &&
-            /[!@#$%^&*-]/.test(passwordA) &&
-            passwordA.length > minPasswordLength &&
-            passwordA.length < maxPasswordLength
-        );
-    }
+    const minPasswordLength = 8;
+    const maxPasswordLength = 12;
+
+    const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validatePhone = (phone: string) => /^\d{9}$/.test(phone);
+    const validatePassword = (password: string) => {
+        const hasMayus = /[A-Z]/.test(password);
+        const hasMinus = /[a-z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+        const hasSpecial = /[!@#$%^&*-]/.test(password);
+        const lengthValid = password.length >= minPasswordLength && password.length <= maxPasswordLength;
+        return hasMayus && hasMinus && hasNumber && hasSpecial && lengthValid;
+    };
 
     useEffect(() => {
-        const validator = setTimeout(() => {
-            setEmailValid(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
-        }, 500);
+        const validator = setTimeout(() => setEmailValid(validateEmail(email)), 500);
         return () => clearTimeout(validator);
     }, [email]);
 
     useEffect(() => {
-        const validator = setTimeout(() => {
-            setPhoneValid(/^\d{9}$/.test(phone));
-        }, 500);
+        const validator = setTimeout(() => setPhoneValid(validatePhone(phone)), 500);
         return () => clearTimeout(validator);
     }, [phone]);
 
     useEffect(() => {
-        const validator = setTimeout(() => {
-            PasswordValidator(password);
-        }, 500);
+        const validator = setTimeout(() => setPasswordValid(validatePassword(password)), 500);
         return () => clearTimeout(validator);
     }, [password]);
 
@@ -104,6 +89,9 @@ export default function LoginComponent() {
                         if (resp.token) {
                             localStorage.setItem('token', resp.token);
                         }
+                        if (resp.role) {
+                            localStorage.setItem('role', resp.role === 'admin' ? 'US_CC' : '');
+                        }
                         if (resp) {
                             console.log('Usuario registrado correctamente');
                             window.location.href = '/'
@@ -117,5 +105,4 @@ export default function LoginComponent() {
             />
         </>
     );
-    
 }

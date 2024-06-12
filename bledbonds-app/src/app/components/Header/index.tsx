@@ -1,9 +1,11 @@
 import Menu from "@/app/interfaces/menu"
 import Image from "next/image"
 import Link from "next/link"
+import MenuAdmin from "./MenuAdmin"
 
 interface HeaderProps {
-    menu: Menu[]
+    menu: Menu[],
+    menuAdmin: Menu[]
 }
 
 export default function Header(props: HeaderProps) {
@@ -54,7 +56,8 @@ export default function Header(props: HeaderProps) {
                                     </li>
                                 )
                                 )
-                            }
+                                }
+                            <MenuAdmin menuAdmin={props.menuAdmin} />
                         </ul>
                     </div>
                 </div>
