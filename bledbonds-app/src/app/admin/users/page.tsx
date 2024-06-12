@@ -3,13 +3,34 @@
 import ArrowAsc from "@/app/Icons/arrowAsc";
 import ArrowDes from "@/app/Icons/arrowDes";
 import getNewsletterAPI from "@/app/api/getNewsletter";
+import getUsersAPI from "@/app/api/getUsers";
 import Table from "@/app/components/Table";
 import { useEffect, useState } from "react";
 
 interface NewsletterData {
     id: number;
     email: string;
-    token: string;
+    phone: string;
+    passwd: string;
+    isActive: number;
+    id_genre: number;
+    name: string;
+    birthdate: string;
+    id_find: number | null;
+    id_orientation: number | null;
+    id_status: number | null;
+    bio: string | null;
+    height: number | null;
+    studyPlace: string | null;
+    you_work: string | null;
+    charge_work: string | null;
+    enterprise: string | null;
+    drink: string | null;
+    educative_level_id: number | null;
+    personality: string | null;
+    id_zodiac: number | null;
+    mascotas: string | null;
+    id_religion: number | null;
 }
 
 export default function RegisterPage() {
@@ -18,6 +39,11 @@ export default function RegisterPage() {
     const [emailOrder, setEmailOrder] = useState<'asc' | 'desc'>('asc');
     const [idOrder, setIdOrder] = useState<'asc' | 'desc'>('asc');
     const [tokenOrder, setTokenOrder] = useState<'asc' | 'desc'>('asc');
+    const [passwdOrder, setPasswdOrder] = useState<'asc' | 'desc'>('asc');
+    const [isActiveOrder, setIsActiveOrder] = useState<'asc' | 'desc'>('asc');
+    const [genreOrder, setGenreOrder] = useState<'asc' | 'desc'>('asc');
+    const [nameOrder, setNameOrder] = useState<'asc' | 'desc'>('asc');
+    const [birthdateOrder, setBirthdateOrder] = useState<'asc' | 'desc'>('asc');
 
     const [isClient, setIsClient] = useState(false);
 
@@ -28,10 +54,15 @@ export default function RegisterPage() {
     }, []);
 
     useEffect(() => {
-        role === 'US_CC' && getNewsletterAPI().then((data) => {
-            setData(data);
-            setDataOrd(data);
-        });
+        if (role === 'US_CC') {
+            getUsersAPI().then((data_) => {
+                console.log(data_);
+                setData(data_.users);
+                console.log(data);
+                setDataOrd(data_.users);
+                console.log(dataOrd);
+            });
+        }
     }, [role]);
 
     const sortData = (key: keyof NewsletterData, order: 'asc' | 'desc', setOrder: React.Dispatch<React.SetStateAction<'asc' | 'desc'>>) => {
@@ -58,7 +89,12 @@ export default function RegisterPage() {
 
     const sortEmail = () => sortData('email', emailOrder, setEmailOrder);
     const sortID = () => sortData('id', idOrder, setIdOrder);
-    const sortToken = () => sortData('token', tokenOrder, setTokenOrder);
+    const sortToken = () => sortData('phone', tokenOrder, setTokenOrder);
+    const sortPasswd = () => sortData('passwd', tokenOrder, setTokenOrder);
+    const sortIsActive = () => sortData('isActive', isActiveOrder, setIsActiveOrder);
+    const sortGenre = () => sortData('id_genre', genreOrder, setGenreOrder);
+    const sortName = () => sortData('name', nameOrder, setNameOrder);
+    const sortBirthdate = () => sortData('birthdate', birthdateOrder, setBirthdateOrder);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -71,7 +107,7 @@ export default function RegisterPage() {
             {(role === 'US_CC' && isClient) ? (
                 <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
                     <h1 className="text-4xl font-bold text-palette-11 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%] md:text-center text-left">
-                        BLEDBONDS - USUARIOS SUSCRITOS A LA NEWSLETTER | ADMINISTRADOR | {dataOrd.length} - USUARIOS SUSCRITOS
+                        BLEDBONDS - USUARIOS REGISTRADOS | ADMINISTRADOR | {dataOrd.length} - USUARIOS
                     </h1>
                     <Table
                         header={[
@@ -81,15 +117,30 @@ export default function RegisterPage() {
                                 icon: idOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
                             },
                             {
-                                name: 'Correo Electrónico',
+                                name: 'email',
                                 onClick: sortEmail,
                                 icon: emailOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
                             },
                             {
-                                name: 'Token',
+                                name: 'phone',
                                 onClick: sortToken,
                                 icon: tokenOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
                             },
+                            {
+                                name: 'id genre',
+                                onClick: sortGenre,
+                                icon: genreOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+                            },
+                            {
+                                name: 'name',
+                                onClick: sortName,
+                                icon: nameOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+                            },
+                            {
+                                name: 'birthdate',
+                                onClick: sortBirthdate,
+                                icon: birthdateOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+                            }
                         ]}
                         data={dataOrd}
                         className="mt-3"
@@ -98,8 +149,11 @@ export default function RegisterPage() {
             ) : (
                 <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
                     <h1 className="text-4xl font-bold text-palette-11 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%] md:text-center text-left">
-                        Solo puedes acceder a esta página si eres un administrador
+                        BLEDBONDS - USUARIOS SUSCRITOS A LA NEWSLETTER
                     </h1>
+                    <h2 className="text-3xl font-bold text-palette-11 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%] md:text-center text-left">
+                        Solo puedes acceder a esta página si eres un administrador
+                    </h2>
                 </div>
             )}
         </>

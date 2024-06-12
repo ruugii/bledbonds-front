@@ -34,7 +34,7 @@ export default function Newsletter(props: NewsletterProps) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (searchParams.get('register') || pathname === '/register' || props.isOpen || pathname === '/login') {
+      if (searchParams.get('register') || pathname === '/register' || props.isOpen || pathname === '/login' || pathname.includes('admin')) {
         setOpenModal(false);
       } else if (!pathname.includes('newsletter')) {
         setOpenModal(true);

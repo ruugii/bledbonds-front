@@ -42,14 +42,20 @@ export default function RootLayout({
     // Add more menu items as needed...
   ] as Menu[]
   const menuAdmin = [
-    // {
-    //   name: 'Usuarios registrados',
-    //   url: '/admin/users'
-    // },
     {
-      name: 'Usuarios susctritos a la newsletter',
-      url: '/admin/newsletter'
-    }
+      name: 'Gestion de usuarios',
+      url: '',
+      dropdown: [
+        {
+          name: 'Usuarios registrados',
+          url: '/admin/users'
+        },
+        {
+          name: 'Usuarios susctritos a la newsletter',
+          url: '/admin/newsletter'
+        }
+      ]
+    },
   ] as Menu[]
   return (
     <html lang="en">
