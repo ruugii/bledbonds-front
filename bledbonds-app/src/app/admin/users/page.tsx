@@ -31,6 +31,7 @@ interface NewsletterData {
     id_zodiac: number | null;
     mascotas: string | null;
     id_religion: number | null;
+    role_name: string;
 }
 
 export default function RegisterPage() {
@@ -44,6 +45,7 @@ export default function RegisterPage() {
     const [genreOrder, setGenreOrder] = useState<'asc' | 'desc'>('asc');
     const [nameOrder, setNameOrder] = useState<'asc' | 'desc'>('asc');
     const [birthdateOrder, setBirthdateOrder] = useState<'asc' | 'desc'>('asc');
+    const [roleOrder, setRoleOrder] = useState<'asc' | 'desc'>('asc');
 
     const [isClient, setIsClient] = useState(false);
 
@@ -95,6 +97,7 @@ export default function RegisterPage() {
     const sortGenre = () => sortData('id_genre', genreOrder, setGenreOrder);
     const sortName = () => sortData('name', nameOrder, setNameOrder);
     const sortBirthdate = () => sortData('birthdate', birthdateOrder, setBirthdateOrder);
+    const sortRole = () => sortData('role_name', roleOrder, setRoleOrder);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -127,7 +130,7 @@ export default function RegisterPage() {
                                 icon: tokenOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
                             },
                             {
-                                name: 'id genre',
+                                name: 'genre',
                                 onClick: sortGenre,
                                 icon: genreOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
                             },
@@ -140,6 +143,11 @@ export default function RegisterPage() {
                                 name: 'birthdate',
                                 onClick: sortBirthdate,
                                 icon: birthdateOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+                            },
+                            {
+                                name: 'role',
+                                onClick: sortRole,
+                                icon: roleOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
                             }
                         ]}
                         data={dataOrd}
