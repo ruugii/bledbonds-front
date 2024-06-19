@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import RegisterModal from "./components/RegisterModal";
 import HeaderMovil from "./components/HeaderMovil";
 import Menu from "./interfaces/menu";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,16 +25,16 @@ export default function RootLayout({
 }>) {
   const menu = [
     {
-        name: 'home',
-        url: '/'
+      name: 'home',
+      url: '/'
     },
     {
-        name: 'newsletter',
-        url: '/newsletter'
+      name: 'newsletter',
+      url: '/newsletter'
     },
     {
-        name: 'register',
-        url: '/register'
+      name: 'register',
+      url: '/register'
     },
     // {
     //     name: 'login',
@@ -75,15 +76,14 @@ export default function RootLayout({
         </Suspense>
         {children}
         <Footer />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0JN17KS2T"></script>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-W0JN17KS2T" />
         <script dangerouslySetInnerHTML={{
           __html: `
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-W0JN17KS2T');
-  `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-W0JN17KS2T');
+          `
         }} />
       </body>
     </html>

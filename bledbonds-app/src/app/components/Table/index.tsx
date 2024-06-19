@@ -8,6 +8,7 @@ interface TableProps<T> {
     header: Header[];
     data: T[];
     className?: string;
+    button?: JSX.Element;
 }
 
 export default function Table<T extends object>(props: TableProps<T>) {
@@ -40,6 +41,9 @@ export default function Table<T extends object>(props: TableProps<T>) {
                     }
                 </tbody>
             </table>
+            <div>
+                {props.button}
+            </div>
         </div>
     );
 }

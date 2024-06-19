@@ -5,6 +5,7 @@ import ArrowDes from "@/app/Icons/arrowDes";
 import getNewsletterAPI from "@/app/api/getNewsletter";
 import Table from "@/app/components/Table";
 import { useEffect, useState } from "react";
+import ButtonSendMail from "./componts/ButtonSendMail";
 
 interface NewsletterData {
     id: number;
@@ -94,6 +95,7 @@ export default function RegisterPage() {
                         data={dataOrd}
                         className="mt-3"
                     />
+                    <ButtonSendMail />
                 </div>
             ) : (
                 <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
