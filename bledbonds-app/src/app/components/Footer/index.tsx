@@ -15,10 +15,10 @@ export default function Footer() {
             url: '/register',
             alternative: 'Registrate'
         },
-        {
-            name: 'blog',
-            url: '/blog'
-        }
+        // {
+        //     name: 'blog',
+        //     url: '/blog'
+        // }
         // {
         //     name: 'login',
         //     url: '/login'
