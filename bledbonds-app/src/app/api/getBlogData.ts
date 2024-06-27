@@ -1,4 +1,4 @@
-const activateUser = async (code: string) => {
+const getBlogData = async () => {
   try {
     const host = window.location.host;
     let API_URL = '';
@@ -8,14 +8,23 @@ const activateUser = async (code: string) => {
     } else {
       API_URL = 'https://api.bledbonds.es/api/v1';
     }
-    const resp = await fetch(`${API_URL}/activate/${code}`, {
+    const resp = await fetch(`${API_URL}/blog/getResume`, {
       method: 'PUT',
       headers: {
         'x-api-key': '6d83d4496c0010950eb2f3a0db79004c'
       }
     });
     if (!resp.ok) {
-      throw new Error('Network response was not ok');
+      return [
+        {
+          category: 'Citas',
+          title: 'Citas para personas con discapacidad',
+          resume: 'Conoce a personas con discapacidad en BledBonds',
+          postBy: 'Jese Leos',
+          postByAvatar: 'https://randomuser.me/api/portraits',
+          id: 1
+        }
+      ]
     } else {
       const data = await resp.json();
       return data;
@@ -25,4 +34,4 @@ const activateUser = async (code: string) => {
   }
 }
 
-export default activateUser;
+export default getBlogData;

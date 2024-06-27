@@ -15,13 +15,13 @@ export default function Footer() {
             url: '/register',
             alternative: 'Registrate'
         },
+        {
+            name: 'blog',
+            url: '/blog'
+        }
         // {
         //     name: 'login',
         //     url: '/login'
-        // }
-        // {
-        //     name: 'blog',
-        //     url: '/blog'
         // }
         // {
         //     name: 'register',
