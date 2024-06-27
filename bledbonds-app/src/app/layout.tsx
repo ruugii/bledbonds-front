@@ -55,8 +55,19 @@ export default function RootLayout({
           name: 'Usuarios susctritos a la newsletter',
           url: '/admin/newsletter'
         }
-      ]
+      ],
+      singout: true
     },
+    {
+      name: 'Gestion del blog',
+      url: '',
+      dropdown: [
+        {
+          name: 'Crear post',
+          url: '/admin/blog/create',
+        }
+      ]
+    }
   ] as Menu[]
   return (
     <html lang="en">
