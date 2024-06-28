@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import EmailInput from "../components/EmailInput";
+import SectionTitle from "../components/Text/SectionTitle";
 
 export const metadata: Metadata = {
     title: "Bled Bonds - Citas para personas con discapacidad - suscribete a nuestra newsletter",
@@ -17,9 +18,9 @@ export default function Page() {
                         <div className="flex flex-row h-[90%] content-center items-center justify-center">
                             <div className="flex flex-col w-full">
                                 <div className="flex flex-row content-center justify-center items-center">
-                                    <h3 className="text-2xl font-bold text-palette-11 w-[80%]">
+                                    <SectionTitle bold width>
                                         REGISTRATE A LA NEWSLETTER DE BLEDBONDS Y VAS A ESTAR INFORMADO DE TODAS NUESTRAS NOVEDADES
-                                    </h3>
+                                    </SectionTitle>
                                 </div>
                                 <EmailInput />
                             </div>

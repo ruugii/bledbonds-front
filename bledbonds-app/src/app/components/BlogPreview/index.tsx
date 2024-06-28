@@ -5,6 +5,7 @@ import Category from "../Category"
 import getBlogData from "@/app/api/blog/getBlogData";
 import Link from "next/link";
 import Image from "next/image";
+import Subtitle from "../Text/Subtitle";
 
 interface BlogDataInterface {
   category: string;
@@ -26,7 +27,7 @@ export default function BlogPreview() {
   }, [])
 
   return (
-    <div className="grid grid-cols-3 gap-3">
+    <div className="grid grid-cols-3 gap-3 mt-2">
       {blogData.map((post, index) => (
         <article key={index} className="p-6 bg-palette-11 rounded-lg border border-palette-9 shadow-md">
           <div className="flex justify-between items-center mb-5 text-palette-2">
@@ -34,9 +35,9 @@ export default function BlogPreview() {
               <Category category={post.category} />
             </span>
           </div>
-          <h2 className="mb-2 text-2xl font-bold tracking-tight text-palette-1">
+          <Subtitle margin bold traking light>
             <a href="/">{post.title}</a>
-          </h2>
+          </Subtitle>
           <p className="mb-5 font-light text-palette-1">{post.resume}</p>
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">

@@ -12,6 +12,7 @@ import { stat } from "fs";
 import Button from "@/app/UX/button/button";
 import registerAPI from "@/app/api/register";
 import { redirect } from "next/dist/server/api-utils";
+import SectionTitle from "@/app/components/Text/SectionTitle";
 
 export default function PreRegistration() {
     const [email, setEmail] = useState('');
@@ -201,9 +202,9 @@ export default function PreRegistration() {
             </div>
             <div className="content-start items-start bg-palette-4 shadow-md shadow-palette-11 border-solid border-palette-4 border-2 p-5 pl-0 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%]">
                 {/* Errores de la contraseña */}
-                <h3 className="text-lg font-bold text-palette-11">
+                <SectionTitle bold lg>
                     La contraseña debe contener:
-                </h3>
+                </SectionTitle>
                 {hasMayus ? (
                     <span className="text-palette-7 w-full flex"><Check />
                         Debe tener al menos una letra mayúscula</span>

@@ -1,4 +1,7 @@
 import { Metadata } from "next";
+import Title from "./components/Text/Title";
+import Subtitle from "./components/Text/Subtitle";
+import SectionTitle from "./components/Text/SectionTitle";
 
 export const metadata: Metadata = {
   title: "Bled Bonds - Citas para personas con discapacidad - pagina principal",
@@ -9,9 +12,15 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className='bg-palette-3 h-screen max-w-screen flex flex-col content-center justify-center items-center text-center p-4'>
-      <h1 className='text-4xl font-bold text-palette-11 mt-3'>BIENVENIDO A BLED BONDS</h1>
-      <h2 className="text-2xl font-bold text-palette-11 mt-3">LA PRIMERA RED SOCIAL PARA PERSONAS CON DISCAPACIDAD</h2>
-      <h3 className="text-xl font-bold text-palette-11 mt-3">PROXIMAMENTE...</h3>
+      <Title bold>
+        BIENVENIDO A BLED BONDS
+      </Title>
+      <Subtitle bold>
+        LA PRIMERA RED SOCIAL PARA PERSONAS CON DISCAPACIDAD
+      </Subtitle>
+      <SectionTitle bold margin>
+        PROXIMAMENTE...
+      </SectionTitle>
     </main>
   );
 }

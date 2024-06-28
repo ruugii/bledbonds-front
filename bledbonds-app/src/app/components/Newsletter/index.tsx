@@ -7,6 +7,7 @@ import Imput from "@/app/UX/imput/imput";
 import newsletterAPI from "@/app/api/newsletter";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import SectionTitle from "../Text/SectionTitle";
 
 interface NewsletterProps {
   isOpen?: boolean;
@@ -68,9 +69,9 @@ export default function Newsletter(props: NewsletterProps) {
             </div>
             <div className="flex flex-row h-[90%] content-center items-center justify-center">
               <div className="flex flex-col w-full">
-                <h3 className="text-2xl font-bold text-palette-11">
+                <SectionTitle bold>
                   REGISTRATE A LA NEWSLETTER DE BLEDBONDS Y VAS A ESTAR INFORMADO DE TODAS NUESTRAS NOVEDADES
-                </h3>
+                </SectionTitle>
                 <div className="flex flex-row content-center justify-center items-center">
                   <Imput
                     label="Email"

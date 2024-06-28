@@ -10,6 +10,8 @@ import getCategoriesAPI from "@/app/api/category/getCategories";
 import getNewsletterAPI from "@/app/api/getNewsletter";
 import getUsersAPI from "@/app/api/getUsers";
 import Table from "@/app/components/Table";
+import Subtitle from "@/app/components/Text/Subtitle";
+import Title from "@/app/components/Text/Title";
 import { useEffect, useState } from "react";
 import Select from 'react-select';
 
@@ -80,12 +82,12 @@ export default function RegisterPage() {
     <>
       {(role === 'US_CC' && isClient) ? (
         <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
-          <h1 className="text-4xl font-bold text-palette-11 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%] md:text-center text-left">
-            BLEDBONDS - CREAR POST EN EL BLOG
-          </h1>
-          <h2 className="text-3xl font-bold text-palette-11 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%] md:text-center text-left">
+          <Title bold width grid center>
+            CREAR BLOG
+          </Title>
+          <Subtitle margin bold width grid center>
             Porfavor llena el siguiente formulario para poder crear un post en el blog
-          </h2>
+          </Subtitle>
           <div>
             <Dropdown
               label="Categoria - en caso de que no exista la categoría que buscas, porfavor contacta a un administrador para que la agregue."
@@ -142,12 +144,12 @@ export default function RegisterPage() {
         </div>
       ) : (
         <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
-          <h1 className="text-4xl font-bold text-palette-11 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%] md:text-center text-left">
+          <Title bold width grid center>
             BLEDBONDS - CREAR POST EN EL BLOG
-          </h1>
-          <h2 className="text-3xl font-bold text-palette-11 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%] md:text-center text-left">
+          </Title>
+          <Subtitle margin bold width grid center>
             Solo puedes acceder a esta página si eres un administrador
-          </h2>
+          </Subtitle>
         </div>
       )}
     </>

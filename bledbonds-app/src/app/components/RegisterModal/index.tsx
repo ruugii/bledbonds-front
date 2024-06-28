@@ -19,6 +19,7 @@ import Button from "@/app/UX/button/button"
 import registerAPI from "@/app/api/register"
 import { redirect, usePathname, useRouter, useSearchParams } from "next/navigation"
 import Close from "@/app/Icons/close"
+import SectionTitle from "../Text/SectionTitle"
 
 interface RegisterInterface {
     isOpen?: boolean,
@@ -240,7 +241,9 @@ export default function RegisterModal(props : RegisterInterface) {
                                 </div>
                             </div>
                             <div className="flex flex-col w-full">
-                                <h3 className="text-2xl font-bold text-palette-11">REGISTRATE EN BLED BONDS</h3>
+                                <SectionTitle bold>
+                                    REGISTRATE EN BLED BONDS
+                                </SectionTitle>
                                 <div className="flex flex-row content-center justify-center items-center">
                                     {
                                         step === 1 ? (

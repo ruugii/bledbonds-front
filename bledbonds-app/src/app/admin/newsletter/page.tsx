@@ -6,6 +6,7 @@ import getNewsletterAPI from "@/app/api/getNewsletter";
 import Table from "@/app/components/Table";
 import { useEffect, useState } from "react";
 import ButtonSendMail from "./componts/ButtonSendMail";
+import Title from "@/app/components/Text/Title";
 
 interface NewsletterData {
   id: number;
@@ -71,9 +72,9 @@ export default function RegisterPage() {
     <>
       {(role === 'US_CC' && isClient) ? (
         <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
-          <h1 className="text-4xl font-bold text-palette-11 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%] md:text-center text-left">
-            BLEDBONDS - USUARIOS SUSCRITOS A LA NEWSLETTER | ADMINISTRADOR | {dataOrd.length} - USUARIOS SUSCRITOS
-          </h1>
+          <Title bold width grid center>
+            BLEDBONDS - USUARIOS SUSCRITOS A LA NEWSLETTER | ADMINISTRADOR | {dataOrd?.length || 0} - USUARIOS SUSCRITOS
+          </Title>
           <Table
             header={[
               {
@@ -99,9 +100,9 @@ export default function RegisterPage() {
         </div>
       ) : (
         <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
-          <h1 className="text-4xl font-bold text-palette-11 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%] md:text-center text-left">
+          <Title bold width grid center>
             Solo puedes acceder a esta página si eres un administrador
-          </h1>
+          </Title>
         </div>
       )}
     </>

@@ -5,6 +5,7 @@ import TextArea from "@/app/UX/TextArea"
 import Button from "@/app/UX/button/button"
 import Imput from "@/app/UX/imput/imput"
 import testNewsletterAPI from "@/app/api/TestNewsletter"
+import SectionTitle from "@/app/components/Text/SectionTitle"
 import { useState } from "react"
 
 export default function ButtonSendMail() {
@@ -29,7 +30,9 @@ export default function ButtonSendMail() {
             <div className="text-center">
               <div className="flex flex-row content-center items-center gap-3">
                 <div className="flex flex-col w-full">
-                  <h3 className="text-2xl font-bold text-palette-11">REGISTRATE EN BLED BONDS</h3>
+                  <SectionTitle bold>
+                    REGISTRATE EN BLED BONDS
+                  </SectionTitle>
                 </div>
                 <div onClick={togle} className=" text-palette-11 ">
                   <Close />
