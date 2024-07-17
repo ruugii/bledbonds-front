@@ -25,16 +25,24 @@ export default function RootLayout({
 }>) {
   const menu = [
     {
-      name: 'home',
+      name: 'Bled Bonds',
       url: '/'
     },
     {
-      name: 'newsletter',
+      name: 'Suscribete a la newsletter',
       url: '/newsletter'
     },
     {
-      name: 'register',
-      url: '/register'
+      name: 'Que es Bled Bonds',
+      url: '/what-is'
+    },
+    {
+      name: 'La app',
+      url: '/app'
+    },
+    {
+      name: 'Preguntas frecuentes',
+      url: '/faq'
     },
     // {
     //     name: 'login',
@@ -56,7 +64,6 @@ export default function RootLayout({
           url: '/admin/newsletter'
         }
       ],
-      singout: true
     },
     {
       name: 'Gestion del blog',
