@@ -25,11 +25,7 @@ export default function RootLayout({
 }>) {
   const menu = [
     {
-      name: 'Bled Bonds',
-      url: '/'
-    },
-    {
-      name: 'Suscribete a la newsletter',
+      name: 'newsletter',
       url: '/newsletter'
     },
     {
