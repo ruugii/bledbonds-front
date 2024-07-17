@@ -4,6 +4,7 @@ interface SectionTitleProps {
   width?: boolean;
   margin?: boolean;
   lg?: boolean;
+  left?: boolean;
 }
 
 export default function SectionTitle(props:SectionTitleProps) {
@@ -15,7 +16,7 @@ export default function SectionTitle(props:SectionTitleProps) {
     lg
   } = props;
   return (
-    <h3 className={`${lg ? 'text-lg' : 'text-2xl'} ${bold && 'font-bold'} text-palette-11 ${width && 'w-[80%]'} ${margin && 'mt-3'}`}>
+    <h3 className={`${lg ? 'text-lg' : 'text-2xl'} ${bold && 'font-bold'} text-palette-11 ${width && 'w-[80%]'} ${margin && 'mt-3'} ${props.left && 'w-full text-left'}`}>
       {children}
     </h3>
   )
