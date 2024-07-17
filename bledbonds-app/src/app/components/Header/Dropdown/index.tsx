@@ -45,14 +45,6 @@ export default function Dropdown(props: DropdownProps) {
               </li>
             ))}
           </ul>
-          {item?.singout && (
-            <div className="py-1">
-              <a href="/" className="block px-4 py-2 text-sm text-palette-11 hover:underline" onClick={() => {
-                localStorage.setItem('token', '');
-                localStorage.setItem('role', '');
-              }}>Sign out</a>
-            </div>
-          )}
         </div>
       )}
     </li>
