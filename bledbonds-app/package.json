@@ -10,8 +10,13 @@
     "deploy": "next build && next start --port 9999"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "date-fns": "^3.6.0",
+    "lucide-react": "^0.407.0",
     "next": "14.2.1",
     "react": "^18",
+    "react-day-picker": "^8.10.1",
     "react-dom": "^18",
     "react-select": "^5.8.0"
   },
