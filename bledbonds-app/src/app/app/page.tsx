@@ -61,7 +61,7 @@ export default function AppPage() {
             </div>
             <div className="flex flex-col content-center justify-center items-center">
               <Link href="/faq" className="w-[80%]">
-                <div className={`bg-palette-6 hover:bg-palette-7 active:bg-palette-8 disabled:bg-palette-2 disabled:text-palette-5 text-palette-11 p-2 rounded-lg border-solid border-2 border-palette-6 hover:border-palette-7 active:border-palette-8 w-full shadow-lg shadow-palette-11`}>
+                <div className={`bg-palette-6 hover:bg-palette-7 active:bg-palette-8 disabled:bg-palette-2 disabled:text-palette-5 text-palette-11 p-2 rounded-lg border-solid border-2 border-palette-6 hover:border-palette-7 active:border-palette-8 w-full shadow-lg shadow-palette-11 mt-2 md:mt-0`}>
                   PREGUNTAS FRECUENTES
                 </div>
               </Link>

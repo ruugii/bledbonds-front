@@ -13,7 +13,7 @@ export default function FaqPage() {
             PREgunTAS FRECUENTES
           </Title>
           <section className="w-full mt-7">
-            <Subtitle bold mayus left className="ml-5">
+            <Subtitle bold mayus left className="md:ml-5">
               Web
             </Subtitle>
             <Question question="¿Qué tienes que hacer para pertenecer a Bled Bonds?">
@@ -32,7 +32,7 @@ export default function FaqPage() {
             </Question>
           </section>
           <section className="w-full mt-7">
-            <Subtitle bold mayus left className="ml-5">
+          <Subtitle bold mayus left className="md:ml-5">
               APP - BLED BONDS
             </Subtitle>
             <Question question="¿Qué es Bled Bonds?">
@@ -102,7 +102,7 @@ export default function FaqPage() {
             </Question>
           </section>
           <section className="w-full mt-7">
-            <Subtitle bold mayus left className="ml-5">
+          <Subtitle bold mayus left className="md:ml-5">
               APP - MI PERFIL - BLED BONDS
             </Subtitle>
             <Question question="¿Qué tipo de fotos tengo que poner en mi perfil?">
@@ -148,7 +148,7 @@ export default function FaqPage() {
             </Question>
           </section>
           <section className="w-full mt-7">
-            <Subtitle bold mayus left className="ml-5">
+          <Subtitle bold mayus left className="md:ml-5">
               APP - PLANES - BLED BONDS
             </Subtitle>
             <Question question="¿Qué ocurre si me quedo sin plaza para un plan?">
@@ -186,7 +186,7 @@ export default function FaqPage() {
             </Question>
           </section>
           <section className="w-full mt-7">
-            <Subtitle bold mayus left className="ml-5">
+          <Subtitle bold mayus left className="md:ml-5">
               APP - CITAS - BLED BONDS
             </Subtitle>
             <Question question="¿Cuándo conectas con otra persona en Dinder Club?">

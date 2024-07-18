@@ -18,10 +18,10 @@ export default function About() {
           <Title bold mayus>
             Que es Bled Bonds?
           </Title>
-          <Text bold left subtitle>
+          <Text bold left subtitle className="mt-6">
             Bled Bonds es una aplicacion que tiene el objetivo de conectar a personas con discapacidad.
           </Text>
-          <Text left full big>
+          <Text left full big className="mt-6">
             Esta aplicacion de citas y planes, quiere facilitar las relaciones sociales y amororsas entre personas con cualquier tipo de discapacidad.
           </Text>
           <Text left full big>

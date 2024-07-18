@@ -19,7 +19,7 @@ export default function Question(props: QuestionProps) {
   };
 
   return (
-    <div className="w-full text-palette-11 text-left border-palette-11 border-solid border-b-2 pl-5 pb-1 pt-1 pr-5">
+    <div className="w-full text-palette-11 text-left border-palette-11 border-solid border-b-2 md:pl-5 pb-1 pt-1 md:pr-5" onClick={toggleResponse}>
       <div className="flex flex-row justify-between content-center items-center">
         <SectionTitle bold left>
           {props.question}
