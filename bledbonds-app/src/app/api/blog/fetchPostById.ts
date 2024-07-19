@@ -1,7 +1,7 @@
 const fetchPostById = async (id:number) => {
   try {
     let API_URL = '';
-    API_URL = 'http://localhost:3001/api/v1';
+    API_URL = 'https://api.bledbonds.es/api/v1';
     console.log(id);
     const resp = await fetch(`${API_URL}/blog/${id}`, {
       method: 'GET',

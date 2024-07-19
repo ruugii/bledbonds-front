@@ -70,6 +70,16 @@ export default function RootLayout({
           url: '/admin/blog/create',
         }
       ]
+    },
+    {
+      name: "Gestion de eventos",
+      url: '',
+      dropdown: [
+        {
+          name: 'Crear evento',
+          url: '/admin/events/create',
+        }
+      ]
     }
   ] as Menu[]
   return (
