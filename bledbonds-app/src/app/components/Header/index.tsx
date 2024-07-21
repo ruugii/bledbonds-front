@@ -12,11 +12,11 @@ export default function Header(props: HeaderProps) {
   const { menu } = props
   return (
     <header className="sticky top-0 w-full z-10 hidden md:block">
-      <nav className="border-palette-1 dark:border-palette-10 bg-palette-3">
+      <nav className="border-palette-1 dark:border-palette-10 bg-palette-3 dark:bg-palette-950">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
             <Image src="/logo.png" alt="Flowbite Logo" width={32} height={32} className="h-8" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-palette-11">BLEDBONDS</span>
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-palette-1 text-palette-950">BLEDBONDS</span>
           </a>
           <div className={`w-full md:block md:w-auto hidden`} id="navbar-dropdown">
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-palette-1 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-palette-7">
@@ -50,7 +50,7 @@ export default function Header(props: HeaderProps) {
                   </>
                 ) : (
                   <li key={index}>
-                    <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline" aria-label={`${item.alternative}_d`}>
+                    <Link href={item.url} className="block py-2 px-3 text-palette-11 dark:text-palette-1 hover:dark:text-palette-2 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline text-center" aria-label={`${item.alternative}_d`}>
                       {item.name}
                     </Link>
                   </li>
@@ -62,7 +62,7 @@ export default function Header(props: HeaderProps) {
           </div>
         </div>
       </nav>
-      <hr className="border-palette-10" />
+      <hr className="border-palette-10 dark:border-palette-1" />
     </header>
   )
 }

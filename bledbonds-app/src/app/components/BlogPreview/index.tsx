@@ -29,14 +29,14 @@ export default function BlogPreview() {
   return (
     <div className="grid grid-cols-3 gap-3 mt-2">
       {blogData.map((post, index) => (
-        <article key={index} className="p-6 bg-palette-11 rounded-lg border border-palette-9 shadow-md">
+        <article key={index} className="p-6 bg-palette-11 dark:bg-palette-900 rounded-lg border border-palette-9 dark:border-palette-800 shadow-md">
           <div className="flex justify-between items-center mb-5 text-palette-2">
-            <span className="bg-palette-10 text-palette-2 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
+            <span className="bg-palette-10 dark:bg-palette-9 text-palette-2 dark:text-palette-50 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
               <Category category={post.category} />
             </span>
           </div>
-          <Subtitle margin bold traking light>
-            <a href="/">{post.title}</a>
+          <Subtitle margin bold traking>
+            <a href={`/blog/${post.id}`}>{post.title}</a>
           </Subtitle>
           <p className="mb-5 font-light text-palette-1">{post.resume}</p>
           <div className="flex justify-between items-center">
@@ -44,8 +44,8 @@ export default function BlogPreview() {
               {post.postByAvatar ? (
                 <Image className="w-7 h-7 rounded-full" src={post.postByAvatar} alt={`${post.postBy} avatar`} />
               ) : (
-                <div className="w-7 h-7 rounded-full bg-palette-10 flex items-center justify-center">
-                  <span className="text-palette-2 font-medium">
+                <div className="w-7 h-7 rounded-full bg-palette-10 dark:bg-palette-2 flex items-center justify-center">
+                  <span className="text-palette-2 dark:text-palette-900 font-medium">
                     {post.postBy.charAt(0).toUpperCase()}
                   </span>
                 </div>

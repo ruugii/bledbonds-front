@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import EmailInput from "../components/EmailInput";
 import BlogPreview from "../components/BlogPreview";
 import SectionTitle from "../components/Text/SectionTitle";
+import Title from "../components/Text/Title";
 
 export const metadata: Metadata = {
   title: "Bled Bonds - Citas para personas con discapacidad - Blog",
@@ -12,16 +13,16 @@ export const metadata: Metadata = {
 export default function Page() {
 
   return (
-    <main className='bg-palette-3 flex flex-col content-center justify-center items-center min-h-screen'>
+    <main className='bg-palette-3 dark:bg-palette-950 flex flex-col content-center justify-center items-center min-h-screen'>
       <div className="flex items-center justify-center">
         <div className="p-8">
           <div className="text-center h-full">
             <div className="flex flex-row content-center items-center justify-center">
               <div className="flex flex-col w-full">
                 <div className="flex flex-row content-center justify-center items-center">
-                  <SectionTitle bold>
+                  <Title bold>
                     El blog de BledBonds
-                  </SectionTitle>
+                  </Title>
                 </div>
                 <BlogPreview />
               </div>

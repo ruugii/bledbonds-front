@@ -26,9 +26,22 @@ const config: Config = {
         "palette-9": "#0a5b65",
         "palette-10": "#0d4c54",
         "palette-11": "#002b33",
+
+        "palette-50": "#effefe",
+        "palette-100": "#c7fffe",
+        "palette-200": "#8afffd",
+        "palette-300": "#50f5f8",
+        "palette-400": "#1ddae4",
+        "palette-500": "#04bbc8",
+        "palette-600": "#0093a1",
+        "palette-700": "#057480",
+        "palette-800": "#0a5b65",
+        "palette-900": "#0d4c54",
+        "palette-950": "#002b33",
       }
     },
   },
   plugins: [],
+  darkMode: "class",
 };
 export default config;

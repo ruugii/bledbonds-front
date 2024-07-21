@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <main className='bg-palette-3 min-h-screen h-full flex flex-col content-center justify-center items-center text-center p-4'>
+    <main className='bg-palette-3 dark:bg-palette-950 min-h-screen h-full flex flex-col content-center justify-center items-center text-center p-4'>
       <div className="md:min-w-[80vh] md:w-[80vw] min-w-[80%] w-[80%] mt-3">
         <div className="flex flex-col justify-between items-center">
           <Title bold mayus>

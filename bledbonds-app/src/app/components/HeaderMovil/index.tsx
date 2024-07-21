@@ -85,7 +85,7 @@ export default function HeaderMovil(props: HeaderProps) {
           </div>
         </div>
       </nav>
-      <hr className="border-palette-10" />
+      <hr className="border-palette-10 dark:border-palette-1" />
     </header>
   )
 }

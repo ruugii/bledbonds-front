@@ -19,12 +19,12 @@ export default function Question(props: QuestionProps) {
   };
 
   return (
-    <div className="w-full text-palette-11 text-left border-palette-11 border-solid border-b-2 md:pl-5 pb-1 pt-1 md:pr-5" onClick={toggleResponse}>
+    <div className="w-full text-palette-11 dark:text-palette-1 text-left border-palette-11 dark:border-palette-1 border-solid border-b-2 md:pl-5 pb-1 pt-1 md:pr-5" onClick={toggleResponse}>
       <div className="flex flex-row justify-between content-center items-center">
         <SectionTitle bold left>
           {props.question}
         </SectionTitle>
-        <Button onClick={toggleResponse} className="min-w-8 border-transparent bg-transparent" noBorder>
+        <Button onClick={toggleResponse} className="min-w-8 border-transparent bg-transparent dark:text-palette-50" noBorder>
           {showResponse ? '-' : '+'}
         </Button>
       </div>

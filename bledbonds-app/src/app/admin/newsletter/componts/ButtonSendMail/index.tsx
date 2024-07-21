@@ -9,7 +9,7 @@ import SectionTitle from "@/app/components/Text/SectionTitle"
 import { useState } from "react"
 
 export default function ButtonSendMail() {
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(true)
   const [title, setTitle] = useState('')
   const [asunto, setAsunto] = useState('')
 
@@ -26,16 +26,16 @@ export default function ButtonSendMail() {
       />
       {modalOpen && (
         <div className="fixed inset-0 bg-palette-11 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-20">
-          <div className="p-8 border shadow-lg rounded-md bg-palette-1">
+          <Button onClick={() => setModalOpen(false)} className="absolute top-2 right-2 bg-transparent hover:bg-transparent active:bg-transparent text-palette-950 dark:text-palette-1 border-transparent hover:border-transparent active:border-transparent">
+            <Close />
+          </Button>
+          <div className="p-8 border rounded-md bg-palette-1 dark:bg-palette-950 shadow-md shadow-palette-11 dark:shadow-palette-1">
             <div className="text-center">
               <div className="flex flex-row content-center items-center gap-3">
                 <div className="flex flex-col w-full">
                   <SectionTitle bold>
                     REGISTRATE EN BLED BONDS
                   </SectionTitle>
-                </div>
-                <div onClick={togle} className=" text-palette-11 ">
-                  <Close />
                 </div>
               </div>
               <div>
@@ -51,9 +51,10 @@ export default function ButtonSendMail() {
                   type="text"
                   label="Titulo"
                 />
-                <TextArea
+                <Imput
                   value={text}
                   onChange={setText}
+                  text
                   label="Mensaje"
                 />
                 <Button

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-palette-3 flex-col">
+    <div className="min-h-screen flex items-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
       <header className="md:min-w-[80vh] md:w-[80vw] min-w-[80%] w-[80%] text-left md:text-center">
         <Title bold>
           BLEDBONDS - ACCESO

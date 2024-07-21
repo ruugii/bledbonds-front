@@ -18,13 +18,13 @@ export default function InputPassword(props: Readonly<ImputProps>) {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="mb-3 w-full">
-      <label className="text-palette-11 w-full">
+      <label className="text-palette-11 dark:text-palette-50 w-full">
         {label}
         <div className="relative w-full">
           <div className={`flex flex-col ${props.divClassName}`}>
             <input
               type={showPassword ? 'text' : 'password'}
-              className={`p-2 rounded-lg border-solid border-2 ${props.isValueValid ? 'border-palette-7 text-palette-7 focus:border-palette-7' : 'border-red-500 text-red-500 focus:border-red-500'} w-full focus:outline-none`}
+              className={`p-2 rounded-lg border-solid border-2 ${props.isValueValid ? 'border-palette-600 text-palette-600 hover:border-palette-700 hover:text-palette-700 focus:border-palette-800 focus:text-palette-800' : 'border-red-500 text-red-500 focus:border-red-500'} disabled:dark:border-palette-900 disabled:dark:text-palette-900 disabled:border-palette-300 disabled:text-palette-300 w-full focus:outline-none bg-transparent`}
               value={value}
               onChange={(e) => onChange(e.target.value)}
             />
@@ -35,7 +35,7 @@ export default function InputPassword(props: Readonly<ImputProps>) {
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-palette-11"
             aria-label="Show password"
           >
-            <div className="flex">
+            <div className="flex text-palette-950 dark:text-palette-50">
               {showPassword ? <EyeOpen /> : <EyeClose />}
             </div>
           </button>

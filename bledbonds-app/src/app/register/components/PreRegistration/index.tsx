@@ -176,11 +176,11 @@ export default function PreRegistration() {
             divClassName='w-full'
           />
           <div className={`flex flex-col w-full mb-3`}>
-            <label className="text-palette-11">SELECCIONA TU GÉNERO</label>
+            <label className="text-palette-11 dark:text-palette-50">SELECCIONA TU GÉNERO</label>
             <Select
               options={genderList}
               isClearable
-              className={`${genderValid ? 'border-palette-7 hover:border-palette-7 text-palette-7 focus:border-palette-7' : 'border-red-500 hover:border-red-500 text-red-500 focus:border-red-500'} w-full bg-palette-1 text-palette-11 hover:border-none`}
+              className={`${genderValid ? 'border-palette-600 hover:border-palette-700 active:border-palette-800 text-palette-600 focus:border-palette-700 active:text-palette-800' : 'border-red-500 hover:border-red-500 text-red-500 focus:border-red-500'} w-full bg-palette-1 bg-transparent`}
               styles={{
                 control: (styles) => ({
                   ...styles,
@@ -200,34 +200,34 @@ export default function PreRegistration() {
           </div>
         </div>
       </div>
-      <div className="content-start items-start bg-palette-4 shadow-md shadow-palette-11 border-solid border-palette-4 border-2 p-5 pl-0 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%]">
+      <div className="content-start items-start bg-palette-4 dark:bg-palette-10 shadow-md shadow-palette-11 dark:shadow-palette-50 border-solid border-palette-4 dark:border-palette-10 border-2 p-5 pl-0 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%]">
         {/* Errores de la contraseña */}
         <SectionTitle bold lg>
           La contraseña debe contener:
         </SectionTitle>
         {hasMayus ? (
-          <span className="text-palette-7 w-full flex"><Check />
+          <span className="text-palette-7 dark:text-palette-2 w-full flex"><Check />
             Debe tener al menos una letra mayúscula</span>
         ) : (
           <span className="text-red-500 w-full flex"><Close /> Debe tener al menos una letra mayúscula</span>
         )}
         {hasMinus ? (
-          <span className="text-palette-7 w-full flex"><Check /> Debe contener al menos una letra minúscula</span>
+          <span className="text-palette-7 dark:text-palette-2 w-full flex"><Check /> Debe contener al menos una letra minúscula</span>
         ) : (
           <span className="text-red-500 w-full flex"><Close /> Debe contener al menos una letra minúscula</span>
         )}
         {hasNumber ? (
-          <span className="text-palette-7 w-full flex"><Check /> Debe contener al menos un número</span>
+          <span className="text-palette-7 dark:text-palette-2 w-full flex"><Check /> Debe contener al menos un número</span>
         ) : (
           <span className="text-red-500 w-full flex"><Close /> Debe contener al menos un número</span>
         )}
         {hasSpecial ? (
-          <span className="text-palette-7 w-full flex"><Check /> Debe contener al menos un carácter especial (!@#$%^&*-)</span>
+          <span className="text-palette-7 dark:text-palette-2 w-full flex"><Check /> Debe contener al menos un carácter especial (!@#$%^&*-)</span>
         ) : (
           <span className="text-red-500 w-full flex"><Close /> Debe contener al menos un carácter especial (!@#$%^&*-)</span>
         )}
         {moreThan8 ? (
-          <span className="text-palette-7 w-full flex"><Check /> La contraseña debe tener entre {minPasswordLength} y {maxPasswordLength} caracteres | {password.length} caracteres</span>
+          <span className="text-palette-7 dark:text-palette-2 w-full flex"><Check /> La contraseña debe tener entre {minPasswordLength} y {maxPasswordLength} caracteres | {password.length} caracteres</span>
         ) : (
           <span className="text-red-500 w-full flex"><Close /> La contraseña debe tener entre {minPasswordLength} y {maxPasswordLength} caracteres | {password.length} caracteres</span>
         )}
@@ -251,7 +251,6 @@ export default function PreRegistration() {
               window.location.href = '/'
             }
           }
-
           register()
         }}
 

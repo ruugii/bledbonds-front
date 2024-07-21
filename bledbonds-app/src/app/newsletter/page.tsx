@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className='bg-palette-3 h-screen flex flex-col content-center justify-center items-center'>
+    <main className='bg-palette-3 dark:bg-palette-11 h-screen flex flex-col content-center justify-center items-center'>
       <div className="flex items-center justify-center">
         <div className="p-8 h-[80%] w-[80%]">
           <div className="text-center h-full">

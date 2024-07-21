@@ -6,7 +6,7 @@ import Title from "../components/Text/Title";
 export default function FaqPage() {
 
   return (
-    <main className='bg-palette-3 min-h-screen h-full flex flex-col content-center justify-center items-center text-center p-4'>
+    <main className='bg-palette-3 dark:bg-palette-950 min-h-screen h-full flex flex-col content-center justify-center items-center text-center p-4'>
       <div className="md:min-w-[80vh] md:w-[80vw] min-w-[80%] w-[80%] mt-3">
         <div className="flex flex-col justify-between items-center">
           <Title bold mayus>
@@ -21,8 +21,8 @@ export default function FaqPage() {
                 Para pertanecer a Bled Bonds, a parte de ser mayor de 18, solo tienes que cumplir uno de los siguientes requisitos:
               </Text>
               <ul className="list-disc list-inside">
-                <li className="w-full text-palette-11 text-left">Ser miembro de una entidad relacionada con la discapacidad</li>
-                <li className="w-full text-palette-11 text-left">Tener una discapacidad</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Ser miembro de una entidad relacionada con la discapacidad</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Tener una discapacidad</li>
               </ul>
             </Question>
             <Question question="¿En cuántos idiomas están disponibles la aplicación y la página web?">
@@ -57,10 +57,10 @@ export default function FaqPage() {
                 Tiene compras dentro de la aplicacion, para poder acceder a ciertas funcionalidades sin limitaciones. Estas funcionalidades son:
               </Text>
               <ul className="list-disc list-inside">
-                <li className="w-full text-palette-11 text-left">Ver quien te ha dado like</li>
-                <li className="w-full text-palette-11 text-left">Ver quien ha visitado tu perfil</li>
-                <li className="w-full text-palette-11 text-left">Dar mas de 20 likes al dia</li>
-                <li className="w-full text-palette-11 text-left">Tener 1 rompehielos al dia</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Ver quien te ha dado like</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Ver quien ha visitado tu perfil</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Dar mas de 20 likes al dia</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Tener 1 rompehielos al dia</li>
               </ul>
             </Question>
             <Question question="Que es un rompehielos?">
@@ -84,8 +84,8 @@ export default function FaqPage() {
                 Bled Bonds te ofrece 2 posibilidades:
               </Text>
               <ul className="list-disc list-inside">
-                <li className="w-full text-palette-11 text-left">Las citas</li>
-                <li className="w-full text-palette-11 text-left">Los planes grupales</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Las citas</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Los planes grupales</li>
               </ul>
               <Text left full>
                 Puedes usar cualquiera de las dos opciones o ambas, según tus preferencias.
@@ -95,8 +95,8 @@ export default function FaqPage() {
               <Text left full>
                 Si, no es necesario pertenecer a una entidad social para registrarse en Bled Bonds. Solo tienes que cumplir uno de los siguientes requisitos:
                 <ul className="list-disc list-inside">
-                  <li className="w-full text-palette-11 text-left">Ser miembro de una entidad relacionada con la discapacidad</li>
-                  <li className="w-full text-palette-11 text-left">Tener una discapacidad</li>
+                  <li className="w-full text-palette-11 dark:text-palette-50 text-left">Ser miembro de una entidad relacionada con la discapacidad</li>
+                  <li className="w-full text-palette-11 dark:text-palette-50 text-left">Tener una discapacidad</li>
                 </ul>
               </Text>
             </Question>
@@ -128,12 +128,12 @@ export default function FaqPage() {
                 En los ajustes encontramos:
               </Text>
               <ul className="list-disc list-inside">
-                <li className="w-full text-palette-11 text-left">Tu localización</li>
-                <li className="w-full text-palette-11 text-left">El idioma</li>
-                <li className="w-full text-palette-11 text-left">Cambiar contraseña</li>
-                <li className="w-full text-palette-11 text-left">Boton de ayuda</li>
-                <li className="w-full text-palette-11 text-left">Las preguntas y respuestas mas frecuentes (FAQS)</li>
-                <li className="w-full text-palette-11 text-left">Como cerrar tu cuenta</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Tu localización</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">El idioma</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Cambiar contraseña</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Boton de ayuda</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Las preguntas y respuestas mas frecuentes (FAQS)</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Como cerrar tu cuenta</li>
               </ul>
             </Question>
             <Question question="¿Qué tendría que explicar en mi biografía?">
@@ -174,9 +174,9 @@ export default function FaqPage() {
                 El plan tendrá un dinamizador cualificado y seleccionado previamente, que se encargará de:
               </Text>
               <ul className="list-disc list-inside">
-                <li className="w-full text-palette-11 text-left">Resolver las dudas necesarias</li>
-                <li className="w-full text-palette-11 text-left">Acompañar a los usuarios durante la actividad</li>
-                <li className="w-full text-palette-11 text-left">Solucionar los posibles problemas que puedan aparecer</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Resolver las dudas necesarias</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Acompañar a los usuarios durante la actividad</li>
+                <li className="w-full text-palette-11 dark:text-palette-50 text-left">Solucionar los posibles problemas que puedan aparecer</li>
               </ul>
             </Question>
             <Question question="¿Todos los planes tienen el mismo coste?">

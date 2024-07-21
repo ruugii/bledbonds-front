@@ -22,7 +22,7 @@ export default async function BlogIdPage({ params }: { params: BlogParams }) {
     const text = resp[0].content.split('\n');
 
     return (
-      <main className='bg-palette-3 flex flex-col content-center justify-center items-center min-h-screen'>
+      <main className='bg-palette-3 dark:bg-palette-950 flex flex-col content-center justify-center items-center min-h-screen'>
         <div className="flex items-center justify-center">
           <div className="p-8">
             <div className="text-center h-full">
@@ -52,7 +52,7 @@ export default async function BlogIdPage({ params }: { params: BlogParams }) {
                       {text.map((t: string, i: number) => {
                         if (t.startsWith('- ')) {
                           return (
-                            <li key={i} className="w-full text-palette-11 text-left">
+                            <li key={i} className="w-full text-palette-11 dark:text-palette-50 text-left">
                               {t.replace('- ', '')}
                             </li>
                           );

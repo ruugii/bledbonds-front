@@ -71,11 +71,11 @@ export default function Newsletter(props: NewsletterProps) {
   return (
     (openModal && (props.isOpen === false || props.isOpen === undefined)) && (
       <div className="fixed inset-0 bg-palette-11 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
-        <div className="p-8 border shadow-lg rounded-md bg-palette-1 h-[80%] w-[80%]">
+        <div className="p-8 border shadow-lg rounded-md bg-palette-1 dark:bg-palette-950 h-[80%] w-[80%]">
           <div className="text-center h-full">
             <div className="text-palette-11 flex justify-end">
-              <Button onClick={() => setOpenModal(!openModal)} className="bg-transparent flex flex-row border-none p-2 h-12 w-12 content-center justify-center items-center">
-                <Close className="hover:h-12 hover:w-12" />
+              <Button onClick={() => setOpenModal(!openModal)} className="bg-transparent hover:bg-transparent active:bg-transparent flex flex-row border-none p-2 h-12 w-12 content-center justify-center items-center">
+                <Close className="hover:h-12 hover:w-12 dark:text-palette-50 text-palette-950" />
               </Button>
             </div>
             <div className="flex flex-row h-[90%] content-center items-center justify-center">

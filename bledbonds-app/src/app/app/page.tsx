@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function AppPage() {
   return (
-    <main className='bg-palette-3 min-h-screen h-full flex flex-col content-center justify-center items-center text-center p-4'>
+    <main className='bg-palette-3 dark:bg-palette-950 min-h-screen h-full flex flex-col content-center justify-center items-center text-center p-4'>
       <div className="md:min-w-[80vh] md:w-[80vw] min-w-[80%] w-[80%] mt-3">
         <div className="flex flex-col justify-between items-center">
           <Title bold mayus>
@@ -50,7 +50,7 @@ export default function AppPage() {
             </Text>
           </section>
 
-          <section className="mt-10 w-full p-4 bg-palette-1 text-palette-11 shadow-md shadow-palette-11 grid grid-cols-1 md:grid-cols-2">
+          <section className="mt-10 w-full p-4 bg-palette-1 dark:bg-palette-800 text-palette-11 dark:text-palette-50 shadow-md shadow-palette-11 dark:shadow-palette-50 grid grid-cols-1 md:grid-cols-2">
             <div>
               <SectionTitle bold left>
                 Tienes alguna duda?
@@ -61,7 +61,7 @@ export default function AppPage() {
             </div>
             <div className="flex flex-col content-center justify-center items-center">
               <Link href="/faq" className="w-[80%]">
-                <div className={`bg-palette-6 hover:bg-palette-7 active:bg-palette-8 disabled:bg-palette-2 disabled:text-palette-5 text-palette-11 p-2 rounded-lg border-solid border-2 border-palette-6 hover:border-palette-7 active:border-palette-8 w-full shadow-lg shadow-palette-11 mt-2 md:mt-0`}>
+                <div className={`bg-palette-500 hover:bg-palette-600 active:bg-palette-700 text-palette-950 dark:text-palette-950 p-2 rounded-lg border-solid border-2 border-palette-500 hover:border-palette-600 active:border-palette-700 w-full shadow-lg shadow-palette-950 dark:shadow-palette-50 mt-2 md:mt-0`}>
                   PREGUNTAS FRECUENTES
                 </div>
               </Link>

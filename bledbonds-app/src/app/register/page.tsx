@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
   return (
-    <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
+    <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
       <Title bold width grid center>
         BLEDBONDS - REGISTRO
       </Title>

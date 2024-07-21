@@ -10,6 +10,7 @@ import RegisterModal from "./components/RegisterModal";
 import HeaderMovil from "./components/HeaderMovil";
 import Menu from "./interfaces/menu";
 import Script from "next/script";
+import ChangeTheme from "./components/ChangeTheme";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -73,13 +74,7 @@ export default function RootLayout({
     },
     {
       name: "Gestion de eventos",
-      url: '',
-      dropdown: [
-        {
-          name: 'Crear evento',
-          url: '/admin/events/create',
-        }
-      ]
+      url: '/admin/events',
     }
   ] as Menu[]
   return (
@@ -100,6 +95,7 @@ export default function RootLayout({
         </Suspense>
         {children}
         <Footer />
+        <ChangeTheme />
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-W0JN17KS2T" />
         <script dangerouslySetInnerHTML={{
           __html: `

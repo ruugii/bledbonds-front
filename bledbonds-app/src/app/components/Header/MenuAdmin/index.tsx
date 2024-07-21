@@ -43,20 +43,20 @@ export default function MenuAdmin(props: HeaderProps) {
           <Dropdown key={index} index={index} item={item} />
         ) : (
           <li key={index}>
-            <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline" aria-label={`${item.alternative}_d`}>
+            <Link href={item.url} className="block py-2 px-3 text-palette-11 dark:text-palette-1 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 dark:hover:text-palette-2 hover:underline text-center" aria-label={`${item.alternative}_d`}>
               {item.name}
             </Link>
           </li>
         ))}
-        <li onClick={() => logout()}>
-          <p className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline hover:cursor-pointer" aria-label={`logout_p`}>
+        <li onClick={() => logout()} className=" flex content-center items-center">
+          <p className="block py-2 px-3 text-palette-11 dark:text-palette-1 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 dark:hover:text-palette-2 hover:underline hover:cursor-pointer" aria-label={`logout_p`}>
             logout
           </p>
         </li>
         </>
       ) : (
         <li>
-          <Link href={'/register'} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline " aria-label={`register_d`}>
+          <Link href={'/register'} className="block py-2 px-3 text-palette-11 dark:text-palette-50 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:dark:text-palette-100  hover:underline " aria-label={`register_d`}>
             register
           </Link>
         </li>
