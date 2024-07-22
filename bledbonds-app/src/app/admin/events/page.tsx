@@ -297,7 +297,7 @@ export default function EventsPage() {
           Eventos
         </Title>
         <div className="w-[80%]">
-          <div className="w-[80%] md:w-[80vw] block overflow-auto mt-3">
+          <div className="w-full md:w-[80vw] block overflow-auto mt-3">
             <table className={`md:min-w-[80vh] md:w-[80vw] md:max-w-[80vw] min-w-[80%] w-[80%] max-w-[80%] bg-palette-2 dark:bg-palette-10 table-auto text-palette-11 dark:text-palette-50 gap-3`}>
               <thead>
                 <tr>
