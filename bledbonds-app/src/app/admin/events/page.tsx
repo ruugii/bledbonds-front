@@ -8,7 +8,7 @@ import Imput from "@/app/UX/imput/imput";
 import { ChangeEventHandler, useEffect, useState } from "react";
 import Message from "./component/Message";
 
-import { io, Socket, DefaultEventsMap } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import getAllEvents from "@/app/api/events/getAllEvents";
 import getParticipantsEvent from "@/app/api/events/getParticipants";
 import getChatByEvent from "@/app/api/events/getChatByEvent";
@@ -19,15 +19,13 @@ import uploadImage from "@/app/api/uploadImage";
 
 export default function EventsPage() {
 
-  const host = window.location.host;
-
-  const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
+  const [socket, setSocket] = useState<Socket | null>(null);
   const [createEventModal, setCreateEventModal] = useState(false);
   const [name, setName] = useState("");
   const [date, setDate] = useState('');
   const [place, setPlace] = useState("");
   const [description, setDescription] = useState("");
-  const [file, setFile] = useState<File>(); // Changed to null
+  const [file, setFile] = useState<File | null>(); // Changed to null
   const [isFileValid, setIsFileValid] = useState(true);
   const [disabled, setDisabled] = useState(true);
   const [seeParticipantsModal, setSeeParticipantsModal] = useState(false);
@@ -36,7 +34,14 @@ export default function EventsPage() {
   const [editEventModal, setEditEventModal] = useState(false);
   const [idEvent, setIdEvent] = useState(0);
   const [modalConfirm, setModalConfirm] = useState(false);
-  const [idUser, setIdUser] = useState(localStorage.getItem('idUser'));
+  const [idUser, setIdUser] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIdUser(localStorage.getItem('idUser') ?? '');
+    }
+  }, [])
+
   const [chat, setChat] = useState([{
     sender: "Usuario 1",
     message: "Hola",
@@ -105,7 +110,8 @@ export default function EventsPage() {
     name: "Foto",
     onClick: () => console.log("Ordenar por foto"),
   }])
-  const [events, setEvents] = useState(null);
+  const [events, setEvents] = useState<{ event_name: string, event_date: string, event_location: string, event_description: string, id: number }[]>([]);
+
   const [chatName, setChatName] = useState('');
 
   useEffect(() => {
@@ -147,24 +153,24 @@ export default function EventsPage() {
     setIsClient(true);
   }, []);
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setRole(localStorage.getItem('role'));
-    }
+    setRole(localStorage.getItem('role'));
   }, [])
 
   if (role === 'US_CC' && isClient) {
 
-    const handleFileChange = (event: ChangeEventHandler<HTMLInputElement>) => {
-      setFile(event.target.files[0]);
+    const handleFileChange = (e:any) => {
+      setFile(e?.target?.files[0] || null);
     };
 
     const updateEvent = (id: number) => {
       const event = events?.find((item) => item.id === id);
-      setName(event.event_name)
-      setDate(event.event_date)
-      setPlace(event.event_location)
-      setDescription(event.event_description)
-      setIdEvent(event.id)
+      if (event) {
+        setName(event.event_name || '')
+        setDate(event.event_date || '')
+        setPlace(event.event_location || '')
+        setDescription(event.event_description || '')
+        setIdEvent(event.id || 0)
+      }
       setEditEventModal(true)
     }
 
@@ -179,12 +185,14 @@ export default function EventsPage() {
       const data = await updateEventAPI(idEvent, newEvent, localStorage.getItem('token') || '');
       if (data) {
         const aux = events.find((item) => item.id === idEvent)
-        aux.event_name = name;
-        aux.event_date = date;
-        aux.event_location = place;
-        aux.event_description = description;
-        const id = events.findIndex((item) => item.id === idEvent);
-        events[id] = aux;
+        if (aux) {
+          aux.event_name = name;
+          aux.event_date = date;
+          aux.event_location = place;
+          aux.event_description = description;
+          const i = events.findIndex((item) => item.id === idEvent);
+          events[i] = aux;
+        }
       }
       clearForm();
       setEditEventModal(false);
@@ -202,6 +210,7 @@ export default function EventsPage() {
       const url = await uploadImage(file);
       newEvent.url = url;
       await createEventAPI(newEvent, localStorage.getItem('token') || '');
+      const eventsArray = events;
       const aux = {
         id: events[events.length - 1].id + 1,
         event_name: name,
@@ -209,7 +218,8 @@ export default function EventsPage() {
         event_location: place,
         event_description: description,
       }
-      setEvents([...events, aux]);
+      eventsArray.push(aux);
+      setEvents(eventsArray);
       clearForm();
       setCreateEventModal(false);
     }
@@ -243,7 +253,10 @@ export default function EventsPage() {
         setIdEvent(data.chatId)
         setChatName(data.chatName)
         setChat(
-          data.messages.map((item, i) => ({
+          data.messages.map((item: {
+            ID_user: string;
+            message: string;
+          }, i:number) => ({
             sender: item.ID_user == idUser ? "Yo" : "Usuario",
             message: item.message,
           })) || []
@@ -259,7 +272,11 @@ export default function EventsPage() {
 
     const confirmDelete = async () => {
       await deleteEventAPI(idEvent, localStorage.getItem('token') || '');
-      setEvents(events.filter((item) => item.id !== idEvent));
+      let aux = events;
+      aux = aux.filter((item) => item.id !== idEvent);
+      if (aux) {
+        setEvents(aux);
+      }
       setIdEvent(0);
       setModalConfirm(false);
     }

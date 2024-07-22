@@ -1,19 +1,13 @@
 'use client';
 
-import ArrowAsc from "@/app/Icons/arrowAsc";
-import ArrowDes from "@/app/Icons/arrowDes";
 import Button from "@/app/UX/button/button";
 import Dropdown from "@/app/UX/dropdown/dropdown";
 import Imput from "@/app/UX/imput/imput";
 import createBlogData from "@/app/api/blog/create";
 import getCategoriesAPI from "@/app/api/category/getCategories";
-import getNewsletterAPI from "@/app/api/getNewsletter";
-import getUsersAPI from "@/app/api/getUsers";
-import Table from "@/app/components/Table";
 import Subtitle from "@/app/components/Text/Subtitle";
 import Title from "@/app/components/Text/Title";
 import { useEffect, useState } from "react";
-import Select from 'react-select';
 
 interface NewsletterData {
   id: number;
@@ -70,7 +64,7 @@ export default function RegisterPage() {
       }
       getCategories();
     }
-  }, [isClient])
+  }, [isClient, categoryList, role])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -119,7 +113,7 @@ export default function RegisterPage() {
           <Button
             onClick={() => {
               const push = async () => {
-                const token = localStorage.getItem('token') || '';
+                const token = localStorage.getItem('token') ?? '';
                 const data = {
                   category,
                   title,

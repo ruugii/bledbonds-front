@@ -1,4 +1,4 @@
-const uploadImage = async (image: File | undefined) => {
+const uploadImage = async (image: File | null | undefined) => {
   try {
     const host = window.location.host;
     let API_URL = '';
@@ -9,7 +9,7 @@ const uploadImage = async (image: File | undefined) => {
     }
 
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append('image', image || '');
 
     const resp = await fetch(`${API_URL}/img/upload`, {
       method: 'POST',

@@ -6,7 +6,11 @@ import Button from "@/app/UX/button/button";
 import { useEffect, useState } from "react";
 
 export default function ChangeTheme() {
-  const [theme, setTheme] = useState(sessionStorage.getItem("theme") || "light");
+  const [theme, setTheme] = useState('');
+
+  useEffect(() => {
+    setTheme(sessionStorage.getItem("theme") ?? "light");
+  }, [])
 
   const changeTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
