@@ -43,7 +43,7 @@ export default function MenuAdmin(props: HeaderProps) {
           <Dropdown key={index} index={index} item={item} />
         ) : (
           <li key={index}>
-            <Link href={item.url} className="block py-2 px-3 text-palette-11 dark:text-palette-1 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 dark:hover:text-palette-2 hover:underline text-center" aria-label={`${item.alternative}_d`}>
+            <Link href={item.url} className="block py-2 px-3 text-palette-11 dark:text-palette-1 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 dark:hover:text-palette-2 hover:underline text-left md:text-center" aria-label={`${item.alternative}_d`}>
               {item.name}
             </Link>
           </li>

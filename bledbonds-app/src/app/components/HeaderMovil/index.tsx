@@ -21,13 +21,13 @@ export default function HeaderMovil(props: HeaderProps) {
 
   return (
     <header className="sticky top-0 w-full z-10 md:hidden">
-      <nav className="border-palette-1 dark:border-palette-10 bg-palette-3">
+      <nav className="border-palette-1 dark:border-palette-10 bg-palette-3 dark:bg-palette-11">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
             <Image src="/logo.png" alt="Flowbite Logo" width={32} height={32} className="h-8" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-palette-11">BLEDBONDS</span>
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-palette-50 text-palette-950">BLEDBONDS</span>
           </a>
-          <button data-collapse-toggle="navbar-dropdown" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-palette-11 rounded-lg md:hidden hover:bg-palette-1 focus:outline-none focus:ring-2 focus:ring-palette-1 dark:hover:bg-palette-10 dark:focus:ring-palette-10" aria-controls="navbar-dropdown" aria-expanded="false" onClick={() => setOpenMovilMenu(!openMovilMenu)}>
+          <button data-collapse-toggle="navbar-dropdown" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-palette-11 dark:text-palette-1 rounded-lg md:hidden hover:bg-palette-1 focus:outline-none focus:ring-2 focus:ring-palette-1 dark:hover:bg-palette-10 dark:focus:ring-palette-10" aria-controls="navbar-dropdown" aria-expanded="false" onClick={() => setOpenMovilMenu(!openMovilMenu)}>
             <span className="sr-only">Open main menu</span>
             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
@@ -66,18 +66,17 @@ export default function HeaderMovil(props: HeaderProps) {
                 ) : (
                   item.url === pathname ? (
                     <li key={index}>
-                      <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 underline" aria-label={`${item.alternative}_m`}>
+                      <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 underline dark:text-palette-50" aria-label={`${item.alternative}_m`}>
                         {item.name}
                       </Link>
                     </li>
                   ) : (
                     <li key={index}>
-                      <Link href={item.url} className="block py-2 px-3 text-palette-11 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline" aria-label={`${item.alternative}_m`}>
+                      <Link href={item.url} className="block py-2 px-3 text-palette-11 dark:text-palette-50 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:underline" aria-label={`${item.alternative}_m`}>
                         {item.name}
                       </Link>
                     </li>
                   )
-
                 ))
               }
               <MenuAdmin menuAdmin={props.menuAdmin} />
