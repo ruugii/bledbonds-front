@@ -83,12 +83,15 @@ export default function LoginComponent() {
             console.log(user);
             const resp = await loginAPI(user);
             console.log(resp);
-
+            
             if (resp.token) {
               localStorage.setItem('token', resp.token);
             }
             if (resp.role) {
               localStorage.setItem('role', resp.role === 'admin' ? 'US_CC' : '');
+            }
+            if (resp.id) {
+              localStorage.setItem('idUser', resp.id);
             }
             if (resp) {
               console.log('Usuario registrado correctamente');

@@ -5,113 +5,170 @@ import Title from "@/app/components/Text/Title";
 import Close from "@/app/Icons/close";
 import Button from "@/app/UX/button/button";
 import Imput from "@/app/UX/imput/imput";
-import { useEffect, useState } from "react";
+import { ChangeEventHandler, useEffect, useState } from "react";
 import Message from "./component/Message";
 
-import { io } from "socket.io-client";
+import { io, Socket, DefaultEventsMap } from "socket.io-client";
+import getAllEvents from "@/app/api/events/getAllEvents";
+import getParticipantsEvent from "@/app/api/events/getParticipants";
+import getChatByEvent from "@/app/api/events/getChatByEvent";
+import updateEventAPI from "@/app/api/events/updateEvent";
+import deleteEventAPI from "@/app/api/events/deleteEventsAPI";
+import createEventAPI from "@/app/api/events/createEventAPI";
+import uploadImage from "@/app/api/uploadImage";
 
 export default function EventsPage() {
 
   const host = window.location.host;
 
-  if (host.includes('localhost:3000')) {
-    const [socket, setSocket] = useState(null);
-    useEffect(() => {
-      const socket = io('http://localhost:3001');
-      setSocket(socket);
-    }, []);
+  const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
+  const [createEventModal, setCreateEventModal] = useState(false);
+  const [name, setName] = useState("");
+  const [date, setDate] = useState('');
+  const [place, setPlace] = useState("");
+  const [description, setDescription] = useState("");
+  const [file, setFile] = useState<File>(); // Changed to null
+  const [isFileValid, setIsFileValid] = useState(true);
+  const [disabled, setDisabled] = useState(true);
+  const [seeParticipantsModal, setSeeParticipantsModal] = useState(false);
+  const [seeChatModal, setSeeChatModal] = useState(false);
+  const [newMessage, setNewMessage] = useState("");
+  const [editEventModal, setEditEventModal] = useState(false);
+  const [idEvent, setIdEvent] = useState(0);
+  const [modalConfirm, setModalConfirm] = useState(false);
+  const [idUser, setIdUser] = useState(localStorage.getItem('idUser'));
+  const [chat, setChat] = useState([{
+    sender: "Usuario 1",
+    message: "Hola",
+  },
+  {
+    sender: "Yo",
+    message: "Hola, ¿cómo estás?",
+  },
+  {
+    sender: "Usuario 2",
+    message: "¡Todo bien! ¿Y tú?",
+  }])
+  const [participants, setParticipants] = useState([{
+    name: "Participante 1",
+    email: "",
+    phone: "",
+    address: "",
+    photo: "",
+  },
+  {
+    name: "Participante 2",
+    email: "",
+    phone: "",
+    address: "",
+    photo: "",
+  },
+  {
+    name: "Participante 3",
+    email: "",
+    phone: "",
+    address: "",
+    photo: "",
+  },
+  {
+    name: "Participante 4",
+    email: "",
+    phone: "",
+    address: "",
+    photo: "",
+  }
+  ])
+  const [header] = useState([
+    { name: "ID", onClick: () => console.log("Ordenar por ID") },
+    { name: "Nombre", onClick: () => console.log("Ordenar por nombre") },
+    { name: "Fecha", onClick: () => console.log("Ordenar por fecha") },
+    { name: "Lugar", onClick: () => console.log("Ordenar por lugar") },
+    { name: "Descripción", onClick: () => console.log("Ordenar por descripción") },
+    { name: "Ver participantes", onClick: () => console.log("Ver participantes") },
+    { name: "Ver chat", onClick: () => console.log("Ver chat") },
+    { name: "Editar", onClick: () => console.log("Editar") },
+    { name: "Eliminar", onClick: () => console.log("Eliminar") },
+  ])
+  const [headerParticipants] = useState([{
+    name: "Nombre",
+    onClick: () => console.log("Ordenar por nombre"),
+  },
+  {
+    name: "Email",
+    onClick: () => console.log("Ordenar por email"),
+  },
+  {
+    name: "Teléfono",
+    onClick: () => console.log("Ordenar por teléfono"),
+  },
+  {
+    name: "Foto",
+    onClick: () => console.log("Ordenar por foto"),
+  }])
+  const [events, setEvents] = useState(null);
+  const [chatName, setChatName] = useState('');
 
-    const [createEventModal, setCreateEventModal] = useState(false);
-    const [name, setName] = useState("");
-    const [date, setDate] = useState('');
-    const [place, setPlace] = useState("");
-    const [description, setDescription] = useState("");
-    const [file, setFile] = useState(); // Changed to null
-    const [isFileValid, setIsFileValid] = useState(true);
-    const [disabled, setDisabled] = useState(true);
-
-    const [seeParticipantsModal, setSeeParticipantsModal] = useState(false);
-    const [seeChatModal, setSeeChatModal] = useState(false);
-    const [newMessage, setNewMessage] = useState("");
-    const [editEventModal, setEditEventModal] = useState(false);
-    const [idEvent, setIdEvent] = useState(0);
-    const [modalConfirm, setModalConfirm] = useState(false);
-    const [idUser, setIdUser] = useState(sessionStorage.getItem('idUser') || Math.random() * 100);
-    const [chat, setChat] = useState([{
-      sender: "Usuario 1",
-      message: "Hola",
-    },
-    {
-      sender: "Yo",
-      message: "Hola, ¿cómo estás?",
-    },
-    {
-      sender: "Usuario 2",
-      message: "¡Todo bien! ¿Y tú?",
-    }])
-    const [participants, setParticipants] = useState([{
-      name: "Participante 1",
-      email: "",
-      phone: "",
-      address: "",
-      photo: "",
-    },
-    {
-      name: "Participante 2",
-      email: "",
-      phone: "",
-      address: "",
-      photo: "",
-    },
-    {
-      name: "Participante 3",
-      email: "",
-      phone: "",
-      address: "",
-      photo: "",
-    },
-    {
-      name: "Participante 4",
-      email: "",
-      phone: "",
-      address: "",
-      photo: "",
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const data = await getAllEvents();
+      setEvents(data);
     }
-    ])
 
-    const [header] = useState([
-      { name: "Nombre", onClick: () => console.log("Ordenar por nombre") },
-      { name: "Fecha", onClick: () => console.log("Ordenar por fecha") },
-      { name: "Lugar", onClick: () => console.log("Ordenar por lugar") },
-      { name: "Descripción", onClick: () => console.log("Ordenar por descripción") },
-      { name: "Ver participantes", onClick: () => console.log("Ver participantes") },
-      { name: "Ver chat", onClick: () => console.log("Ver chat") },
-      { name: "Editar", onClick: () => console.log("Editar") },
-      { name: "Eliminar", onClick: () => console.log("Eliminar") },
-    ])
+    fetchEvents();
+  }, [])
 
-    useEffect(() => {
-      if (file && description && name && place && date) {
-        setDisabled(false);
-      } else {
-        setDisabled(true);
+  useEffect(() => {
+    const socket = io('http://localhost:3001');
+    setSocket(socket);
+  }, []);
+  useEffect(() => {
+    if (file && description && name && place && date) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [file, description, name, place, date]);
+  useEffect(() => {
+    socket?.on(`chat message ${idEvent}`, (msg) => {
+      console.log(idEvent === msg.chatId);
+      console.log(idEvent == msg.chatId);
+      console.log(idEvent);
+      console.log(msg.chatId);
+
+      if (idEvent === msg.chatId) {
+        setChat([...chat, msg]);
       }
-    }, [file, description, name, place, date]);
+    });
+  }, [socket, chat, idEvent]);
 
-    const handleFileChange = (event) => {
+  const [role, setRole] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setRole(localStorage.getItem('role'));
+    }
+  }, [])
+
+  if (role === 'US_CC' && isClient) {
+
+    const handleFileChange = (event: ChangeEventHandler<HTMLInputElement>) => {
       setFile(event.target.files[0]);
     };
 
-    const updateEvent = (id) => {
-      setName(events[id].name)
-      setDate(events[id].date)
-      setPlace(events[id].place)
-      setDescription(events[id].description)
-      setIdEvent(id)
+    const updateEvent = (id: number) => {
+      const event = events?.find((item) => item.id === id);
+      setName(event.event_name)
+      setDate(event.event_date)
+      setPlace(event.event_location)
+      setDescription(event.event_description)
+      setIdEvent(event.id)
       setEditEventModal(true)
     }
 
-    const updateEventFunction = () => {
+    const HandleUpdateEvent = async () => {
       const newEvent = {
         name,
         date,
@@ -119,41 +176,40 @@ export default function EventsPage() {
         description,
       };
 
-      events[idEvent] = newEvent;
+      const data = await updateEventAPI(idEvent, newEvent, localStorage.getItem('token') || '');
+      if (data) {
+        const aux = events.find((item) => item.id === idEvent)
+        aux.event_name = name;
+        aux.event_date = date;
+        aux.event_location = place;
+        aux.event_description = description;
+        const id = events.findIndex((item) => item.id === idEvent);
+        events[id] = aux;
+      }
       clearForm();
       setEditEventModal(false);
     }
 
-    const [events, setEvents] = useState([
-      {
-        name: "Evento 1",
-        date: "2021-12-31",
-        place: "Lugar 1",
-        description: "Descripción 1",
-      },
-      {
-        name: "Evento 2",
-        date: "2021-12-31",
-        place: "Lugar 2",
-        description: "Descripción 2",
-      },
-      {
-        name: "Evento 3",
-        date: "2021-12-31",
-        place: "Lugar 3",
-        description: "Descripción 3",
-      },
-    ]);
-
-    const createEvent = () => {
+    const createEvent = async () => {
       const newEvent = {
         name,
         date,
         place,
         description,
+        url: '',
       };
 
-      setEvents([...events, newEvent]);
+      const url = await uploadImage(file);
+      newEvent.url = url;
+      await createEventAPI(newEvent, localStorage.getItem('token') || '');
+      const aux = {
+        id: events[events.length - 1].id + 1,
+        event_name: name,
+        event_date: date,
+        event_location: place,
+        event_description: description,
+      }
+      setEvents([...events, aux]);
       clearForm();
       setCreateEventModal(false);
     }
@@ -168,43 +224,45 @@ export default function EventsPage() {
       setDisabled(true);
     }
 
-    const seeParticipants = (idEvent) => {
+    const seeParticipants = (idEvent: number) => {
       setSeeParticipantsModal(true);
-      // const participants = getParticipants(idEvent);
-      // setParticipants(participants);
-      const aux = [...participants];
-      for (let i = 0; i < aux.length; i++) {
-        aux[i].email = `${idEvent}_${aux[i].name}@gmail.com`;
+
+      const fetchGetParticipantsEvent = async (idEvent: number) => {
+        const data = await (getParticipantsEvent(idEvent));
+        setParticipants(data);
       }
-      setParticipants(aux);
+      fetchGetParticipantsEvent(idEvent);
     }
 
-    const seeChat = (idEvent) => {
+    const seeChat = async (idEvent: number) => {
       setSeeChatModal(true);
-      setIdEvent(idEvent);
-      // const chat = getChat(idEvent);
-      // setChat(chat);
+      const fetchChat = async (idEvent: number) => {
+        const data = await getChatByEvent(idEvent);
+        console.log(data);
+        // messages: [ { ID_message: 2, ID_user: 11, ID_chat: 1, message: 'HOLA MUNDO' } ]
+        setIdEvent(data.chatId)
+        setChatName(data.chatName)
+        setChat(
+          data.messages.map((item, i) => ({
+            sender: item.ID_user == idUser ? "Yo" : "Usuario",
+            message: item.message,
+          })) || []
+        )
+      }
+      await fetchChat(idEvent);
     }
 
-    const deleteEvent = (i) => {
+    const deleteEvent = (i: number) => {
       setIdEvent(i);
       setModalConfirm(true);
     }
 
-    const confirmDelete = () => {
-      events.splice(idEvent, 1);
+    const confirmDelete = async () => {
+      await deleteEventAPI(idEvent, localStorage.getItem('token') || '');
+      setEvents(events.filter((item) => item.id !== idEvent));
+      setIdEvent(0);
       setModalConfirm(false);
     }
-
-    useEffect(() => {
-      console.log(chat);
-
-      socket?.on(`chat message`, (msg) => {
-        if (idEvent === msg.chatId) {
-          setChat([...chat, msg]);
-        }
-      });
-    }, [socket, chat, idEvent]);
 
     const sendMessage = () => {
       socket?.emit(`chat message`, {
@@ -212,6 +270,7 @@ export default function EventsPage() {
         message: newMessage,
         chatId: idEvent,
       });
+      // setChat([...chat, { sender: "Yo", message: newMessage }]);
       setNewMessage("");
     }
 
@@ -245,22 +304,22 @@ export default function EventsPage() {
                       ))}
                       <td className=" p-3 ">
                         <div className="flex content-center items-center">
-                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => seeParticipants(i)}>Ver participantes</button>
+                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => seeParticipants(item.id)}>Ver participantes</button>
                         </div>
                       </td>
                       <td className=" p-3 ">
                         <div className="flex content-center items-center">
-                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => seeChat(i)}>Ver chat</button>
+                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => seeChat(item.id)}>Ver chat</button>
                         </div>
                       </td>
                       <td className=" p-3 ">
                         <div className="flex content-center items-center">
-                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => updateEvent(i)}>Editar</button>
+                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => updateEvent(item.id)}>Editar</button>
                         </div>
                       </td>
                       <td className=" p-3 ">
                         <div className="flex content-center items-center">
-                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => deleteEvent(i)}>Eliminar</button>
+                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => deleteEvent(item.id)}>Eliminar</button>
                         </div>
                       </td>
                     </tr>
@@ -275,7 +334,7 @@ export default function EventsPage() {
         {createEventModal && (
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="absolute top-0 right-0 p-4">
-              <button onClick={() => setCreateEventModal(false)}>X</button>
+              <button onClick={() => setCreateEventModal(false)}><Close /></button>
             </div>
             <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
               <Title center bold mayus>
@@ -307,26 +366,43 @@ export default function EventsPage() {
               <Title center bold mayus>
                 Participantes
               </Title>
-              <Table header={[{
-                name: "Nombre",
-                onClick: () => console.log("Ordenar por nombre"),
-              },
-              {
-                name: "Email",
-                onClick: () => console.log("Ordenar por email"),
-              },
-              {
-                name: "Teléfono",
-                onClick: () => console.log("Ordenar por teléfono"),
-              },
-              {
-                name: "Dirección",
-                onClick: () => console.log("Ordenar por dirección"),
-              },
-              {
-                name: "Foto",
-                onClick: () => console.log("Ordenar por foto"),
-              }]} data={participants} />
+              <div className="w-[80%]">
+                <div className="w-[80%] md:w-[80vw] block overflow-auto mt-3">
+                  <table className={`md:min-w-[80vh] md:w-[80vw] md:max-w-[80vw] min-w-[80%] w-[80%] max-w-[80%] bg-palette-2 dark:bg-palette-10 table-auto text-palette-11 dark:text-palette-50 gap-3`}>
+                    <thead>
+                      <tr>
+                        {headerParticipants?.map((item, i) => (
+                          <th key={i} scope="col" onClick={item.onClick} className=" p-3 ">
+                            <div className="flex content-center items-center">
+                              {item.name}
+                            </div>
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        participants?.map((item, i) => (
+                          <tr key={i}>
+                            <td key={i} className=" p-3 ">
+                              <div>{item.name}</div>
+                            </td>
+                            <td key={i} className=" p-3 ">
+                              <div>{item.email}</div>
+                            </td>
+                            <td key={i} className=" p-3 ">
+                              <div>{item.phone}</div>
+                            </td>
+                            <td key={i} className=" p-3 ">
+                              <div>{item.photo || ''}</div>
+                            </td>
+                          </tr>
+                        ))
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -360,7 +436,7 @@ export default function EventsPage() {
                   isValueValid
                   divClassName="w-full mr-2"
                 />
-                <Button className="" onClick={() => sendMessage()} label="Enviar" />
+                <Button className="text-palette-11 dark:text-palette-1" onClick={() => sendMessage()} label="Enviar" />
               </div>
             </div>
           </div>
@@ -368,9 +444,9 @@ export default function EventsPage() {
         {editEventModal && (
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="absolute top-0 right-0 p-4">
-              <button onClick={() => {
+              <button className="text-palette-11 dark:text-palette-1" onClick={() => {
                 setEditEventModal(false)
-              }}>X</button>
+              }}><Close /></button>
             </div>
             <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
               <Title center bold mayus>
@@ -385,10 +461,10 @@ export default function EventsPage() {
                 : 'border-red-500 text-red-500 focus:border-red-500'
                 }`} />
               <Button
-                onClick={() => updateEventFunction()}
+                onClick={() => HandleUpdateEvent()}
                 label="Crear evento"
                 className=""
-                disabled={disabled}
+                disabled={name !== '' && date !== '' && place !== '' && description !== '' ? false : true}
               />
             </div>
           </div>
@@ -396,13 +472,13 @@ export default function EventsPage() {
         {modalConfirm && (
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="absolute top-0 right-0 p-4">
-              <button className="text-palette-11 dark:text-palette-1" onClick={() => setSeeParticipantsModal(false)}><Close /></button>
+              <button className="text-palette-11 dark:text-palette-1" onClick={() => setModalConfirm(false)}><Close /></button>
             </div>
             <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
               <Title center bold mayus>
                 ¿Estás seguro de eliminar el evento?
               </Title>
-              <div className="flex justify-center gap-3">
+              <div className="flex justify-center gap-3 mt-4">
                 <button className={`bg-green-500 hover:bg-green-600 active:bg-green-700 text-palette-950 p-2 rounded-lg`} onClick={() => { confirmDelete() }}>
                   Si
                 </button>
