@@ -35,7 +35,7 @@ export default function BlogPreview() {
               <Category category={post.category} />
             </span>
           </div>
-          <Subtitle margin bold traking>
+          <Subtitle margin bold traking className="text-palette-50">
             <a href={`/blog/${post.id}`}>{post.title}</a>
           </Subtitle>
           <p className="mb-5 font-light text-palette-1">{post.resume}</p>
