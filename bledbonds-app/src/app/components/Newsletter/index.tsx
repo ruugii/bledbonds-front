@@ -45,6 +45,7 @@ export default function Newsletter(props: NewsletterProps) {
         pathname.includes('what-is') || 
         pathname.includes('app') || 
         pathname.includes('faq') ||
+        pathname.includes('ciegas') ||
         props.isOpen
       ) {
         setOpenModal(false);
