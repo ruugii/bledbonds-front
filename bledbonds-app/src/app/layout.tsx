@@ -41,10 +41,11 @@ export default function RootLayout({
       name: 'Preguntas frecuentes',
       url: '/faq'
     },
-    // {
-    //     name: 'login',
-    //     url: '/login'
-    // }
+    {
+      name: 'citas a ciegas',
+      url: '/ciegas'
+      // Va a dar una persona aleatoria, vas a tener 20 mensajes para conocer a esa persona, al acabar, da la opcion de dar LIKE o DISLIKE, si los 2 dan LIKE, puedes seguir hablando con esa persona sin un limite de mensajes.
+    }
     // Add more menu items as needed...
   ] as Menu[]
   const menuAdmin = [
