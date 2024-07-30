@@ -45,6 +45,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: 'https://bledbonds.es/blog/1',
+      lastModified: new Date('2024-07-23'),
+      changeFrequency: 'never',
+      priority: 1,
+    },
+    {
+      url: 'https://bledbonds.es/blog/2',
+      lastModified: new Date('2024-07-30'),
+      changeFrequency: 'never',
+      priority: 1,
+    },
+    {
       url: 'https://bledbonds.es/ciegas',
       lastModified: new Date(),
       changeFrequency: 'yearly',

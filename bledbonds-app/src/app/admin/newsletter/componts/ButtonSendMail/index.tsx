@@ -9,7 +9,7 @@ import SectionTitle from "@/app/components/Text/SectionTitle"
 import { useState } from "react"
 
 export default function ButtonSendMail() {
-  const [modalOpen, setModalOpen] = useState(true)
+  const [modalOpen, setModalOpen] = useState(false)
   const [title, setTitle] = useState('')
   const [asunto, setAsunto] = useState('')
 

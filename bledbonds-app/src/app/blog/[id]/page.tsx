@@ -50,10 +50,19 @@ export default async function BlogIdPage({ params }: { params: BlogParams }) {
                   <div className="mt-2">
                     <ul className="list-disc list-inside">
                       {text.map((t: string, i: number) => {
-                        if (t.startsWith('- ')) {
+                        if (t.startsWith('-')) {
+                          if (t.replace('-', '').trim().startsWith('<b>')) {
+                            return (
+                              <li key={i} className="w-full text-palette-11 dark:text-palette-50 text-left">
+                                <b>
+                                  {t.replace('-', '').trim().replace('<b>', '').replace('</b>', '')}
+                                </b>
+                              </li>
+                            )
+                          }
                           return (
                             <li key={i} className="w-full text-palette-11 dark:text-palette-50 text-left">
-                              {t.replace('- ', '')}
+                              {t.replace('-', '').trim()}
                             </li>
                           );
                         } else if (text[i - 1] && text[i - 1].startsWith('- ')) {
