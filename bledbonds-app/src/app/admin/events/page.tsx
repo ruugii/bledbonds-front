@@ -1,11 +1,10 @@
 'use client';
 
-import Table from "@/app/components/Table";
 import Title from "@/app/components/Text/Title";
 import Close from "@/app/Icons/close";
 import Button from "@/app/UX/button/button";
 import Imput from "@/app/UX/imput/imput";
-import { ChangeEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Message from "./component/Message";
 
 import { io, Socket } from "socket.io-client";
@@ -16,6 +15,8 @@ import updateEventAPI from "@/app/api/events/updateEvent";
 import deleteEventAPI from "@/app/api/events/deleteEventsAPI";
 import createEventAPI from "@/app/api/events/createEventAPI";
 import uploadImage from "@/app/api/uploadImage";
+import Subtitle from "@/app/components/Text/Subtitle";
+import SectionTitle from "@/app/components/Text/SectionTitle";
 
 export default function EventsPage() {
 
@@ -25,7 +26,7 @@ export default function EventsPage() {
   const [date, setDate] = useState('');
   const [place, setPlace] = useState("");
   const [description, setDescription] = useState("");
-  const [file, setFile] = useState<File | null>(); // Changed to null
+  const [file, setFile] = useState<File | null>(null); // Changed to null
   const [isFileValid, setIsFileValid] = useState(true);
   const [disabled, setDisabled] = useState(true);
   const [seeParticipantsModal, setSeeParticipantsModal] = useState(false);
@@ -514,10 +515,16 @@ export default function EventsPage() {
   } else {
     return (
       <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
-        <Title center bold mayus>
-          Eventos - Estamos trabajando en ello
-        </Title>
-      </div>
+      <Title center bold mayus>
+        Bled Bonds - Gestión de eventos
+      </Title>
+      <Subtitle margin bold width grid center>
+        Solo puedes acceder a esta página si eres un administrador
+      </Subtitle>
+      <SectionTitle bold >
+        Error 403 - No tienes permisos para acceder a esta página
+      </SectionTitle>
+    </div>
     );
   }
 }
