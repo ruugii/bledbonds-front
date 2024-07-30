@@ -7,6 +7,7 @@ import Table from "@/app/components/Table";
 import { useEffect, useState } from "react";
 import ButtonSendMail from "./componts/ButtonSendMail";
 import Title from "@/app/components/Text/Title";
+import Subtitle from "@/app/components/Text/Subtitle";
 
 interface NewsletterData {
   id: number;
@@ -101,8 +102,11 @@ export default function RegisterPage() {
       ) : (
         <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
           <Title bold width grid center>
-            Solo puedes acceder a esta página si eres un administrador
+            BLEDBONDS - GESTIÓN DE NEWSLETTER
           </Title>
+          <Subtitle margin bold width grid center>
+            Solo puedes acceder a esta página si eres un administrador
+          </Subtitle>
         </div>
       )}
     </>
