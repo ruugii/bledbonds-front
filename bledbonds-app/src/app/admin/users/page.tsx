@@ -159,7 +159,7 @@ export default function RegisterPage() {
       ) : (
         <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
           <Title bold width grid center>
-            BLEDBONDS - USUARIOS SUSCRITOS A LA NEWSLETTER
+            BLEDBONDS - GESTION DE USUARIOS
           </Title>
           <Subtitle margin bold width grid center>
             Solo puedes acceder a esta página si eres un administrador
