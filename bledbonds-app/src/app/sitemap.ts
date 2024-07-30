@@ -44,6 +44,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1,
     },
-    
+    {
+      url: 'https://bledbonds.es/ciegas',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.8,
+    }
   ]
 }
