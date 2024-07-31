@@ -76,6 +76,10 @@ export default function RootLayout({
     {
       name: "Gestion de eventos",
       url: '/admin/events',
+    },
+    {
+      name: "gestion menu app",
+      url: '/admin/master-data',
     }
   ] as Menu[]
   return (
