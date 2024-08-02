@@ -38,6 +38,9 @@ const config: Config = {
         "palette-800": "#0a5b65",
         "palette-900": "#0d4c54",
         "palette-950": "#002b33",
+      },
+      gridTemplateRows: {
+        'layout': 'auto 1fr auto',
       }
     },
   },
