@@ -24,7 +24,7 @@ export default function Question(props: QuestionProps) {
         <SectionTitle bold left>
           {props.question}
         </SectionTitle>
-        <Button onClick={toggleResponse} className="min-w-8 border-transparent bg-transparent dark:text-palette-50" noBorder>
+        <Button onClick={toggleResponse} className="min-w-8 border-transparent bg-transparent dark:text-palette-50 hover:bg-transparent hover:border-transparent active:bg-transparent active:border-transparent" noBorder>
           {showResponse ? '-' : '+'}
         </Button>
       </div>

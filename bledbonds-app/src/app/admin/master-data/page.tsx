@@ -17,7 +17,6 @@ export default function MasterDataPage() {
   useEffect(() => {
     const handleData = async () => {
       const matchesData = await menuEnabled({ key: 'matches' });
-      console.log(matchesData);
 
       const eventsData = await menuEnabled({ key: 'events' });
       const calendarData = await menuEnabled({ key: 'calendar' });
@@ -72,12 +71,12 @@ export default function MasterDataPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
+    <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
       <Title center bold mayus>
         Gestion del menu de la app
       </Title>
 
-      <fieldset>
+      <fieldset className="mt-2">
         <div>
           <label className="text-palette-950 dark:text-palette-50">
             <input type="checkbox" checked={matches} onClick={() => setMatches(!matches)} className="mr-3" />
@@ -108,10 +107,10 @@ export default function MasterDataPage() {
             Citas a ciegas
           </label>
         </div>
+        <Button onClick={() => handleChange()} className="w-full mt-2">
+          Guardar
+        </Button>
       </fieldset>
-      <Button onClick={() => handleChange()} className="">
-        Guardar
-      </Button>
     </div>
   );
 }

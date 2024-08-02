@@ -90,6 +90,7 @@ export default function EventsPage() {
     { name: "Fecha", onClick: () => console.log("Ordenar por fecha") },
     { name: "Lugar", onClick: () => console.log("Ordenar por lugar") },
     { name: "Descripción", onClick: () => console.log("Ordenar por descripción") },
+    { name: "imagen del evento", onClick: () => console.log("Ver imagen del evento") },
     { name: "Ver participantes", onClick: () => console.log("Ver participantes") },
     { name: "Ver chat", onClick: () => console.log("Ver chat") },
     { name: "Editar", onClick: () => console.log("Editar") },
@@ -137,11 +138,6 @@ export default function EventsPage() {
   }, [file, description, name, place, date]);
   useEffect(() => {
     socket?.on(`chat message ${idEvent}`, (msg) => {
-      console.log(idEvent === msg.chatId);
-      console.log(idEvent == msg.chatId);
-      console.log(idEvent);
-      console.log(msg.chatId);
-
       if (idEvent === msg.chatId) {
         setChat([...chat, msg]);
       }
@@ -159,7 +155,7 @@ export default function EventsPage() {
 
   if (role === 'US_CC' && isClient) {
 
-    const handleFileChange = (e:any) => {
+    const handleFileChange = (e: any) => {
       setFile(e?.target?.files[0] || null);
     };
 
@@ -249,7 +245,6 @@ export default function EventsPage() {
       setSeeChatModal(true);
       const fetchChat = async (idEvent: number) => {
         const data = await getChatByEvent(idEvent);
-        console.log(data);
         // messages: [ { ID_message: 2, ID_user: 11, ID_chat: 1, message: 'HOLA MUNDO' } ]
         setIdEvent(data.chatId)
         setChatName(data.chatName)
@@ -257,7 +252,7 @@ export default function EventsPage() {
           data.messages.map((item: {
             ID_user: string;
             message: string;
-          }, i:number) => ({
+          }, i: number) => ({
             sender: item.ID_user == idUser ? "Yo" : "Usuario",
             message: item.message,
           })) || []
@@ -293,11 +288,11 @@ export default function EventsPage() {
     }
 
     return (
-      <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
+      <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
         <Title center bold mayus>
           Eventos
         </Title>
-        <div className="w-[80%]">
+        <div className="w-[80%] mb-3">
           <div className="w-full md:w-[80vw] block overflow-auto mt-3">
             <table className={`md:min-w-[80vh] md:w-[80vw] md:max-w-[80vw] min-w-[80%] w-[80%] max-w-[80%] bg-palette-2 dark:bg-palette-10 table-auto text-palette-11 dark:text-palette-50 gap-3`}>
               <thead>
@@ -514,17 +509,17 @@ export default function EventsPage() {
     );
   } else {
     return (
-      <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
-      <Title center bold mayus>
-        Bled Bonds - Gestión de eventos
-      </Title>
-      <Subtitle margin bold width grid center>
-        Solo puedes acceder a esta página si eres un administrador
-      </Subtitle>
-      <SectionTitle bold >
-        Error 403 - No tienes permisos para acceder a esta página
-      </SectionTitle>
-    </div>
+      <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
+        <Title center bold mayus>
+          Bled Bonds - Gestión de eventos
+        </Title>
+        <Subtitle margin bold width grid center>
+          Solo puedes acceder a esta página si eres un administrador
+        </Subtitle>
+        <SectionTitle bold >
+          Error 403 - No tienes permisos para acceder a esta página
+        </SectionTitle>
+      </div>
     );
   }
 }
