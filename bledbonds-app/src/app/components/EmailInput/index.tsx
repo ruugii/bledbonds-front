@@ -35,7 +35,6 @@ export default function EmailInput() {
               const user = {
                 email,
               };
-              console.log(user);
               await newsletterAPI(user);
             };
             register();

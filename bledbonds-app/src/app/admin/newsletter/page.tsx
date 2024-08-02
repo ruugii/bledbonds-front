@@ -72,7 +72,7 @@ export default function RegisterPage() {
   return (
     <>
       {(role === 'US_CC' && isClient) ? (
-        <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 dark:bg-palette-950 flex-col">
+        <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-950 flex-col">
           <Title bold width grid center>
             BLEDBONDS - USUARIOS SUSCRITOS A LA NEWSLETTER | ADMINISTRADOR | {dataOrd?.length || 0} - USUARIOS SUSCRITOS
           </Title>
@@ -100,7 +100,7 @@ export default function RegisterPage() {
           <ButtonSendMail />
         </div>
       ) : (
-        <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
+        <div className="flex items-center content-center justify-center bg-palette-3 flex-col">
           <Title bold width grid center>
             BLEDBONDS - GESTIÓN DE NEWSLETTER
           </Title>

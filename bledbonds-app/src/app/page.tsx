@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className='bg-palette-3 dark:bg-palette-950 h-screen max-w-screen flex flex-col content-center justify-center items-center text-center p-4'>
+    <main className='bg-palette-3 dark:bg-palette-950 flex flex-col content-center justify-center items-center text-center p-4'>
       <Title bold>
         BIENVENIDO A BLED BONDS
       </Title>

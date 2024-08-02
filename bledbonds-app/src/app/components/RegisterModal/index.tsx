@@ -49,7 +49,6 @@ export default function RegisterModal(props: RegisterInterface) {
   useEffect(() => {
     const aux = setTimeout(() => {
       setEmailValid(email.includes('@') && email.includes('.'))
-      console.log(email);
     }, 500)
     return () => clearTimeout(aux)
   }, [email])
@@ -57,7 +56,6 @@ export default function RegisterModal(props: RegisterInterface) {
   useEffect(() => {
     const aux = setTimeout(() => {
       setPhoneValid(phone.length === 9 && (phone.split('')[0] === '7' || phone.split('')[0] === '6'))
-      console.log(phone);
     }, 500)
     return () => clearTimeout(aux)
   }, [phone])
@@ -199,7 +197,6 @@ export default function RegisterModal(props: RegisterInterface) {
       const list = await getGenderAPI();
       for (let i = 0; i < list.length; i++) {
         aux.push(list[i].genre_name.toUpperCase());
-        console.log(aux);
       }
     }
     setGenderList(aux)
@@ -215,9 +212,6 @@ export default function RegisterModal(props: RegisterInterface) {
 
   useEffect(() => {
     setOpenModal(searchParams.get('register') ? true : false)
-    console.log(searchParams);
-    console.log(pathname);
-
   }, [searchParams])
 
   return (
@@ -339,10 +333,8 @@ export default function RegisterModal(props: RegisterInterface) {
                         birthDate,
                         genre: gender
                       }
-                      console.log(user);
                       const resp = await registerAPI(user)
                       if (resp) {
-                        console.log('Usuario registrado correctamente');
                         close()
                       }
                     }

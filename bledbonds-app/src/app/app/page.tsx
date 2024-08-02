@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function AppPage() {
   return (
-    <main className='bg-palette-3 dark:bg-palette-950 min-h-screen h-full flex flex-col content-center justify-center items-center text-center p-4'>
+    <main className='bg-palette-3 dark:bg-palette-950 flex flex-col content-center justify-center items-center text-center p-4'>
       <div className="md:min-w-[80vh] md:w-[80vw] min-w-[80%] w-[80%] mt-3">
         <div className="flex flex-col justify-between items-center">
           <Title bold mayus>
@@ -50,7 +50,7 @@ export default function AppPage() {
             </Text>
           </section>
 
-          <section className="mt-10 w-full p-4 bg-palette-1 dark:bg-palette-800 text-palette-11 dark:text-palette-50 shadow-md shadow-palette-11 dark:shadow-palette-50 grid grid-cols-1 md:grid-cols-2">
+          <section className="mt-10 w-full p-4 bg-palette-1 dark:bg-palette-800 text-palette-11 dark:text-palette-50 shadow-md shadow-palette-11 dark:shadow-palette-50 grid grid-cols-1 md:grid-cols-2 rounded-lg">
             <div>
               <SectionTitle bold left>
                 Tienes alguna duda?

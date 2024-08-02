@@ -244,10 +244,8 @@ export default function PreRegistration() {
               birthDate,
               genre: gender
             }
-            console.log(user);
             const resp = await registerAPI(user)
             if (resp) {
-              console.log('Usuario registrado correctamente');
               window.location.href = '/'
             }
           }

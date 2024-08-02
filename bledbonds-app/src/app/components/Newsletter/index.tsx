@@ -60,14 +60,8 @@ export default function Newsletter(props: NewsletterProps) {
   useEffect(() => {
     if (props.isOpen !== undefined) {
       setOpenModal(!props.isOpen);
-      console.log('props.isOpen', props.isOpen);
-      console.log('openModal', openModal);
     }
   }, [props.isOpen]);
-
-  useEffect(() => {
-    console.log('openModal', openModal);
-  }, [openModal]);
 
   return (
     (openModal && (props.isOpen === false || props.isOpen === undefined)) && (
@@ -100,7 +94,6 @@ export default function Newsletter(props: NewsletterProps) {
                     onClick={() => {
                       const register = async () => {
                         const user = { email };
-                        console.log(user);
                         const data = await newsletterAPI(user);
                         if (data) {
                           setOpenModal(false);

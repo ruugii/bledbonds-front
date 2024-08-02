@@ -60,11 +60,8 @@ export default function RegisterPage() {
   useEffect(() => {
     if (role === 'US_CC') {
       getUsersAPI().then((data_) => {
-        console.log(data_);
         setData(data_.users);
-        console.log(data);
         setDataOrd(data_.users);
-        console.log(dataOrd);
       });
     }
   }, [role]);
@@ -110,7 +107,7 @@ export default function RegisterPage() {
   return (
     <>
       {(role === 'US_CC' && isClient) ? (
-        <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 dark:bg-palette-950 flex-col">
+        <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-950 flex-col">
           <Title bold width grid center>
             BLEDBONDS - USUARIOS REGISTRADOS | ADMINISTRADOR | {dataOrd?.length || 0} - USUARIOS
           </Title>
@@ -157,7 +154,7 @@ export default function RegisterPage() {
           />
         </div>
       ) : (
-        <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
+        <div className="flex items-center content-center justify-center bg-palette-3 flex-col">
           <Title bold width grid center>
             BLEDBONDS - GESTION DE USUARIOS
           </Title>

@@ -22,7 +22,7 @@ export default async function BlogIdPage({ params }: { params: BlogParams }) {
     const text = resp[0].content.split('\n');
 
     return (
-      <main className='bg-palette-3 dark:bg-palette-950 flex flex-col content-center justify-center items-center min-h-screen'>
+      <main className='bg-palette-3 dark:bg-palette-950 flex flex-col content-center justify-center items-center'>
         <div className="flex items-center justify-center">
           <div className="p-8">
             <div className="text-center h-full">
@@ -87,7 +87,7 @@ export default async function BlogIdPage({ params }: { params: BlogParams }) {
   } catch (error) {
     console.error('Error fetching blog post:', error);
     return (
-      <main className='bg-palette-3 flex flex-col content-center justify-center items-center min-h-screen'>
+      <main className='bg-palette-3 flex flex-col content-center justify-center items-center'>
         <div className="flex items-center justify-center">
           <div className="p-8">
             <div className="text-center h-full">

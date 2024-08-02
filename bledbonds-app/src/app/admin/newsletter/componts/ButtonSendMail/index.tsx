@@ -61,7 +61,6 @@ export default function ButtonSendMail() {
                   onClick={() => {
                     const send = () => {
                       const aux = text.split('\n')
-                      console.log(aux);
                       
                       testNewsletterAPI(
                         {
@@ -84,7 +83,6 @@ export default function ButtonSendMail() {
                   onClick={() => {
                     const send = () => {
                       const aux = text.split('\n')
-                      console.log(aux);
                       
                       testNewsletterAPI(
                         {

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Page() {
 
   return (
-    <main className='bg-palette-3 dark:bg-palette-950 flex flex-col content-center justify-center items-center min-h-screen'>
+    <main className='bg-palette-3 dark:bg-palette-950 flex flex-col content-center justify-center items-center'>
       <div className="flex items-center justify-center">
         <div className="p-8">
           <div className="text-center h-full">

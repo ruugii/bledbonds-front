@@ -14,7 +14,7 @@ export default function Page() {
   activate();
 
   return (
-    <div className="h-screen flex content-center justify-center items-center bg-palette-3 dark:bg-palette-950 text-palette-11">
+    <div className="flex content-center justify-center items-center bg-palette-3 dark:bg-palette-950 text-palette-11">
       <div className="text-center">
         <Title bold>
           TU CUENTA EN BLEDBONDS SE HA ACTIVADO CORRECTAMENTE

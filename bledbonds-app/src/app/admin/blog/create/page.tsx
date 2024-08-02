@@ -75,7 +75,7 @@ export default function RegisterPage() {
   return (
     <>
       {(role === 'US_CC' && isClient) ? (
-        <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
+        <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
           <Title bold width grid center>
             CREAR BLOG
           </Title>
@@ -122,12 +122,6 @@ export default function RegisterPage() {
                   token
                 }
                 const response = await createBlogData(data);
-                if (response) {
-                  console.log('Post creado con éxito');
-                  
-                } else {
-                  console.log('Error al crear el post');
-                }
               }
 
               push();
@@ -137,7 +131,7 @@ export default function RegisterPage() {
           </div>
         </div>
       ) : (
-        <div className="min-h-screen flex items-center content-center justify-center bg-palette-3 flex-col">
+        <div className="flex items-center content-center justify-center bg-palette-3 flex-col">
           <Title bold width grid center>
             BLEDBONDS - CREAR POST EN EL BLOG
           </Title>

@@ -80,9 +80,7 @@ export default function LoginComponent() {
               phone,
               password
             }
-            console.log(user);
             const resp = await loginAPI(user);
-            console.log(resp);
             
             if (resp.token) {
               localStorage.setItem('token', resp.token);
@@ -94,7 +92,6 @@ export default function LoginComponent() {
               localStorage.setItem('idUser', resp.id);
             }
             if (resp) {
-              console.log('Usuario registrado correctamente');
               window.location.href = '/'
             }
           }
