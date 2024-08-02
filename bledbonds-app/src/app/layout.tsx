@@ -84,7 +84,7 @@ export default function RootLayout({
   ] as Menu[]
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} min-h-screen grid grid-rows-layout`}>
         <Header
           menu={menu}
           menuAdmin={menuAdmin}
