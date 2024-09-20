@@ -2,6 +2,7 @@
 
 import menuEnabled from "@/app/api/menu/menuenabled";
 import menuUpdate from "@/app/api/menu/menuUpdate";
+import Subtitle from "@/app/components/Text/Subtitle";
 import Title from "@/app/components/Text/Title";
 import Button from "@/app/UX/button/button";
 import React, { useEffect, useState } from "react";
@@ -13,6 +14,8 @@ export default function MasterDataPage() {
   const [calendar, setCalendar] = useState(false);
   const [chat, setChat] = useState(false);
   const [citas_a_ciegas, setCitas_a_ciegas] = useState(false);
+  const [role, setRole] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     const handleData = async () => {
@@ -47,6 +50,11 @@ export default function MasterDataPage() {
     handleData();
   }, [])
 
+  useEffect(() => {
+    setIsClient(true);
+    setRole(localStorage.getItem('role'));
+  }, []);
+
   const handleChange = () => {
     menuUpdate({
       key: 'matches',
@@ -71,46 +79,56 @@ export default function MasterDataPage() {
   }
 
   return (
-    <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
-      <Title center bold mayus>
-        Gestion del menu de la app
-      </Title>
-
-      <fieldset className="mt-2">
-        <div>
-          <label className="text-palette-950 dark:text-palette-50">
-            <input type="checkbox" checked={matches} onClick={() => setMatches(!matches)} className="mr-3" />
-            Matches
-          </label>
-        </div>
-        <div>
-          <label className="text-palette-950 dark:text-palette-50">
-            <input type="checkbox" checked={event} onClick={() => setEvent(!event)} className="mr-3" />
-            Events
-          </label>
-        </div>
-        <div>
-          <label className="text-palette-950 dark:text-palette-50">
-            <input type="checkbox" checked={calendar} onClick={() => setCalendar(!calendar)} className="mr-3" />
-            Calendar
-          </label>
-        </div>
-        <div>
-          <label className="text-palette-950 dark:text-palette-50">
-            <input type="checkbox" checked={chat} onClick={() => setChat(!chat)} className="mr-3" />
-            Chat
-          </label>
-        </div>
-        <div>
-          <label className="text-palette-950 dark:text-palette-50">
-            <input type="checkbox" checked={citas_a_ciegas} onClick={() => setCitas_a_ciegas(!citas_a_ciegas)} className="mr-3" />
-            Citas a ciegas
-          </label>
-        </div>
-        <Button onClick={() => handleChange()} className="w-full mt-2">
-          Guardar
-        </Button>
-      </fieldset>
-    </div>
+    (role === 'US_CC' && isClient) ? (
+      <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
+        <Title center bold mayus>
+          Gestion del menu de la app
+        </Title>
+        <fieldset className="mt-2">
+          <div>
+            <label className="text-palette-950 dark:text-palette-50">
+              <input type="checkbox" checked={matches} onClick={() => setMatches(!matches)} className="mr-3" />
+              Matches
+            </label>
+          </div>
+          <div>
+            <label className="text-palette-950 dark:text-palette-50">
+              <input type="checkbox" checked={event} onClick={() => setEvent(!event)} className="mr-3" />
+              Events
+            </label>
+          </div>
+          <div>
+            <label className="text-palette-950 dark:text-palette-50">
+              <input type="checkbox" checked={calendar} onClick={() => setCalendar(!calendar)} className="mr-3" />
+              Calendar
+            </label>
+          </div>
+          <div>
+            <label className="text-palette-950 dark:text-palette-50">
+              <input type="checkbox" checked={chat} onClick={() => setChat(!chat)} className="mr-3" />
+              Chat
+            </label>
+          </div>
+          <div>
+            <label className="text-palette-950 dark:text-palette-50">
+              <input type="checkbox" checked={citas_a_ciegas} onClick={() => setCitas_a_ciegas(!citas_a_ciegas)} className="mr-3" />
+              Citas a ciegas
+            </label>
+          </div>
+          <Button onClick={() => handleChange()} className="w-full mt-2">
+            Guardar
+          </Button>
+        </fieldset>
+      </div>
+    ) : (
+      <div className="flex items-center content-center justify-center bg-palette-3 flex-col">
+        <Title bold width grid center>
+          BLEDBONDS - GESTION DE EVENTOS
+        </Title>
+        <Subtitle margin bold width grid center>
+          Solo puedes acceder a esta página si eres un administrador
+        </Subtitle>
+      </div>
+    )
   );
 }

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
-import Head from "next/head";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import { Suspense } from "react";

@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import SectionTitle from "../components/Text/SectionTitle";
-import Subtitle from "../components/Text/Subtitle";
 import Text from "../components/Text/Text";
 import Title from "../components/Text/Title";
 

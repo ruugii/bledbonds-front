@@ -114,8 +114,6 @@ export default function EventsPage() {
   }])
   const [events, setEvents] = useState<{ event_name: string, event_date: string, event_location: string, event_description: string, id: number }[]>([]);
 
-  const [chatName, setChatName] = useState('');
-
   useEffect(() => {
     const fetchEvents = async () => {
       const data = await getAllEvents();
@@ -179,7 +177,7 @@ export default function EventsPage() {
         description,
       };
 
-      const data = await updateEventAPI(idEvent, newEvent, localStorage.getItem('token') || '');
+      const data = await updateEventAPI(idEvent, newEvent, localStorage.getItem('token') ?? '');
       if (data) {
         const aux = events.find((item) => item.id === idEvent)
         if (aux) {
@@ -206,7 +204,7 @@ export default function EventsPage() {
 
       const url = await uploadImage(file);
       newEvent.url = url;
-      await createEventAPI(newEvent, localStorage.getItem('token') || '');
+      await createEventAPI(newEvent, localStorage.getItem('token') ?? '');
       const eventsArray = events;
       const aux = {
         id: events[events.length - 1].id + 1,
@@ -247,7 +245,6 @@ export default function EventsPage() {
         const data = await getChatByEvent(idEvent);
         // messages: [ { ID_message: 2, ID_user: 11, ID_chat: 1, message: 'HOLA MUNDO' } ]
         setIdEvent(data.chatId)
-        setChatName(data.chatName)
         setChat(
           data.messages.map((item: {
             ID_user: string;
@@ -267,7 +264,7 @@ export default function EventsPage() {
     }
 
     const confirmDelete = async () => {
-      await deleteEventAPI(idEvent, localStorage.getItem('token') || '');
+      await deleteEventAPI(idEvent, localStorage.getItem('token') ?? '');
       let aux = events;
       aux = aux.filter((item) => item.id !== idEvent);
       if (aux) {
@@ -283,229 +280,238 @@ export default function EventsPage() {
         message: newMessage,
         chatId: idEvent,
       });
-      // setChat([...chat, { sender: "Yo", message: newMessage }]);
       setNewMessage("");
     }
-
     return (
-      <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
-        <Title center bold mayus>
-          Eventos
-        </Title>
-        <div className="w-[80%] mb-3">
-          <div className="w-full md:w-[80vw] block overflow-auto mt-3">
-            <table className={`md:min-w-[80vh] md:w-[80vw] md:max-w-[80vw] min-w-[80%] w-[80%] max-w-[80%] bg-palette-2 dark:bg-palette-10 table-auto text-palette-11 dark:text-palette-50 gap-3`}>
-              <thead>
-                <tr>
-                  {header?.map((item, i) => (
-                    <th key={i} scope="col" onClick={item.onClick} className=" p-3 ">
-                      <div className="flex content-center items-center">
-                        {item.name}
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  events?.map((item, i) => (
-                    <tr key={i}>
-                      {Object.values(item).map((value, i) => (
-                        <td key={i} className=" p-3 ">
-                          <div>{String(value)}</div>
-                        </td>
-                      ))}
-                      <td className=" p-3 ">
+      (role === 'US_CC' && isClient) ? (
+        <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
+          <Title center bold mayus>
+            Eventos
+          </Title>
+          <div className="w-[80%] mb-3">
+            <div className="w-full md:w-[80vw] block overflow-auto mt-3">
+              <table className={`md:min-w-[80vh] md:w-[80vw] md:max-w-[80vw] min-w-[80%] w-[80%] max-w-[80%] bg-palette-2 dark:bg-palette-10 table-auto text-palette-11 dark:text-palette-50 gap-3`}>
+                <thead>
+                  <tr>
+                    {header?.map((item, i) => (
+                      <th key={i + 1} scope="col" onClick={item.onClick} className=" p-3 ">
                         <div className="flex content-center items-center">
-                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => seeParticipants(item.id)}>Ver participantes</button>
+                          {item.name}
                         </div>
-                      </td>
-                      <td className=" p-3 ">
-                        <div className="flex content-center items-center">
-                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => seeChat(item.id)}>Ver chat</button>
-                        </div>
-                      </td>
-                      <td className=" p-3 ">
-                        <div className="flex content-center items-center">
-                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => updateEvent(item.id)}>Editar</button>
-                        </div>
-                      </td>
-                      <td className=" p-3 ">
-                        <div className="flex content-center items-center">
-                          <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => deleteEvent(item.id)}>Eliminar</button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <button className="fixed bottom-4 right-4 bg-palette-500 text-palette-950 rounded-full p-3 hover:bg-palette-600 active:bg-palette-700 shadow-md shadow-palette-11 dark:shadow-palette-50" onClick={() => setCreateEventModal(true)}>CREAR EVENTO</button>
-
-        {createEventModal && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="absolute top-0 right-0 p-4">
-              <button onClick={() => setCreateEventModal(false)}><Close /></button>
-            </div>
-            <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
-              <Title center bold mayus>
-                Crear evento
-              </Title>
-              <Imput label="Nombre" value={name} onChange={setName} isValueValid />
-              <Imput label="Fecha" type="date" value={date} onChange={setDate} isValueValid />
-              <Imput label="Lugar" isValueValid value={place} onChange={setPlace} />
-              <Imput label="Descripción" text value={description} onChange={setDescription} isValueValid />
-              <input type="file" onChange={handleFileChange} className={`p-2 rounded-lg border-solid border-2 w-full mb-3 focus:outline-none bg-transparent ${isFileValid
-                ? 'border-palette-600 text-palette-600 hover:border-palette-700 hover:text-palette-700 focus:border-palette-800 focus:text-palette-800 disabled:border-palette-300 disabled:text-palette-300 dark:disabled:border-palette-900 dark:disabled:text-palette-900'
-                : 'border-red-500 text-red-500 focus:border-red-500'
-                }`} />
-              <Button
-                onClick={() => createEvent()}
-                label="Crear evento"
-                className=""
-                disabled={disabled}
-              />
-            </div>
-          </div>
-        )}
-        {seeParticipantsModal && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="absolute top-0 right-0 p-4">
-              <button className="text-palette-11 dark:text-palette-1" onClick={() => setSeeParticipantsModal(false)}><Close /></button>
-            </div>
-            <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
-              <Title center bold mayus>
-                Participantes
-              </Title>
-              <div className="w-[80%]">
-                <div className="w-[80%] md:w-[80vw] block overflow-auto mt-3">
-                  <table className={`md:min-w-[80vh] md:w-[80vw] md:max-w-[80vw] min-w-[80%] w-[80%] max-w-[80%] bg-palette-2 dark:bg-palette-10 table-auto text-palette-11 dark:text-palette-50 gap-3`}>
-                    <thead>
-                      <tr>
-                        {headerParticipants?.map((item, i) => (
-                          <th key={i} scope="col" onClick={item.onClick} className=" p-3 ">
-                            <div className="flex content-center items-center">
-                              {item.name}
-                            </div>
-                          </th>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    events?.map((item, i) => (
+                      <tr key={i + 1}>
+                        {Object.values(item).map((value, i) => (
+                          <td key={i + 1} className=" p-3 ">
+                            <div>{String(value)}</div>
+                          </td>
                         ))}
+                        <td className=" p-3 ">
+                          <div className="flex content-center items-center">
+                            <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => seeParticipants(item.id)}>Ver participantes</button>
+                          </div>
+                        </td>
+                        <td className=" p-3 ">
+                          <div className="flex content-center items-center">
+                            <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => seeChat(item.id)}>Ver chat</button>
+                          </div>
+                        </td>
+                        <td className=" p-3 ">
+                          <div className="flex content-center items-center">
+                            <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => updateEvent(item.id)}>Editar</button>
+                          </div>
+                        </td>
+                        <td className=" p-3 ">
+                          <div className="flex content-center items-center">
+                            <button className="text-palette-950 dark:text-palette-50 hover:underline" onClick={() => deleteEvent(item.id)}>Eliminar</button>
+                          </div>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        participants?.map((item, i) => (
-                          <tr key={i}>
-                            <td key={i} className=" p-3 ">
-                              <div>{item.name}</div>
-                            </td>
-                            <td key={i} className=" p-3 ">
-                              <div>{item.email}</div>
-                            </td>
-                            <td key={i} className=" p-3 ">
-                              <div>{item.phone}</div>
-                            </td>
-                            <td key={i} className=" p-3 ">
-                              <div>{item.photo || ''}</div>
-                            </td>
-                          </tr>
-                        ))
-                      }
-                    </tbody>
-                  </table>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <button className="fixed bottom-4 right-4 bg-palette-500 text-palette-950 rounded-full p-3 hover:bg-palette-600 active:bg-palette-700 shadow-md shadow-palette-11 dark:shadow-palette-50" onClick={() => setCreateEventModal(true)}>CREAR EVENTO</button>
+
+          {createEventModal && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="absolute top-0 right-0 p-4">
+                <button onClick={() => setCreateEventModal(false)}><Close /></button>
+              </div>
+              <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
+                <Title center bold mayus>
+                  Crear evento
+                </Title>
+                <Imput label="Nombre" value={name} onChange={setName} isValueValid />
+                <Imput label="Fecha" type="date" value={date} onChange={setDate} isValueValid />
+                <Imput label="Lugar" isValueValid value={place} onChange={setPlace} />
+                <Imput label="Descripción" text value={description} onChange={setDescription} isValueValid />
+                <input type="file" onChange={handleFileChange} className={`p-2 rounded-lg border-solid border-2 w-full mb-3 focus:outline-none bg-transparent ${isFileValid
+                  ? 'border-palette-600 text-palette-600 hover:border-palette-700 hover:text-palette-700 focus:border-palette-800 focus:text-palette-800 disabled:border-palette-300 disabled:text-palette-300 dark:disabled:border-palette-900 dark:disabled:text-palette-900'
+                  : 'border-red-500 text-red-500 focus:border-red-500'
+                  }`} />
+                <Button
+                  onClick={() => createEvent()}
+                  label="Crear evento"
+                  className=""
+                  disabled={disabled}
+                />
+              </div>
+            </div>
+          )}
+          {seeParticipantsModal && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="absolute top-0 right-0 p-4">
+                <button className="text-palette-11 dark:text-palette-1" onClick={() => setSeeParticipantsModal(false)}><Close /></button>
+              </div>
+              <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
+                <Title center bold mayus>
+                  Participantes
+                </Title>
+                <div className="w-[80%]">
+                  <div className="w-[80%] md:w-[80vw] block overflow-auto mt-3">
+                    <table className={`md:min-w-[80vh] md:w-[80vw] md:max-w-[80vw] min-w-[80%] w-[80%] max-w-[80%] bg-palette-2 dark:bg-palette-10 table-auto text-palette-11 dark:text-palette-50 gap-3`}>
+                      <thead>
+                        <tr>
+                          {headerParticipants?.map((item, i) => (
+                            <th key={i + 1} scope="col" onClick={item.onClick} className=" p-3 ">
+                              <div className="flex content-center items-center">
+                                {item.name}
+                              </div>
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          participants?.map((item, i) => (
+                            <tr key={i + 1}>
+                              <td key={i + 1} className=" p-3 ">
+                                <div>{item.name}</div>
+                              </td>
+                              <td key={i + 1} className=" p-3 ">
+                                <div>{item.email}</div>
+                              </td>
+                              <td key={i + 1} className=" p-3 ">
+                                <div>{item.phone}</div>
+                              </td>
+                              <td key={i + 1} className=" p-3 ">
+                                <div>{item.photo || ''}</div>
+                              </td>
+                            </tr>
+                          ))
+                        }
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-        {seeChatModal && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="absolute top-0 right-0 p-4">
-              <button className="text-palette-11 dark:text-palette-1" onClick={
-                () => {
-                  setSeeChatModal(false)
-                }}><Close /></button>
-            </div>
-            <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg w-[80vw] h-[80vh] flex flex-col gap-3 overflow-auto">
-              <Title center bold mayus>
-                Chat - {idEvent}
-              </Title>
-              <div className="flex flex-col gap-3 flex-1 overflow-auto bg-palette-3 p-4 rounded-lg scroll-smooth">
-                {chat?.map((item, i) => (
-                  <Message
-                    sender={item.sender}
-                    message={item.message}
-                    isMine={item.sender === "Yo" || item.sender == `${idUser}`}
-                    key={i}
+          )}
+          {seeChatModal && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="absolute top-0 right-0 p-4">
+                <button className="text-palette-11 dark:text-palette-1" onClick={
+                  () => {
+                    setSeeChatModal(false)
+                  }}><Close /></button>
+              </div>
+              <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg w-[80vw] h-[80vh] flex flex-col gap-3 overflow-auto">
+                <Title center bold mayus>
+                  Chat - {idEvent}
+                </Title>
+                <div className="flex flex-col gap-3 flex-1 overflow-auto bg-palette-3 p-4 rounded-lg scroll-smooth">
+                  {chat?.map((item, i) => (
+                    <Message
+                      sender={item.sender}
+                      message={item.message}
+                      isMine={item.sender === "Yo" || item.sender == `${idUser}`}
+                      key={i + 1}
+                    />
+                  ))}
+                </div>
+                <div className="flex">
+                  <Imput
+                    label=""
+                    value={newMessage}
+                    onChange={setNewMessage}
+                    isValueValid
+                    divClassName="w-full mr-2"
                   />
-                ))}
+                  <Button className="text-palette-11 dark:text-palette-1" onClick={() => sendMessage()} label="Enviar" />
+                </div>
               </div>
-              <div className="flex">
-                <Imput
-                  label=""
-                  value={newMessage}
-                  onChange={setNewMessage}
-                  isValueValid
-                  divClassName="w-full mr-2"
+            </div>
+          )}
+          {editEventModal && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="absolute top-0 right-0 p-4">
+                <button className="text-palette-11 dark:text-palette-1" onClick={() => {
+                  setEditEventModal(false)
+                }}><Close /></button>
+              </div>
+              <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
+                <Title center bold mayus>
+                  Editar evento
+                </Title>
+                <Imput label="Nombre" value={name} onChange={setName} isValueValid />
+                <Imput label="Fecha" type="date" value={date} onChange={setDate} isValueValid />
+                <Imput label="Lugar" isValueValid value={place} onChange={setPlace} />
+                <Imput label="Descripción" text value={description} onChange={setDescription} isValueValid />
+                <input type="file" onChange={handleFileChange} className={`p-2 rounded-lg border-solid border-2 w-full mb-3 focus:outline-none bg-transparent ${isFileValid
+                  ? 'border-palette-600 text-palette-600 hover:border-palette-700 hover:text-palette-700 focus:border-palette-800 focus:text-palette-800 disabled:border-palette-300 disabled:text-palette-300 dark:disabled:border-palette-900 dark:disabled:text-palette-900'
+                  : 'border-red-500 text-red-500 focus:border-red-500'
+                  }`} />
+                <Button
+                  onClick={() => HandleUpdateEvent()}
+                  label="Crear evento"
+                  className=""
+                  disabled={!(name !== '' && date !== '' && place !== '' && description !== '')}
                 />
-                <Button className="text-palette-11 dark:text-palette-1" onClick={() => sendMessage()} label="Enviar" />
               </div>
             </div>
-          </div>
-        )}
-        {editEventModal && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="absolute top-0 right-0 p-4">
-              <button className="text-palette-11 dark:text-palette-1" onClick={() => {
-                setEditEventModal(false)
-              }}><Close /></button>
-            </div>
-            <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
-              <Title center bold mayus>
-                Editar evento
-              </Title>
-              <Imput label="Nombre" value={name} onChange={setName} isValueValid />
-              <Imput label="Fecha" type="date" value={date} onChange={setDate} isValueValid />
-              <Imput label="Lugar" isValueValid value={place} onChange={setPlace} />
-              <Imput label="Descripción" text value={description} onChange={setDescription} isValueValid />
-              <input type="file" onChange={handleFileChange} className={`p-2 rounded-lg border-solid border-2 w-full mb-3 focus:outline-none bg-transparent ${isFileValid
-                ? 'border-palette-600 text-palette-600 hover:border-palette-700 hover:text-palette-700 focus:border-palette-800 focus:text-palette-800 disabled:border-palette-300 disabled:text-palette-300 dark:disabled:border-palette-900 dark:disabled:text-palette-900'
-                : 'border-red-500 text-red-500 focus:border-red-500'
-                }`} />
-              <Button
-                onClick={() => HandleUpdateEvent()}
-                label="Crear evento"
-                className=""
-                disabled={name !== '' && date !== '' && place !== '' && description !== '' ? false : true}
-              />
-            </div>
-          </div>
-        )}
-        {modalConfirm && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="absolute top-0 right-0 p-4">
-              <button className="text-palette-11 dark:text-palette-1" onClick={() => setModalConfirm(false)}><Close /></button>
-            </div>
-            <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
-              <Title center bold mayus>
-                ¿Estás seguro de eliminar el evento?
-              </Title>
-              <div className="flex justify-center gap-3 mt-4">
-                <button className={`bg-green-500 hover:bg-green-600 active:bg-green-700 text-palette-950 p-2 rounded-lg`} onClick={() => { confirmDelete() }}>
-                  Si
-                </button>
-                <button className={`bg-red-500 hover:bg-red-600 active:bg-red-700 text-palette-950 p-2 rounded-lg`} onClick={() => {
-                  setModalConfirm(false)
-                  clearForm()
-                }}>
-                  No
-                </button>
+          )}
+          {modalConfirm && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="absolute top-0 right-0 p-4">
+                <button className="text-palette-11 dark:text-palette-1" onClick={() => setModalConfirm(false)}><Close /></button>
+              </div>
+              <div className=" bg-palette-50 dark:bg-palette-950 p-4 rounded-lg">
+                <Title center bold mayus>
+                  ¿Estás seguro de eliminar el evento?
+                </Title>
+                <div className="flex justify-center gap-3 mt-4">
+                  <button className={`bg-green-500 hover:bg-green-600 active:bg-green-700 text-palette-950 p-2 rounded-lg`} onClick={() => { confirmDelete() }}>
+                    Si
+                  </button>
+                  <button className={`bg-red-500 hover:bg-red-600 active:bg-red-700 text-palette-950 p-2 rounded-lg`} onClick={() => {
+                    setModalConfirm(false)
+                    clearForm()
+                  }}>
+                    No
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      ) : (
+        <div className="flex items-center content-center justify-center bg-palette-3 flex-col">
+          <Title bold width grid center>
+            BLEDBONDS - GESTION DE EVENTOS
+          </Title>
+          <Subtitle margin bold width grid center>
+            Solo puedes acceder a esta página si eres un administrador
+          </Subtitle>
+        </div>
+      )
     );
   } else {
     return (

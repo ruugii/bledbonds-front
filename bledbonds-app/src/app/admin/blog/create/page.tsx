@@ -121,7 +121,7 @@ export default function RegisterPage() {
                   text: content,
                   token
                 }
-                const response = await createBlogData(data);
+                await createBlogData(data);
               }
 
               push();

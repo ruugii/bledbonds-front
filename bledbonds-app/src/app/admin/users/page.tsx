@@ -21,7 +21,6 @@ interface NewsletterData {
   id_find: number | null;
   id_orientation: number | null;
   id_status: number | null;
-  bio: string | null;
   height: number | null;
   studyPlace: string | null;
   you_work: string | null;
@@ -33,7 +32,11 @@ interface NewsletterData {
   id_zodiac: number | null;
   mascotas: string | null;
   id_religion: number | null;
-  role_name: string;
+  roleName: string;
+  findText: string | null;
+  orientationText: string | null;
+  statusText: string | null;
+  bio: string | null;
 }
 
 export default function RegisterPage() {
@@ -48,6 +51,10 @@ export default function RegisterPage() {
   const [nameOrder, setNameOrder] = useState<'asc' | 'desc'>('asc');
   const [birthdateOrder, setBirthdateOrder] = useState<'asc' | 'desc'>('asc');
   const [roleOrder, setRoleOrder] = useState<'asc' | 'desc'>('asc');
+  const [findOrder, setFindOrder] = useState<'asc' | 'desc'>('asc');
+  const [orientationOrder, setOrientationOrder] = useState<'asc' | 'desc'>('asc');
+  const [statusOrder, setStatusOrder] = useState<'asc' | 'desc'>('asc');
+  const [bioOrder, setBioOrder] = useState<'asc' | 'desc'>('asc');
 
   const [isClient, setIsClient] = useState(false);
 
@@ -65,6 +72,10 @@ export default function RegisterPage() {
       });
     }
   }, [role]);
+
+  useEffect(() => {
+    sortID()
+  }, [data]);
 
   const sortData = (key: keyof NewsletterData, order: 'asc' | 'desc', setOrder: React.Dispatch<React.SetStateAction<'asc' | 'desc'>>) => {
     const aux = [...dataOrd].sort((a, b) => {
@@ -96,7 +107,11 @@ export default function RegisterPage() {
   const sortGenre = () => sortData('id_genre', genreOrder, setGenreOrder);
   const sortName = () => sortData('name', nameOrder, setNameOrder);
   const sortBirthdate = () => sortData('birthdate', birthdateOrder, setBirthdateOrder);
-  const sortRole = () => sortData('role_name', roleOrder, setRoleOrder);
+  const sortRole = () => sortData('roleName', roleOrder, setRoleOrder);
+  const sortFind = () => sortData('findText', findOrder, setFindOrder);
+  const sortOrientation = () => sortData('orientationText', orientationOrder, setOrientationOrder);
+  const sortStatus = () => sortData('statusText', statusOrder, setStatusOrder);
+  const sortBio = () => sortData('bio', bioOrder, setBioOrder);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -147,10 +162,31 @@ export default function RegisterPage() {
                 name: 'role',
                 onClick: sortRole,
                 icon: roleOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'find',
+                onClick: sortFind,
+                icon: findOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'orientation',
+                onClick: sortOrientation,
+                icon: orientationOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'status',
+                onClick: sortStatus,
+                icon: statusOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'bio',
+                onClick: sortBio,
+                icon: bioOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
               }
             ]}
             data={dataOrd}
             className="mt-3"
+            divider
           />
         </div>
       ) : (

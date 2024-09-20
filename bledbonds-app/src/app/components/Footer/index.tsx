@@ -78,6 +78,8 @@ export default function Footer() {
           </ul>
           <hr className="my-6 border-palette-11 dark:border-palette-50 sm:mx-auto lg:my-8" />
           <span className="block text-sm text-palette-11 dark:text-palette-1 sm:text-center">© {new Date().getFullYear()} <a href="/" className="hover:underline">BLEDBONDS™</a>. All Rights Reserved.</span>
+          <hr className="my-6 border-palette-11 dark:border-palette-50 sm:mx-auto lg:my-8" />
+          <span className="block text-sm text-palette-11 dark:text-palette-1 sm:text-center">Developed by: <a href="https://github.com/bledbonds" className="hover:underline">ruugii</a></span>
         </div>
       </footer>
     </>

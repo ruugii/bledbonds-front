@@ -1,18 +1,37 @@
 'use client'
 import Check from "@/app/Icons/check";
 import Close from "@/app/Icons/close";
-import EyeOpen from "@/app/Icons/eyeOpen";
-import EyeClose from "@/app/Icons/eyeClose";
 import Imput from "@/app/UX/imput/imput";
 import getGenderAPI from "@/app/api/getGenders";
 import { useEffect, useState } from "react";
 import Select from 'react-select';
 import InputPassword from "@/app/UX/InputPassword";
-import { stat } from "fs";
 import Button from "@/app/UX/button/button";
 import registerAPI from "@/app/api/register";
-import { redirect } from "next/dist/server/api-utils";
 import SectionTitle from "@/app/components/Text/SectionTitle";
+import { Autocomplete, createFilterOptions, styled, TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+
+const StyledAutocomplete = styled(Autocomplete)({
+  '& label.Mui-focused': {
+    color: '#002b33',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#0093a1',
+  },
+  '& .MuiOutlinedInput-root': {
+    backgroundColor: 'transparent',
+    '& fieldset': {
+      borderColor: '#0093a1',
+    },
+    '&:hover fieldset': {
+      borderColor: '#0093a1',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#0093a1',
+    },
+  },
+});
 
 export default function PreRegistration() {
   const [email, setEmail] = useState('');
@@ -30,27 +49,30 @@ export default function PreRegistration() {
   const [genderList, setGenderList] = useState<{ value: string, label: string }[]>([]);
   const [genderListIsLoading, setGenderListIsLoading] = useState(true);
   const [gender, setGender] = useState('');
+
+  useEffect(() => {
+    console.log(gender)
+  }, [gender])
+
   const [genderValid, setGenderValid] = useState(false);
   const [hasMayus, setHasMayus] = useState(false);
   const [hasMinus, setHasMinus] = useState(false);
   const [hasNumber, setHasNumber] = useState(false);
   const [hasSpecial, setHasSpecial] = useState(false);
   const [moreThan8, setMoreThan8] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [passwordConfirmShow, setPasswordConfirmShow] = useState(false);
   const [minPasswordLength] = useState(8);
   const [maxPasswordLength] = useState(12);
 
   const PasswordValidator = (passwordA: string) => {
     setHasMayus(/[A-Z]/.exec(passwordA) !== null);
     setHasMinus(/[a-z]/.exec(passwordA) !== null);
-    setHasNumber(/[\d]/.exec(passwordA) !== null);
+    setHasNumber(/\d/.exec(passwordA) !== null);
     setHasSpecial(/[!@#$%^&*-]/.exec(passwordA) !== null);
     setMoreThan8(passwordA.length >= minPasswordLength && passwordA.length <= maxPasswordLength);
     setPasswordValid(
       /[A-Z]/.test(passwordA) &&
       /[a-z]/.test(passwordA) &&
-      /[0-9]/.test(passwordA) &&
+      /\d/.test(passwordA) &&
       /[!@#$%^&*-]/.test(passwordA) &&
       passwordA.length > minPasswordLength &&
       passwordA.length < maxPasswordLength
@@ -69,7 +91,7 @@ export default function PreRegistration() {
       setPasswordConfirmValid(password === passwordConfirm && passwordValid);
     }, 500);
     return () => clearTimeout(validator);
-  }, [passwordConfirm]);
+  }, [passwordConfirm, password, passwordValid]);
 
   useEffect(() => {
     const getGenderaAPI = async () => {
@@ -126,6 +148,11 @@ export default function PreRegistration() {
     }
   }, [gender])
 
+  const filterOptions = createFilterOptions({
+    matchFrom: 'start',
+    stringify: (option: {value: string, label: string}) => option.label,
+  });
+
   return (
     <>
       <div className="md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 md:grid-cols-2 md:gap-6 min-w-[80%] w-[80%] mt-3">
@@ -135,47 +162,70 @@ export default function PreRegistration() {
             value={email}
             onChange={setEmail}
             isValueValid={emailValid}
-            divClassName='w-full'
+            divClassName='w-full mt-3'
+            mui
           />
           <Imput
             label="TELÉFONO"
             value={phone}
             onChange={setPhone}
             isValueValid={phoneValid}
-            divClassName='w-full'
+            divClassName='w-full mt-3'
+            mui
           />
           <Imput
             label="NOMBRE"
             value={name}
             onChange={setName}
             isValueValid={nameValid}
-            divClassName='w-full'
+            divClassName='w-full mt-3'
+            mui
           />
           <Imput
             label="FECHA DE NACIMIENTO"
             value={birthDate}
             onChange={setBirthDate}
             isValueValid={birthDateValid}
-            divClassName='w-full'
+            divClassName='w-full mt-3'
             type="date"
+            mui
+            date
           />
         </div>
         <div className="flex flex-col justify-between items-center">
-          <InputPassword
+          <Imput
             label="CONTRASEÑA"
             value={password}
             onChange={setPassword}
             isValueValid={passwordValid}
             divClassName='w-full'
+            mui
+            password
           />
-          <InputPassword
+          <Imput
             label="CONFIRMAR CONTRASEÑA"
             value={passwordConfirm}
             onChange={setPasswordConfirm}
             isValueValid={passwordConfirmValid}
             divClassName='w-full'
+            mui
+            password
           />
-          <div className={`flex flex-col w-full mb-3`}>
+          <StyledAutocomplete
+            options={genderList}
+            getOptionLabel={(option : { value: string, label: string }) => option.label}
+            filterOptions={filterOptions}
+            sx={{ width: '100%' }}
+            renderInput={(params) => <TextField {...params} label="Custom filter" />}
+            onChange={(selected) => {
+              if (selected) {
+                setGender(selected.value);
+              } else {
+                setGender('');
+              }
+            }}
+          />
+          {/* <div className={`flex flex-col w-full mb-3`}>
             <label className="text-palette-11 dark:text-palette-50">SELECCIONA TU GÉNERO</label>
             <Select
               options={genderList}
@@ -197,7 +247,7 @@ export default function PreRegistration() {
               }}
               isDisabled={genderListIsLoading || genderList.length === 0}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="content-start items-start bg-palette-4 dark:bg-palette-10 shadow-md shadow-palette-11 dark:shadow-palette-50 border-solid border-palette-4 dark:border-palette-10 border-2 p-5 pl-0 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%]">

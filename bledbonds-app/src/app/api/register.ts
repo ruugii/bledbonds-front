@@ -12,7 +12,7 @@ const registerAPI = async (user: RegisterInterface) => {
     const host = window.location.host;
     let API_URL = '';
     if (host === 'localhost:3000') {
-      API_URL = 'http://localhost:3001/api/v1';
+      API_URL = 'https://api.bledbonds.es/api/v1';
     } else {
       API_URL = 'https://api.bledbonds.es/api/v1';
     }

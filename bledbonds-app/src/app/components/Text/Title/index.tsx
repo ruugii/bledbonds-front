@@ -1,12 +1,12 @@
 interface TitleProps {
-  children: React.ReactNode;
-  className?: string;
-  bold?: boolean;
-  width?: boolean;
-  grid?: boolean;
-  center?: boolean;
-  capitalize?: boolean;
-  mayus?: boolean;
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly bold?: boolean;
+  readonly width?: boolean;
+  readonly grid?: boolean;
+  readonly center?: boolean;
+  readonly capitalize?: boolean;
+  readonly mayus?: boolean;
 }
 
 export default function Title(props: TitleProps) {

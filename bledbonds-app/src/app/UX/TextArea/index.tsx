@@ -1,9 +1,9 @@
 interface ImputProps {
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  divClassName?: string;
-  id?: string;
+  readonly label: string;
+  readonly value: string;
+  readonly onChange: (value: string) => void;
+  readonly divClassName?: string;
+  readonly id?: string;
 }
 
 export default function TextArea(props: ImputProps) {

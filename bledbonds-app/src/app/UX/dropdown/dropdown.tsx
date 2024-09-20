@@ -6,7 +6,7 @@ interface DropdownProps {
   isValueValid?: boolean;
 }
 
-export default function Dropdown(props: DropdownProps) {
+export default function Dropdown(props: Readonly<DropdownProps>) {
   const { label, value, options, onChange } = props;
   return (
     <div className="flex flex-col">
@@ -17,7 +17,7 @@ export default function Dropdown(props: DropdownProps) {
         onChange={(e) => onChange(e.target.value)}
       >
         {options.map((option, index) => (
-          <option key={index} value={option}>{option}</option>
+          <option key={index + 1} value={option}>{option}</option>
         ))}
       </select>
     </div>

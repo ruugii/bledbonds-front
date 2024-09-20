@@ -1,7 +1,7 @@
 interface MessageProps {
-  sender: string;
-  message: string;
-  isMine: boolean;
+  readonly sender: string;
+  readonly message: string;
+  readonly isMine: boolean;
 }
 
 

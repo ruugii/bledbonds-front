@@ -4,6 +4,7 @@ import Imput from "@/app/UX/imput/imput"; // Corrected import for Input
 import InputPassword from "@/app/UX/InputPassword";
 import Button from "@/app/UX/button/button"; // Corrected import for Button
 import loginAPI from "@/app/api/loginAPI";
+import Input from "@/app/UX/imput/imput";
 
 export default function LoginComponent() {
   const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ export default function LoginComponent() {
   const validatePassword = (password: string) => {
     const hasMayus = /[A-Z]/.test(password);
     const hasMinus = /[a-z]/.test(password);
-    const hasNumber = /[0-9]/.test(password);
+    const hasNumber = /\d/.test(password);
     const hasSpecial = /[!@#$%^&*-]/.test(password);
     const lengthValid = password.length >= minPasswordLength && password.length <= maxPasswordLength;
     return hasMayus && hasMinus && hasNumber && hasSpecial && lengthValid;
@@ -51,6 +52,7 @@ export default function LoginComponent() {
             isValueValid={emailValid}
             divClassName='w-full'
             id="email"
+            mui
           />
           <Imput
             label="TELÉFONO"
@@ -59,15 +61,17 @@ export default function LoginComponent() {
             isValueValid={phoneValid}
             divClassName='w-full'
             id="phone"
+            mui
           />
         </div>
         <div className="flex flex-col justify-evenly items-center">
-          <InputPassword
+          <Input
             label="CONTRASEÑA"
             value={password}
             onChange={setPassword}
             isValueValid={passwordValid}
-            divClassName='w-full'
+            mui
+            password
           />
         </div>
       </div>
