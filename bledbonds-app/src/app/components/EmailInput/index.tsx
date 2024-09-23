@@ -24,7 +24,8 @@ export default function EmailInput() {
           onChange={setEmail}
           isValueValid={emailValid}
           type="email"
-          divClassName='w-[80%]'
+          divClassName='w-[80%] mt-3'
+          mui
         />
       </div>
       <div className="flex flex-row content-center justify-center items-center">

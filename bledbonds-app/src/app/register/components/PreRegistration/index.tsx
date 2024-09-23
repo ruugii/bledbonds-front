@@ -4,13 +4,13 @@ import Close from "@/app/Icons/close";
 import Imput from "@/app/UX/imput/imput";
 import getGenderAPI from "@/app/api/getGenders";
 import { useEffect, useState } from "react";
-import Select from 'react-select';
-import InputPassword from "@/app/UX/InputPassword";
 import Button from "@/app/UX/button/button";
 import registerAPI from "@/app/api/register";
 import SectionTitle from "@/app/components/Text/SectionTitle";
 import { Autocomplete, createFilterOptions, styled, TextField } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
+import { Dayjs } from "dayjs";
+import MuiDatePicker from "@/app/UX/MuiDatePicker";
+import AutocompleteMUI from "@/app/UX/Autocomplete";
 
 const StyledAutocomplete = styled(Autocomplete)({
   '& label.Mui-focused': {
@@ -44,16 +44,12 @@ export default function PreRegistration() {
   const [passwordConfirmValid, setPasswordConfirmValid] = useState(false);
   const [name, setName] = useState('');
   const [nameValid, setNameValid] = useState(false);
+  const [birthDateAux, setBirthDateAux] = useState<Dayjs | null>(null);
   const [birthDate, setBirthDate] = useState('');
   const [birthDateValid, setBirthDateValid] = useState(false);
   const [genderList, setGenderList] = useState<{ value: string, label: string }[]>([]);
   const [genderListIsLoading, setGenderListIsLoading] = useState(true);
   const [gender, setGender] = useState('');
-
-  useEffect(() => {
-    console.log(gender)
-  }, [gender])
-
   const [genderValid, setGenderValid] = useState(false);
   const [hasMayus, setHasMayus] = useState(false);
   const [hasMinus, setHasMinus] = useState(false);
@@ -114,6 +110,10 @@ export default function PreRegistration() {
   }, [name]);
 
   useEffect(() => {
+    setBirthDate(birthDateAux ? birthDateAux.format('YYYY-MM-DD') : '');
+  }, [birthDateAux])
+
+  useEffect(() => {
     const aux = setTimeout(() => {
       let date = new Date(birthDate)
       let now = new Date()
@@ -150,7 +150,7 @@ export default function PreRegistration() {
 
   const filterOptions = createFilterOptions({
     matchFrom: 'start',
-    stringify: (option: {value: string, label: string}) => option.label,
+    stringify: (option: { value: string, label: string }) => option.label,
   });
 
   return (
@@ -181,73 +181,57 @@ export default function PreRegistration() {
             divClassName='w-full mt-3'
             mui
           />
-          <Imput
-            label="FECHA DE NACIMIENTO"
-            value={birthDate}
-            onChange={setBirthDate}
-            isValueValid={birthDateValid}
-            divClassName='w-full mt-3'
-            type="date"
-            mui
-            date
-          />
+          <div className="flex flex-col w-full mb-3">
+            <MuiDatePicker
+              label="FECHA DE NACIMIENTO"
+              value={birthDateAux}
+              onChange={setBirthDateAux}
+              error={!birthDateValid}
+            />
+          </div>
         </div>
         <div className="flex flex-col justify-between items-center">
-          <Imput
-            label="CONTRASEÑA"
-            value={password}
-            onChange={setPassword}
-            isValueValid={passwordValid}
-            divClassName='w-full'
-            mui
-            password
-          />
-          <Imput
-            label="CONFIRMAR CONTRASEÑA"
-            value={passwordConfirm}
-            onChange={setPasswordConfirm}
-            isValueValid={passwordConfirmValid}
-            divClassName='w-full'
-            mui
-            password
-          />
-          <StyledAutocomplete
-            options={genderList}
-            getOptionLabel={(option : { value: string, label: string }) => option.label}
-            filterOptions={filterOptions}
-            sx={{ width: '100%' }}
-            renderInput={(params) => <TextField {...params} label="Custom filter" />}
-            onChange={(selected) => {
-              if (selected) {
-                setGender(selected.value);
-              } else {
-                setGender('');
-              }
-            }}
-          />
-          {/* <div className={`flex flex-col w-full mb-3`}>
-            <label className="text-palette-11 dark:text-palette-50">SELECCIONA TU GÉNERO</label>
-            <Select
+          <div className="mt-3 mb-3 w-full">
+            <Imput
+              label="CONTRASEÑA"
+              value={password}
+              onChange={setPassword}
+              isValueValid={passwordValid}
+              divClassName='w-full'
+              mui
+              password
+            />
+          </div>
+          <div className="mt-3 mb-3 w-full">
+            <Imput
+              label="CONFIRMAR CONTRASEÑA"
+              value={passwordConfirm}
+              onChange={setPasswordConfirm}
+              isValueValid={passwordConfirmValid}
+              divClassName='w-full'
+              mui
+              password
+            />
+          </div>
+          <div className="mt-3 mb-3 w-full">
+
+            <AutocompleteMUI
               options={genderList}
-              isClearable
-              className={`${genderValid ? 'border-palette-600 hover:border-palette-700 active:border-palette-800 text-palette-600 focus:border-palette-700 active:text-palette-800' : 'border-red-500 hover:border-red-500 text-red-500 focus:border-red-500'} w-full bg-palette-1 bg-transparent`}
-              styles={{
-                control: (styles) => ({
-                  ...styles,
-                  border: '2px solid',
-                }),
-              }}
-              isLoading={genderListIsLoading}
-              onChange={(selected) => {
-                if (selected) {
-                  setGender(selected.value);
+              getOptionLabel={(option) => option?.label || gender || '...'} // Ensure it always returns a string
+              filterOptions={filterOptions}
+              sx={{ width: '100%' }}
+              renderInput={(params) => <TextField {...params} label="GENERO" />}
+              onChange={(event, selectedOption) => {
+                if (selectedOption) {
+                  setGender(selectedOption.value);
                 } else {
                   setGender('');
                 }
               }}
-              isDisabled={genderListIsLoading || genderList.length === 0}
+              error={!genderValid}
+              value={gender}
             />
-          </div> */}
+          </div>
         </div>
       </div>
       <div className="content-start items-start bg-palette-4 dark:bg-palette-10 shadow-md shadow-palette-11 dark:shadow-palette-50 border-solid border-palette-4 dark:border-palette-10 border-2 p-5 pl-0 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%]">

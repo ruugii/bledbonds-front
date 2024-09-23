@@ -1,10 +1,10 @@
-import Link from "next/link";
 import SectionTitle from "../components/Text/SectionTitle";
 import Subtitle from "../components/Text/Subtitle";
 import Text from "../components/Text/Text";
 import Title from "../components/Text/Title";
 import Button from "../UX/button/button";
 import { Metadata } from "next";
+import Link from "../UX/Link";
 
 export const metadata: Metadata = {
   title: "Bled Bonds - Citas para personas con discapacidad - FAQs - Preguntas frequentes?",
@@ -60,13 +60,15 @@ export default function AppPage() {
               </Text>
             </div>
             <div className="flex flex-col content-center justify-center items-center">
-              <Link href="/faq" className="w-[80%]">
-                <div className={`bg-palette-500 hover:bg-palette-600 active:bg-palette-700 text-palette-950 dark:text-palette-950 p-2 rounded-lg border-solid border-2 border-palette-500 hover:border-palette-600 active:border-palette-700 w-full shadow-lg shadow-palette-950 dark:shadow-palette-50 mt-2 md:mt-0`}>
+              <div className="w-[80%]">
+                <Link
+                  href="/faq"
+                  className="bg-palette-500 hover:bg-palette-600 active:bg-palette-700 text-palette-950 dark:text-palette-950 p-2 w-full shadow-lg shadow-palette-950 dark:shadow-palette-50 mt-2 md:mt-0 text-palette-11 dark:text-palette-50"
+                >
                   PREGUNTAS FRECUENTES
-                </div>
-              </Link>
+                </Link>
+              </div>
             </div>
-
           </section>
         </div>
       </div>
