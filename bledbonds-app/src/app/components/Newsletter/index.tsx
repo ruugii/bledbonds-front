@@ -35,22 +35,10 @@ export default function Newsletter(props: NewsletterProps) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (
-        searchParams.get('register') || 
-        pathname === '/register' || 
-        pathname === '/login' || 
-        pathname.includes('admin') || 
-        pathname.includes('activate') || 
-        pathname.includes('blog') || 
-        pathname.includes('what-is') || 
-        pathname.includes('app') || 
-        pathname.includes('faq') ||
-        pathname.includes('ciegas') ||
-        props.isOpen
-      ) {
-        setOpenModal(false);
-      } else if (!pathname.includes('newsletter')) {
+      if (pathname === '/') {
         setOpenModal(true);
+      } else {
+        setOpenModal(false);
       }
     }, 5000);
 
