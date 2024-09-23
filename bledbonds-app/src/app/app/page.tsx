@@ -63,7 +63,6 @@ export default function AppPage() {
               <div className="w-[80%]">
                 <Link
                   href="/faq"
-                  className="bg-palette-500 hover:bg-palette-600 active:bg-palette-700 text-palette-950 dark:text-palette-950 p-2 w-full shadow-lg shadow-palette-950 dark:shadow-palette-50 mt-2 md:mt-0 text-palette-11 dark:text-palette-50"
                 >
                   PREGUNTAS FRECUENTES
                 </Link>
