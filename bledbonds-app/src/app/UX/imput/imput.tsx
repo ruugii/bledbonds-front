@@ -30,7 +30,7 @@ const CssTextField = styled(TextField)({
     borderBottomColor: '#0093a1',
   },
   '& .MuiOutlinedInput-root': {
-    backgroundColor: 'transparent',
+    backgroundColor: '#FFF',
     '& fieldset': {
       borderColor: '#0093a1',
     },
@@ -218,17 +218,18 @@ export default function Input({
       )
     } else {
       return (
-        <CssTextField
-          label={label}
-          value={value ?? ''}
-          onChange={(e) => onChange(e.target.value)}
-          id={id}
-          disabled={disabled}
-          fullWidth
-          error={!isValueValid}
-          autoComplete="off"
-          className={`mb-3 ${divClassName}`}
-        />
+        <div className={`mb-3 ${divClassName}`}>
+            <CssTextField
+              label={label}
+              value={value ?? ''}
+              onChange={(e) => onChange(e.target.value)}
+              id={id}
+              disabled={disabled}
+              fullWidth
+              error={!isValueValid}
+              autoComplete={id === 'user' ? "on" : "off"}
+            />
+        </div>
       )
     }
   } else {
