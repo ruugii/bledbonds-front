@@ -23,14 +23,22 @@ interface InputProps {
 }
 
 const CssTextField = styled(TextField)({
+  'MuiFormLabel-root': {
+    color: '#0093a1',
+  },
+  'MuiFormLabel-root:error': {
+    color: 'red',
+  },
   '& label.Mui-focused': {
     color: '#002b33',
+  },
+  '& css-1pbc52w:error': {
+    color: 'red',
   },
   '& .MuiInput-underline:after': {
     borderBottomColor: '#0093a1',
   },
   '& .MuiOutlinedInput-root': {
-    backgroundColor: '#FFF',
     '& fieldset': {
       borderColor: '#0093a1',
     },
@@ -39,6 +47,36 @@ const CssTextField = styled(TextField)({
     },
     '&.Mui-focused fieldset': {
       borderColor: '#0093a1',
+    },
+    '&:hover fieldset:error': {
+      borderColor: 'red',
+    },
+    '&.Mui-focused fieldset:error': {
+      borderColor: 'red',
+    },
+  },
+});
+
+const CssTextFieldError = styled(TextField)({
+  '& .MuiFormLabel-root': {
+    color: 'red',
+  },
+  '& label.Mui-focused': {
+    color: 'red',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'red',
+  },
+  '& .MuiOutlinedInput-root': {
+    backgroundColor: 'transparent',
+    '& fieldset': {
+      borderColor: 'red',
+    },
+    '&:hover fieldset': {
+      borderColor: 'red',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'red',
     },
   },
 });
@@ -180,45 +218,102 @@ export default function Input({
     );
   } else if (mui) {
     if (password) {
-      return (
-        <CssTextField
-          label={label}
-          value={value ?? ''}
-          onChange={(e) => onChange(e.target.value)}
-          id={id}
-          disabled={disabled}
-          fullWidth
-          error={!isValueValid}
-          autoComplete="off"
-          className={`mb-3 ${divClassName}`}
-          type={showPassword ? 'text' : 'password'}
-          InputProps={{
-            endAdornment: (
-              <div onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? <EyeOpen /> : <EyeClose />}
-              </div>
-            )
-          }}
-        />
-      )
+      if (!isValueValid) {
+        return (
+          <CssTextFieldError
+            label={label}
+            value={value ?? ''}
+            onChange={(e) => onChange(e.target.value)}
+            id={id}
+            disabled={disabled}
+            fullWidth
+            error={!isValueValid}
+            autoComplete="off"
+            className={`mb-3 ${divClassName}`}
+            type={showPassword ? 'text' : 'password'}
+            InputProps={{
+              endAdornment: (
+                <div onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <EyeOpen /> : <EyeClose />}
+                </div>
+              )
+            }}
+          />
+        )
+      } else {
+        return (
+          <CssTextField
+            label={label}
+            value={value ?? ''}
+            onChange={(e) => onChange(e.target.value)}
+            id={id}
+            disabled={disabled}
+            fullWidth
+            error={!isValueValid}
+            autoComplete="off"
+            className={`mb-3 ${divClassName}`}
+            type={showPassword ? 'text' : 'password'}
+            InputProps={{
+              endAdornment: (
+                <div onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <EyeOpen /> : <EyeClose />}
+                </div>
+              )
+            }}
+          />
+        )
+      }
     } else if (date) {
-      return (
-        <CssTextField
-          label={label}
-          value={value ?? ''}
-          onChange={(e) => onChange(e.target.value)}
-          id={id}
-          disabled={disabled}
-          fullWidth
-          error={!isValueValid}
-          autoComplete="off"
-          className={`mb-3 ${divClassName}`}
-          type={type}
-        />
-      )
+      if (!isValueValid) {
+        return (
+          <CssTextFieldError
+            label={label}
+            value={value ?? ''}
+            onChange={(e) => onChange(e.target.value)}
+            id={id}
+            disabled={disabled}
+            fullWidth
+            error={!isValueValid}
+            autoComplete="off"
+            className={`mb-3 ${divClassName}`}
+            type={type}
+          />
+        )
+      } else {
+        return (
+          <CssTextField
+            label={label}
+            value={value ?? ''}
+            onChange={(e) => onChange(e.target.value)}
+            id={id}
+            disabled={disabled}
+            fullWidth
+            error={!isValueValid}
+            autoComplete="off"
+            className={`mb-3 ${divClassName}`}
+            type={type}
+          />
+        )
+      }
     } else {
-      return (
-        <div className={`mb-3 ${divClassName}`}>
+      if (!isValueValid) {
+        return (
+          <div className={`mb-3 ${divClassName}`}>
+            <CssTextFieldError
+              label={label}
+              value={value ?? ''}
+              onChange={(e) => onChange(e.target.value)}
+              id={id}
+              disabled={disabled}
+              fullWidth
+              error={!isValueValid}
+              autoComplete={id === 'email' ? "on" : "off"}
+            />
+          </div>
+        )
+      } else {
+        return (
+          <div className={`mb-3 ${divClassName}`}>
             <CssTextField
               label={label}
               value={value ?? ''}
@@ -227,10 +322,11 @@ export default function Input({
               disabled={disabled}
               fullWidth
               error={!isValueValid}
-              autoComplete={id === 'user' ? "on" : "off"}
+              autoComplete={id === 'email' ? "on" : "off"}
             />
-        </div>
-      )
+          </div>
+        )
+      }
     }
   } else {
     inputElement = (
