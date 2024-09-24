@@ -63,10 +63,11 @@ export default function MuiDatePicker(props: Readonly<MuiDatePickerProps>) {
           views={['year', 'month', 'day']}
           slotProps={{
             textField: {
-              autoComplete: 'off', // Disable browser autocomplete
+              autoComplete: 'date-picker-custom-erro', // Disable browser autocomplete
               inputProps: {
-                autoComplete: 'off', // Fully disable additional suggestions
-                id: 'date-picker',
+                autoComplete: 'date-picker-custom-erro', // Fully disable additional suggestions
+                id: 'date-picker-custom-error', // Unique id
+                name: 'date-picker-custom-error', // Unique name
               },
             },
           }}
@@ -77,15 +78,16 @@ export default function MuiDatePicker(props: Readonly<MuiDatePickerProps>) {
           label={props.label}
           value={props.value}
           onChange={props.onChange}
-          className="w-full bg-white"
+          className="w-full"
           format="DD-MM-YYYY"
           views={['year', 'month', 'day']}
           slotProps={{
             textField: {
-              autoComplete: 'off', // Disable browser autocomplete
+              autoComplete: 'nope', // Disable browser autocomplete
               inputProps: {
-                autoComplete: 'off', // Fully disable additional suggestions
-                id: 'date-picker',
+                autoComplete: 'nope', // Fully disable additional suggestions
+                id: 'date-picker-custom', // Unique id
+                name: 'date-picker-custom', // Unique name
               },
             },
           }}
