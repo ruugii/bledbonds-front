@@ -1,5 +1,4 @@
 import { Autocomplete, AutocompleteChangeDetails, styled } from "@mui/material";
-import { useEffect, useState } from "react";
 
 interface AutocompleteProps {
   readonly options: { value: string, label: string }[];
@@ -13,6 +12,9 @@ interface AutocompleteProps {
 }
 
 const StyledAutocompleteError = styled(Autocomplete)({
+  '& .MuiFormLabel-root': {
+    color: 'red',
+  },
   '& label.Mui-focused': {
     color: 'red',
   },
@@ -34,6 +36,9 @@ const StyledAutocompleteError = styled(Autocomplete)({
 });
 
 const StyledAutocomplete = styled(Autocomplete)({
+  '& .MuiFormLabel-root': {
+    color: '#002b33',
+  },
   '& label.Mui-focused': {
     color: '#002b33',
   },
