@@ -48,7 +48,6 @@ export default function PreRegistration() {
   const [birthDate, setBirthDate] = useState('');
   const [birthDateValid, setBirthDateValid] = useState(false);
   const [genderList, setGenderList] = useState<{ value: string, label: string }[]>([]);
-  const [genderListIsLoading, setGenderListIsLoading] = useState(true);
   const [gender, setGender] = useState('');
   const [genderValid, setGenderValid] = useState(false);
   const [hasMayus, setHasMayus] = useState(false);
@@ -59,28 +58,29 @@ export default function PreRegistration() {
   const [minPasswordLength] = useState(8);
   const [maxPasswordLength] = useState(12);
 
-  const PasswordValidator = (passwordA: string) => {
-    setHasMayus(/[A-Z]/.exec(passwordA) !== null);
-    setHasMinus(/[a-z]/.exec(passwordA) !== null);
-    setHasNumber(/\d/.exec(passwordA) !== null);
-    setHasSpecial(/[!@#$%^&*-]/.exec(passwordA) !== null);
-    setMoreThan8(passwordA.length >= minPasswordLength && passwordA.length <= maxPasswordLength);
-    setPasswordValid(
-      /[A-Z]/.test(passwordA) &&
-      /[a-z]/.test(passwordA) &&
-      /\d/.test(passwordA) &&
-      /[!@#$%^&*-]/.test(passwordA) &&
-      passwordA.length > minPasswordLength &&
-      passwordA.length < maxPasswordLength
-    );
-  }
-
+  
   useEffect(() => {
+    const PasswordValidator = (passwordA: string) => {
+      setHasMayus(/[A-Z]/.exec(passwordA) !== null);
+      setHasMinus(/[a-z]/.exec(passwordA) !== null);
+      setHasNumber(/\d/.exec(passwordA) !== null);
+      setHasSpecial(/[!@#$%^&*-]/.exec(passwordA) !== null);
+      setMoreThan8(passwordA.length >= minPasswordLength && passwordA.length <= maxPasswordLength);
+      setPasswordValid(
+        /[A-Z]/.test(passwordA) &&
+        /[a-z]/.test(passwordA) &&
+        /\d/.test(passwordA) &&
+        /[!@#$%^&*-]/.test(passwordA) &&
+        passwordA.length > minPasswordLength &&
+        passwordA.length < maxPasswordLength
+      );
+    }
+
     const validator = setTimeout(() => {
       PasswordValidator(password);
     }, 500);
     return () => clearTimeout(validator);
-  }, [password]);
+  }, [password, maxPasswordLength, minPasswordLength]);
 
   useEffect(() => {
     const validator = setTimeout(() => {
@@ -97,7 +97,6 @@ export default function PreRegistration() {
         aux.push({ value: item.genre_name.toUpperCase(), label: item.genre_name.toUpperCase() });
       }
       setGenderList(aux);
-      setGenderListIsLoading(false);
     };
     getGenderaAPI();
   }, []);
@@ -163,6 +162,7 @@ export default function PreRegistration() {
             onChange={setEmail}
             isValueValid={emailValid}
             divClassName='w-full mt-3'
+            id="email"
             mui
           />
           <Imput
@@ -172,6 +172,7 @@ export default function PreRegistration() {
             isValueValid={phoneValid}
             divClassName='w-full mt-3'
             mui
+            id="phone"
           />
           <Imput
             label="NOMBRE"
