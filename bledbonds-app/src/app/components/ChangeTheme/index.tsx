@@ -4,17 +4,21 @@ import Moon from "@/app/Icons/moon";
 import Sun from "@/app/Icons/sun";
 import Button from "@/app/UX/button/button";
 import { useEffect, useState } from "react";
+import useStyle from "@/app/utilities/style";
 
 export default function ChangeTheme() {
-  const [theme, setTheme] = useState('');
+  const [theme, setTheme] = useState('light');
+  const [style, setStyle] = useStyle(); // Uso del hook personalizado
 
   useEffect(() => {
     setTheme(sessionStorage.getItem("theme") ?? "light");
-  }, [])
+  }, []);
 
   const changeTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  }
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    setStyle(newTheme === "dark" ? "custom-dark-style" : "custom-light-style"); // Cambia el estilo según el tema
+  };
 
   useEffect(() => {
     if (theme === "dark") {
@@ -24,11 +28,15 @@ export default function ChangeTheme() {
       document.querySelector("html")?.classList.remove("dark");
       sessionStorage.setItem("theme", "light");
     }
-  }, [theme])
+  }, [theme]);
 
   return (
-    <Button onClick={changeTheme} className={`fixed bottom-4 left-4 rounded-full ${theme === 'dark' ? 'text-yellow-100' : 'text-palette-10'} shadow-md shadow-palette-11 dark:shadow-palette-50 `} noBorder>
+    <Button
+      onClick={changeTheme}
+      className={`fixed bottom-4 left-4 rounded-full ${theme === 'dark' ? 'text-yellow-100' : 'text-palette-10'} ${style} shadow-md shadow-palette-11 dark:shadow-palette-50`} // Aplicación del estilo dinámico
+      noBorder
+    >
       {theme === "dark" ? <Sun /> : <Moon />}
     </Button>
-  )
+  );
 }

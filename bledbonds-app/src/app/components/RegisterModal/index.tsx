@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import styles from './RegisterModal.module.css'
 import Imput from "@/app/UX/imput/imput"
-import { emit } from "process"
 import Email from "@/app/Icons/email"
 import Phone from "@/app/Icons/phone"
 import Passwd from "@/app/Icons/passwd"
@@ -17,13 +16,13 @@ import Dropdown from "@/app/UX/dropdown/dropdown"
 import getGenderAPI from "@/app/api/getGenders"
 import Button from "@/app/UX/button/button"
 import registerAPI from "@/app/api/register"
-import { redirect, usePathname, useRouter, useSearchParams } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 import Close from "@/app/Icons/close"
 import SectionTitle from "../Text/SectionTitle"
 
 interface RegisterInterface {
-  isOpen?: boolean,
-  setIsOpen?: Function
+  isOpen: boolean,
+  setIsOpen: (value: boolean) => void
 }
 
 export default function RegisterModal(props: RegisterInterface) {
@@ -189,14 +188,14 @@ export default function RegisterModal(props: RegisterInterface) {
     } else {
       setGendreValid(false)
     }
-  }, [gender])
+  }, [gender, genderList])
 
   useEffect(() => {
     const aux = ['SELECT'];
     const getGenderaAPI = async () => {
       const list = await getGenderAPI();
-      for (let i = 0; i < list.length; i++) {
-        aux.push(list[i].genre_name.toUpperCase());
+      for (const genre of list) {
+        aux.push(genre.genre_name.toUpperCase());
       }
     }
     setGenderList(aux)
@@ -207,12 +206,89 @@ export default function RegisterModal(props: RegisterInterface) {
 
   const close = () => {
     setOpenModal(false)
-    props.setIsOpen ? props.setIsOpen(false) : null
+    props.setIsOpen(false)
   }
 
   useEffect(() => {
-    setOpenModal(searchParams.get('register') ? true : false)
+    setOpenModal(searchParams.get('register') ? true : false);
   }, [searchParams])
+
+  const [input, setInput] = useState(<></>)
+
+  useEffect(() => {
+    if (step === 1) {
+      setInput(
+        <Imput
+          label="Inserte su correo electronico"
+          value={email}
+          onChange={setEmail}
+          isValueValid={emailValid}
+          id="email"
+        />
+      )
+    } else if (step === 2) {
+      setInput(
+        <Imput
+          label="Inserte su numero de telefono"
+          value={phone}
+          onChange={setPhone}
+          isValueValid={phoneValid}
+          type="number"
+        />
+      )
+    } else if (step === 3) {
+      setInput(
+        <Imput
+          label="Inserte su contraseña"
+          value={password}
+          onChange={setPassword}
+          isValueValid={passwordValid}
+          type='password'
+        />
+      )
+    } else if (step === 4) {
+      setInput(
+        <Imput
+          label="Repita su contraseña"
+          value={passwordConfirmation}
+          onChange={setPasswordConfirmation}
+          isValueValid={passwordConfirmationValid}
+          type='password'
+        />
+      )
+    } else if (step === 5) {
+      setInput(
+        <Imput
+          label="Inserte su nombre completo"
+          value={name}
+          onChange={setName}
+          isValueValid={nameValid}
+        />
+      )
+    } else if (step === 6) {
+      setInput(
+        <Imput
+          type="date"
+          label="Inserte su fecha de nacimiento"
+          value={birthDate}
+          onChange={setBirthDate}
+          isValueValid={birthDateValid}
+        />
+      )
+    } else if (step === 7) {
+      setInput(
+        <Dropdown
+          label="Genero"
+          value={gender}
+          onChange={setGender}
+          options={genderList}
+          isValueValid={gendreValid}
+        />
+      )
+    } else {
+      setInput(<></>)
+    }
+  }, [step, birthDate, birthDateValid, email, emailValid, gender, genderList, gendreValid, name, nameValid, phone, phoneValid, password, passwordConfirmation, passwordConfirmationValid, passwordValid])
 
   return (
     (props.isOpen || openModal) && (
@@ -235,65 +311,7 @@ export default function RegisterModal(props: RegisterInterface) {
                   REGISTRATE EN BLED BONDS
                 </SectionTitle>
                 <div className="flex flex-row content-center justify-center items-center">
-                  {
-                    step === 1 ? (
-                      <Imput
-                        label="Inserte su correo electronico"
-                        value={email}
-                        onChange={setEmail}
-                        isValueValid={emailValid}
-                      />
-                    ) : step === 2 ? (
-                      <Imput
-                        label="Inserte su numero de telefono"
-                        value={phone}
-                        onChange={setPhone}
-                        isValueValid={phoneValid}
-                        type="number"
-                      />
-                    ) : step === 3 ? (
-                      <Imput
-                        label="Inserte su contraseña"
-                        value={password}
-                        onChange={setPassword}
-                        isValueValid={passwordValid}
-                        type='password'
-                      />
-                    ) : step === 4 ? (
-                      <Imput
-                        label="Repita su contraseña"
-                        value={passwordConfirmation}
-                        onChange={setPasswordConfirmation}
-                        isValueValid={passwordConfirmationValid}
-                        type='password'
-                      />
-                    ) : step === 5 ? (
-                      <Imput
-                        label="Inserte su nombre completo"
-                        value={name}
-                        onChange={setName}
-                        isValueValid={nameValid}
-                      />
-                    ) : step === 6 ? (
-                      <Imput
-                        type="date"
-                        label="Inserte su fecha de nacimiento"
-                        value={birthDate}
-                        onChange={setBirthDate}
-                        isValueValid={birthDateValid}
-                      />
-                    ) : step === 7 ? (
-                      <Dropdown
-                        label="Genero"
-                        value={gender}
-                        onChange={setGender}
-                        options={genderList}
-                        isValueValid={gendreValid}
-                      />
-                    ) : (
-                      <></>
-                    )
-                  }
+                  {input}
                 </div>
                 <div className={`flex flex-row ${styles.counter}`}>
                   <div className={`${emailValid ? 'text-green-500' : 'text-red-500'} ${step === 1 && styles.active}`} onClick={() => setStep(1)}>

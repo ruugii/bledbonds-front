@@ -5,7 +5,6 @@ import Header from "./components/Header";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import { Suspense } from "react";
-import RegisterModal from "./components/RegisterModal";
 import HeaderMovil from "./components/HeaderMovil";
 import Menu from "./interfaces/menu";
 import Script from "next/script";
@@ -95,7 +94,6 @@ export default function RootLayout({
         {/* <Newsletter /> */}
         <Suspense fallback={<div></div>}>
           <Newsletter />
-          <RegisterModal />
         </Suspense>
         {children}
         <Footer />
@@ -103,11 +101,11 @@ export default function RootLayout({
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-W0JN17KS2T" />
         <script dangerouslySetInnerHTML={{
           __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-W0JN17KS2T');
-          `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-W0JN17KS2T');
+            `
         }} />
       </body>
     </html>

@@ -215,7 +215,6 @@ export default function PreRegistration() {
             />
           </div>
           <div className="mt-3 mb-3 w-full">
-
             <AutocompleteMUI
               options={genderList}
               getOptionLabel={(option) => option?.label || gender || '...'} // Ensure it always returns a string

@@ -1,7 +1,6 @@
 'use client';
 
 import Close from "@/app/Icons/close";
-import Next from "@/app/Icons/next";
 import Button from "@/app/UX/button/button";
 import Imput from "@/app/UX/imput/imput";
 import newsletterAPI from "@/app/api/newsletter";
@@ -11,7 +10,6 @@ import SectionTitle from "../Text/SectionTitle";
 
 interface NewsletterProps {
   isOpen?: boolean;
-  setIsOpen?: (isOpen: boolean) => void;
 }
 
 export default function Newsletter(props: NewsletterProps) {
@@ -87,7 +85,6 @@ export default function Newsletter(props: NewsletterProps) {
                           setOpenModal(false);
                         }
                       };
-
                       register();
                     }}
                     className="w-[80%]"

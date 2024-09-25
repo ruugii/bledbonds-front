@@ -3,11 +3,14 @@
 import Button from "@/app/UX/button/button";
 import Imput from "@/app/UX/imput/imput"
 import newsletterAPI from "@/app/api/newsletter";
+import useStyle from "@/app/utilities/style";
 import { useEffect, useState } from "react";
 
 export default function EmailInput() {
   const [email, setEmail] = useState('');
   const [emailValid, setEmailValid] = useState(false);
+  const [style, setStyle] = useStyle(); // Uso del hook personalizado
+
   useEffect(() => {
     if (email.includes('@') && email.includes('.')) {
       setEmailValid(true);
@@ -17,7 +20,7 @@ export default function EmailInput() {
   }, [email])
   return (
     <>
-      <div className="flex flex-row content-center justify-center items-center">
+      <div className="flex flex-row content-center justify-center items-center mb-4">
         <Imput
           label="Email"
           value={email}
@@ -28,7 +31,7 @@ export default function EmailInput() {
           mui
         />
       </div>
-      <div className="flex flex-row content-center justify-center items-center">
+      <div className="flex flex-row content-center justify-center items-center w-full">
         <Button
           label="Register"
           onClick={() => {
