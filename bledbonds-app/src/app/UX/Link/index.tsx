@@ -1,6 +1,6 @@
 'use client'
 
-import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
+import { createTheme, styled } from "@mui/material/styles";
 import Button, { ButtonProps } from "@mui/material/Button";
 import { purple } from "@mui/material/colors";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ interface LinkProps {
 }
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  color: theme.palette.mode === 'dark' ? 'red' : '#002b33',
+  color: '#002b33',
   backgroundColor: '#04bbc8',
   padding: '0.5rem',
   '&:hover': {
@@ -28,7 +28,7 @@ export default function Link (props: Readonly<LinkProps>) {
     <ColorButton
       variant="contained"
       href={props.href}
-      className={`${props.className}`}
+      className={`${props.className} text-palette-950 bg-palette-500 hover:bg-palette-600 active:bg-palette-700 disabled:bg-palette-100 disabled:text-palette-400 disabled:dark:bg-palette-950 disabled:dark:text-palette-700`}
       fullWidth
     >
       {props.children}

@@ -37,10 +37,10 @@ const StyledAutocompleteError = styled(Autocomplete)({
 
 const StyledAutocomplete = styled(Autocomplete)({
   '& .MuiFormLabel-root': {
-    color: '#002b33',
+    color: '#0093a1',
   },
   '& label.Mui-focused': {
-    color: '#002b33',
+    color: '#0093a1',
   },
   '& .MuiInput-underline:after': {
     borderBottomColor: '#0093a1',
@@ -82,6 +82,11 @@ export default function AutocompleteMUI(props: AutocompleteProps) {
         renderInput={props.renderInput}
         onChange={props.onChange}
         value={props.value}
+        slotProps={{
+          input: {
+            className: 'text-palette-950 dark:text-palette-50'
+          }
+        }}
       />
     );
   }

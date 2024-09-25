@@ -18,8 +18,11 @@ const CssTextFieldError = styled(DatePicker)({
     color: 'red',
   },
   '& .MuiOutlinedInput-root': {
-    '& MuiInputBase-input': {
+    '& .MuiInputBase-input': {
       color: 'red',
+      '&::placeholder': {
+        color: 'red',
+      },
     },
     '& fieldset': {
       borderColor: 'red',
@@ -33,22 +36,27 @@ const CssTextFieldError = styled(DatePicker)({
   },
 });
 
+
 const CssTextField = styled(DatePicker)({
+  '& label.MuiFormLabel-root': {
+    color: '#0093a1',
+  },
   '& label.Mui-focused': {
-    color: '#002b33',
+    color: '#0093a1', // Label color when focused
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: '#0093a1',
+      borderColor: '#0093a1', // Default border color
     },
     '&:hover fieldset': {
-      borderColor: '#0093a1',
+      borderColor: '#0093a1', // Border color on hover
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#0093a1',
+      borderColor: '#0093a1', // Border color when focused
     },
   },
 });
+
 
 export default function MuiDatePicker(props: Readonly<MuiDatePickerProps>) {
   return (
@@ -88,6 +96,7 @@ export default function MuiDatePicker(props: Readonly<MuiDatePickerProps>) {
                 autoComplete: 'nope', // Fully disable additional suggestions
                 id: 'date-picker-custom', // Unique id
                 name: 'date-picker-custom', // Unique name
+                className: 'text-palette-950 dark:text-palette-50'
               },
             },
           }}
