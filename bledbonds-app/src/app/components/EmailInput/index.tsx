@@ -27,7 +27,7 @@ export default function EmailInput() {
           onChange={setEmail}
           isValueValid={emailValid}
           type="email"
-          divClassName='w-[80%] mt-3'
+          divClassName='w-full mt-3'
           mui
         />
       </div>
@@ -43,7 +43,7 @@ export default function EmailInput() {
             };
             register();
           }}
-          className="w-[80%] bg-palette-6 border-palette-6"
+          className="w-full bg-palette-6 border-palette-6"
         />
       </div>
     </>

@@ -45,26 +45,30 @@ export default function LoginComponent() {
     <>
       <div className="md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 md:grid-cols-2 md:gap-6 min-w-[80%] w-[80%] mt-3">
         <div className="flex flex-col justify-between items-center">
-          <Imput
-            label="CORREO ELECTRÓNICO"
-            value={email}
-            onChange={setEmail}
-            isValueValid={emailValid}
-            divClassName='w-full'
-            id="email"
-            mui
-          />
-          <Imput
-            label="TELÉFONO"
-            value={phone}
-            onChange={setPhone}
-            isValueValid={phoneValid}
-            divClassName='w-full'
-            id="phone"
-            mui
-          />
+          <div className="mb-3 mt-3 w-full">
+            <Imput
+              label="CORREO ELECTRÓNICO"
+              value={email}
+              onChange={setEmail}
+              isValueValid={emailValid}
+              divClassName='w-full'
+              id="email"
+              mui
+            />
+          </div>
+          <div className="mb-3 mt-3 w-full">
+            <Imput
+              label="TELÉFONO"
+              value={phone}
+              onChange={setPhone}
+              isValueValid={phoneValid}
+              divClassName='w-full'
+              id="phone"
+              mui
+            />
+          </div>
         </div>
-        <div className="flex flex-col justify-evenly items-center">
+        <div className="flex flex-col justify-evenly items-center mt-3 mb-3">
           <Input
             label="CONTRASEÑA"
             value={password}
@@ -85,7 +89,7 @@ export default function LoginComponent() {
               password
             }
             const resp = await loginAPI(user);
-            
+
             if (resp.token) {
               localStorage.setItem('token', resp.token);
             }

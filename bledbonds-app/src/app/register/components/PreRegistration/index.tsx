@@ -58,7 +58,7 @@ export default function PreRegistration() {
   const [minPasswordLength] = useState(8);
   const [maxPasswordLength] = useState(12);
 
-  
+
   useEffect(() => {
     const PasswordValidator = (passwordA: string) => {
       setHasMayus(/[A-Z]/.exec(passwordA) !== null);
@@ -156,32 +156,38 @@ export default function PreRegistration() {
     <>
       <div className="md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 md:grid-cols-2 md:gap-6 min-w-[80%] w-[80%] mt-3">
         <div className="flex flex-col justify-between items-center">
-          <Imput
-            label="CORREO ELECTRÓNICO"
-            value={email}
-            onChange={setEmail}
-            isValueValid={emailValid}
-            divClassName='w-full mt-3'
-            id="email"
-            mui
-          />
-          <Imput
-            label="TELÉFONO"
-            value={phone}
-            onChange={setPhone}
-            isValueValid={phoneValid}
-            divClassName='w-full mt-3'
-            mui
-            id="phone"
-          />
-          <Imput
-            label="NOMBRE"
-            value={name}
-            onChange={setName}
-            isValueValid={nameValid}
-            divClassName='w-full mt-3'
-            mui
-          />
+          <div className="flex flex-col w-full mb-3">
+            <Imput
+              label="CORREO ELECTRÓNICO"
+              value={email}
+              onChange={setEmail}
+              isValueValid={emailValid}
+              divClassName='w-full'
+              id="email"
+              mui
+            />
+          </div>
+          <div className="flex flex-col w-full mb-3">
+            <Imput
+              label="TELÉFONO"
+              value={phone}
+              onChange={setPhone}
+              isValueValid={phoneValid}
+              divClassName='w-full'
+              mui
+              id="phone"
+            />
+          </div>
+          <div className="flex flex-col w-full mb-3">
+            <Imput
+              label="NOMBRE"
+              value={name}
+              onChange={setName}
+              isValueValid={nameValid}
+              divClassName='w-full'
+              mui
+            />
+          </div>
           <div className="flex flex-col w-full mb-3">
             <MuiDatePicker
               label="FECHA DE NACIMIENTO"

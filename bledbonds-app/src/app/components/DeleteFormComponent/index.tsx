@@ -55,33 +55,39 @@ export default function DeleteFormComponent() {
         formulario para eliminar mi cuenta
       </Subtitle>
       <form>
-        <Input
-          label="CORREO ELECTRÓNICO DEL USUARIO"
-          value={email}
-          onChange={setEmail}
-          isValueValid={emailError}
-          divClassName='w-full mt-3'
-          id="email"
-          mui
-        />
-        <Input
-          label="TELÉFONO DEL USUARIO"
-          value={phone}
-          onChange={setPhone}
-          isValueValid={phoneError}
-          divClassName='w-full mt-3'
-          mui
-          id="phone"
-        />
-        <Button
-          label="Eliminar"
-          onClick={() => {
-            console.log('aaa');
-            handleDelete()
-          }}
-          className="w-full"
-          mui
-        />
+        <div className="mb-3 mt-3">
+          <Input
+            label="CORREO ELECTRÓNICO DEL USUARIO"
+            value={email}
+            onChange={setEmail}
+            isValueValid={emailError}
+            divClassName='w-full'
+            id="email"
+            mui
+          />
+        </div>
+        <div className="mb-3 mt-3">
+          <Input
+            label="TELÉFONO DEL USUARIO"
+            value={phone}
+            onChange={setPhone}
+            isValueValid={phoneError}
+            divClassName='w-full'
+            mui
+            id="phone"
+          />
+        </div>
+        <div className="mb-3 mt-3">
+          <Button
+            label="Eliminar"
+            onClick={() => {
+              console.log('aaa');
+              handleDelete()
+            }}
+            className="w-full"
+            mui
+          />
+        </div>
       </form>
     </div>
   )

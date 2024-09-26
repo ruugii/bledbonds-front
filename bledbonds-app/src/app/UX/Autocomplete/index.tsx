@@ -65,7 +65,13 @@ export default function AutocompleteMUI(props: AutocompleteProps) {
       <StyledAutocompleteError
         options={props.options}
         getOptionLabel={props.getOptionLabel}
-        renderInput={props.renderInput}
+        renderInput={(params) => props.renderInput({
+          ...params,
+          InputProps: {
+            ...params.InputProps,
+            className: 'text-palette-950 dark:text-palette-50', // Apply custom class here
+          },
+        })}
         sx={props.sx}
         filterOptions={props.filterOptions}
         onChange={props.onChange}
@@ -79,14 +85,15 @@ export default function AutocompleteMUI(props: AutocompleteProps) {
         getOptionLabel={props.getOptionLabel}
         filterOptions={props.filterOptions}
         sx={props.sx}
-        renderInput={props.renderInput}
+        renderInput={(params) => props.renderInput({
+          ...params,
+          InputProps: {
+            ...params.InputProps,
+            className: 'text-palette-950 dark:text-palette-50', // Apply custom class here
+          },
+        })}
         onChange={props.onChange}
         value={props.value}
-        slotProps={{
-          input: {
-            className: 'text-palette-950 dark:text-palette-50'
-          }
-        }}
       />
     );
   }
