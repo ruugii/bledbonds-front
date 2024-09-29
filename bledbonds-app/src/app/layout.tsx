@@ -24,25 +24,24 @@ export default function RootLayout({
 }>) {
   const menu = [
     {
-      name: 'newsletter',
-      url: '/newsletter'
-    },
-    {
       name: 'Que es Bled Bonds',
       url: '/what-is'
-    },
-    {
-      name: 'La app',
-      url: '/app'
     },
     {
       name: 'Preguntas frecuentes',
       url: '/faq'
     },
     {
+      name: 'La app',
+      url: '/app'
+    },
+    {
       name: 'citas a ciegas',
       url: '/ciegas'
-      // Va a dar una persona aleatoria, vas a tener 20 mensajes para conocer a esa persona, al acabar, da la opcion de dar LIKE o DISLIKE, si los 2 dan LIKE, puedes seguir hablando con esa persona sin un limite de mensajes.
+    },
+    {
+      name: 'Eventos',
+      url: '/events'
     }
     // Add more menu items as needed...
   ] as Menu[]
