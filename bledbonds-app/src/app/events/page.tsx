@@ -3,8 +3,8 @@ import Subtitle from "@/app/components/Text/Subtitle";
 import Text from "@/app/components/Text/Text";
 import Title from "@/app/components/Text/Title";
 import { Metadata } from "next";
+import SectionTitle from "../components/Text/SectionTitle";
 import Link from "next/link";
-import BetaForm from "../components/BetaForm";
 
 export const metadata: Metadata = {
   title: "Bled Bonds - Citas para personas con discapacidad - Eventos",
@@ -33,6 +33,22 @@ export default function BetaPage() {
         </Text>
         <Text className="mt-4">
           Explora la posibilidad de nuevas amistades, conexiones profundas y experiencias inolvidables en nuestros eventos inclusivos, adaptados a tus necesidades y preferencias. Porque todos merecemos un espacio donde podamos conocernos, relacionarnos y ser felices.
+        </Text>
+
+        <SectionTitle bold left width className="mt-4">
+          Eventos de BledBonds
+        </SectionTitle>
+        <Text className="mt-4">
+          En BledBonds events, somos especialistas en organizar eventos inclusivos de alta calidad para que los puedan disprutar tanto personas con discapacidad como personas sin.
+        </Text>
+        <SectionTitle bold left width className="mt-4">
+          Servicio de Consultoria
+        </SectionTitle>
+        <Text className="mt-4">
+          A parte de los eventos organizados por nosotros, ofrecemos un servicio de consultoria para ayudar a los organizadores a que sus eventos sean accesibles y acogedores para todas las personas.
+        </Text>
+        <Text className="mt-4">
+          Responde el <Link href='https://forms.gle/UQaaTE2wvHDEBRmS8' className=" text-palette-900 hover:text-palette-950 underline dark:text-palette-100 hover:dark:text-palette-50">formulario de contacto</Link> para que podamos hacerte llegar un presupuesto a medida.
         </Text>
       </div>
     </div>
