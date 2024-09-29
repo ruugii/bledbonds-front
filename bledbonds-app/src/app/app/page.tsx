@@ -50,6 +50,18 @@ export default function AppPage() {
             </Text>
           </section>
 
+          {/* <section className="mt-4">
+            <SectionTitle bold left>
+              Te has quedado sin ideas?
+            </SectionTitle>
+            <Text left full>
+              Si te has quedado sin ideas de preguntas, no te preocupes, gracias a nuestra inovadora Inteligancia Artificial, podremos ayudarte a encontrar la pregunta que necesites.
+            </Text>
+            <Text left full className=" text-red-400 text-sm">
+              ESTA FUNCION ES DE PAGO
+            </Text>
+          </section> */}
+
           <section className="mt-10 w-full p-4 bg-palette-1 dark:bg-palette-800 text-palette-11 dark:text-palette-50 shadow-md shadow-palette-11 dark:shadow-palette-50 grid grid-cols-1 md:grid-cols-2 rounded-lg">
             <div>
               <SectionTitle bold left>
@@ -69,6 +81,27 @@ export default function AppPage() {
               </div>
             </div>
           </section>
+
+          {/* <section className=" mt-14 w-full p-4 bg-palette-1 dark:bg-palette-800 text-palette-11 dark:text-palette-50 shadow-md shadow-palette-11 dark:shadow-palette-50 grid grid-cols-1 md:grid-cols-2 rounded-lg">
+            <div>
+              <SectionTitle bold left>
+                Prueba antes que nadie nuestra aplicacion
+              </SectionTitle>
+              <Text left full>
+                Prueba nuestra aplicacion antes de que nadie la use y asi nos ayudas a mejorar nuestra aplicacion.
+              </Text>
+
+            </div>
+            <div className="flex flex-col content-center justify-center items-center">
+              <div className="w-[80%]">
+                <Link
+                  href="/beta"
+                >
+                  ACCEDE A LA FASE DE PRUEBA
+                </Link>
+              </div>
+            </div>
+          </section> */}
         </div>
       </div>
     </main>
