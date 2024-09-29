@@ -1,0 +1,6 @@
+USER-AGENT: *
+ALLOW: /
+Disallow: /admin/*
+Disallow: /beta
+
+Sitemap: https://bledbonds.es/sitemap.xml
