@@ -30,6 +30,11 @@ export default function Footer() {
       name: 'Actualizar mi cuenta',
       url: '/blog/update',
       alternative: 'Como actualizar mi cuenta'
+    },
+    {
+      name: 'Eventos',
+      url: '/events',
+      alternative: 'Eventos'
     }
   ]
 
