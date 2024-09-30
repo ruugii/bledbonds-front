@@ -1,9 +1,7 @@
 'use client'
 
-import { createTheme, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Button, { ButtonProps } from "@mui/material/Button";
-import { purple } from "@mui/material/colors";
-import { useEffect, useState } from "react";
 
 interface LinkProps {
   href: string;
