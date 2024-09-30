@@ -75,16 +75,20 @@ export default function Table<T extends object>(props: TableProps<T>) {
       </div>
       {props.divider && (
         <div className="flex justify-center w-full gap-3">
-          <Button
-            onClick={() => handlePage(page - 1)}
-            className="w-fit"
-            label="Anterior"
-          />
-          <Button
-            onClick={() => handlePage(page + 1)}
-            className="w-fit"
-            label="Siguiente"
-          />
+          {page > 1 && (
+            <Button
+              onClick={() => handlePage(page - 1)}
+              className="w-fit"
+              label="Anterior"
+            />
+          )}
+          {page < Math.ceil(props.data.length / maxData) && (
+            <Button
+              onClick={() => handlePage(page + 1)}
+              className="w-fit"
+              label="Siguiente"
+            />
+          )}
         </div>
       )}
     </>
