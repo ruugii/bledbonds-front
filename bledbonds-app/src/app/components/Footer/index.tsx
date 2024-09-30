@@ -100,9 +100,8 @@ export default function Footer() {
   return (
     <>
       <hr className="border-palette-10 dark:border-palette-50" />
-
-      <footer className="bg-palette-3 dark:bg-palette-950">
-        <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+      <footer className="bg-palette-3 dark:bg-palette-950 flex content-center justify-center items-center">
+        <div className="w-[80%] p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <a href="/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
@@ -112,7 +111,7 @@ export default function Footer() {
             </div>
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-palette-950 uppercase dark:text-palette-50">Paginas de interés</h2>
+                <p className="mb-6 text-sm font-semibold text-palette-950 uppercase dark:text-palette-50">Paginas de interés</p>
                 <ul className="text-palette-950 dark:text-palette-50 font-medium">
                   {interests.map((item, index) => (
                     <li key={index}>
@@ -124,7 +123,7 @@ export default function Footer() {
                 </ul>
               </div>
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-palette-950 uppercase dark:text-palette-50">Siguenos</h2>
+                <p className="mb-6 text-sm font-semibold text-palette-950 uppercase dark:text-palette-50">Siguenos</p>
                 <ul className="text-palette-950 dark:text-palette-50 font-medium">
                   {follow.map((item, index) => (
                     <li key={index}>
@@ -136,7 +135,7 @@ export default function Footer() {
                 </ul>
               </div>
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-palette-950 uppercase dark:text-palette-50">Politicas</h2>
+                <p className="mb-6 text-sm font-semibold text-palette-950 uppercase dark:text-palette-50">Politicas</p>
                 <ul className="text-palette-950 dark:text-palette-50 font-medium">
                   {policy.map((item, index) => (
                     <li key={index}>
@@ -155,7 +154,7 @@ export default function Footer() {
             <div className="flex mt-4 sm:justify-center sm:mt-0">
               {
                 social.map((item, index) => (
-                  <a href={item.url} className="text-palette-950 hover:text-palette-900 dark:text-palette-50 dark:hover:text-palette-100" key={index + 1}> 
+                  <a href={item.url} className="text-palette-950 hover:text-palette-900 dark:text-palette-50 dark:hover:text-palette-100" key={index + 1}>
                     {
                       item.icon === 'instagram' ? (
                         <Instagram />
