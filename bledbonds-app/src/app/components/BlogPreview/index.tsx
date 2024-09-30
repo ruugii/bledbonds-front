@@ -27,7 +27,7 @@ export default function BlogPreview() {
   }, [])
 
   return (
-    <div className="grid grid-cols-3 gap-3 mt-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-2">
       {blogData.map((post, index) => (
         <article key={index} className="p-6 bg-palette-11 dark:bg-palette-900 rounded-lg border border-palette-9 dark:border-palette-800 shadow-md">
           <div className="flex justify-between items-center mb-5 text-palette-2">
