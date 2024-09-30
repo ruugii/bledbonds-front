@@ -37,6 +37,8 @@ interface NewsletterData {
   orientationText: string | null;
   statusText: string | null;
   bio: string | null;
+  lat: number | null;
+  lon: number | null;
 }
 
 export default function RegisterPage() {
@@ -55,6 +57,19 @@ export default function RegisterPage() {
   const [orientationOrder, setOrientationOrder] = useState<'asc' | 'desc'>('asc');
   const [statusOrder, setStatusOrder] = useState<'asc' | 'desc'>('asc');
   const [bioOrder, setBioOrder] = useState<'asc' | 'desc'>('asc');
+  const [heightOrder, setHeightOrder] = useState<'asc' | 'desc'>('asc');
+  const [studyPlaceOrder, setStudyPlaceOrder] = useState<'asc' | 'desc'>('asc');
+  const [workOrder, setWorkOrder] = useState<'asc' | 'desc'>('asc');
+  const [ChargeWorkOrder, setChargeWorkOrder] = useState<'asc' | 'desc'>('asc');
+  const [EnterpriseOrder, setEnterpriseOrder] = useState<'asc' | 'desc'>('asc');
+  const [drinkOrder, setDrinkOrder] = useState<'asc' | 'desc'>('asc');
+  const [educativeLevelOrder, setEducativeLevelOrder] = useState<'asc' | 'desc'>('asc');
+  const [personalOrder, setPersonalOrder] = useState<'asc' | 'desc'>('asc');
+  const [zodiacOrder, setZodiacOrder] = useState<'asc' | 'desc'>('asc');
+  const [mascotasOrder, setMascotasOrder] = useState<'asc' | 'desc'>('asc');
+  const [religionOrder, setReligionOrder] = useState<'asc' | 'desc'>('asc');
+  const [latOrder, setLatOrder] = useState<'asc' | 'desc'>('asc');
+  const [lonOrder, setLonOrder] = useState<'asc' | 'desc'>('asc');
 
   const [isClient, setIsClient] = useState(false);
 
@@ -112,6 +127,19 @@ export default function RegisterPage() {
   const sortOrientation = () => sortData('orientationText', orientationOrder, setOrientationOrder);
   const sortStatus = () => sortData('statusText', statusOrder, setStatusOrder);
   const sortBio = () => sortData('bio', bioOrder, setBioOrder);
+  const sortHeight = () => sortData('height', heightOrder, setHeightOrder);
+  const sortStudyPlace = () => sortData('you_work', studyPlaceOrder, setStudyPlaceOrder);
+  const sortWork = () => sortData('charge_work', workOrder, setWorkOrder);
+  const sortChargeWork = () => sortData('charge_work', ChargeWorkOrder, setChargeWorkOrder);
+  const sortEnterprise = () => sortData('enterprise', EnterpriseOrder, setEnterpriseOrder);
+  const sortDrink = () => sortData('drink', drinkOrder, setDrinkOrder);
+  const sortEducativeLevel = () => sortData('educative_level_id', educativeLevelOrder, setEducativeLevelOrder);
+  const sortPersonal = () => sortData('personality', personalOrder, setPersonalOrder);
+  const sortZodiac = () => sortData('mascotas', zodiacOrder, setZodiacOrder);
+  const sortMascotas = () => sortData('mascotas', mascotasOrder, setMascotasOrder);
+  const sortReligion = () => sortData('id_religion', religionOrder, setReligionOrder);
+  const sortLat = () => sortData('lat', latOrder, setLatOrder);
+  const sortLon = () => sortData('lon', lonOrder, setLonOrder);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -182,7 +210,72 @@ export default function RegisterPage() {
                 name: 'bio',
                 onClick: sortBio,
                 icon: bioOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
-              }
+              },
+              {
+                name: 'height',
+                onClick: sortHeight,
+                icon: heightOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Study Place',
+                onClick: sortStudyPlace,
+                icon: studyPlaceOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Work',
+                onClick: sortWork,
+                icon: workOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Charge Work',
+                onClick: sortChargeWork,
+                icon: ChargeWorkOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Enterprise',
+                onClick: sortEnterprise,
+                icon: EnterpriseOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Drink',
+                onClick: sortDrink,
+                icon: drinkOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Educative Level',
+                onClick: sortEducativeLevel,
+                icon: educativeLevelOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Personality',
+                onClick: sortPersonal,
+                icon: personalOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Zodiac',
+                onClick: sortZodiac,
+                icon: zodiacOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Mascotas',
+                onClick: sortMascotas,
+                icon: mascotasOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Religion',
+                onClick: sortReligion,
+                icon: religionOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Lat',
+                onClick: sortLat,
+                icon: latOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
+              {
+                name: 'Lon',
+                onClick: sortLon,
+                icon: lonOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              },
             ]}
             data={dataOrd}
             className="mt-3"
