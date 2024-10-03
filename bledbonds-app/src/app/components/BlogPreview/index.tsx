@@ -6,6 +6,7 @@ import getBlogData from "@/app/api/blog/getBlogData";
 import Link from "next/link";
 import Image from "next/image";
 import Subtitle from "../Text/Subtitle";
+import BlogData from "../BlogData";
 
 interface BlogDataInterface {
   category: string;
@@ -29,169 +30,55 @@ export default function BlogPreview() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-2">
       {blogData.map((post, index) => (
-        <article key={index} className="p-6 bg-palette-11 dark:bg-palette-900 rounded-lg border border-palette-9 dark:border-palette-800 shadow-md">
-          <div className="flex justify-between items-center mb-5 text-palette-2">
-            <span className="bg-palette-10 dark:bg-palette-9 text-palette-2 dark:text-palette-50 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
-              <Category category={post.category} />
-            </span>
-          </div>
-          <Subtitle margin bold traking className="text-palette-50">
-            <a href={`/blog/${post.id}`}>{post.title}</a>
-          </Subtitle>
-          <p className="mb-5 font-light text-palette-1">{post.resume}</p>
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              {post.postByAvatar ? (
-                <Image className="w-7 h-7 rounded-full" src={post.postByAvatar} alt={`${post.postBy} avatar`} />
-              ) : (
-                <div className="w-7 h-7 rounded-full bg-palette-10 dark:bg-palette-2 flex items-center justify-center">
-                  <span className="text-palette-2 dark:text-palette-900 font-medium">
-                    {post.postBy.charAt(0).toUpperCase()}
-                  </span>
-                </div>
-              )}
-              <span className="font-medium text-palette-1">
-                {post.postBy}
-              </span>
-            </div>
-            <Link href={`/blog/${post.id}`} className="inline-flex items-center font-medium text-palette-1 hover:underline">
-              Read more
-              <svg className="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
-              </svg>
-            </Link>
-          </div>
-        </article>
+        <BlogData
+          key={index + 1}
+          category={post.category}
+          subtitle={post.title}
+          url={`/blog/${post.id}`}
+          resume={post.resume}
+          name={post.postBy}
+        />
       ))}
-      <article className="p-6 bg-palette-11 dark:bg-palette-900 rounded-lg border border-palette-9 dark:border-palette-800 shadow-md">
-        <div className="flex justify-between items-center mb-5 text-palette-2">
-          <span className="bg-palette-10 dark:bg-palette-9 text-palette-2 dark:text-palette-50 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
-            <Category category='gestion de usuarios' />
-          </span>
-        </div>
-        <Subtitle margin bold traking className="text-palette-50">
-          <a href={`/blog/delete`}>ELIMINAR MI CUENTA</a>
-        </Subtitle>
-        <p className="mb-5 font-light text-palette-1">
-          Quiero eliminar mi cuenta de BledBonds, ¿cómo lo puedo hacer?
-        </p>
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <div className="w-7 h-7 rounded-full bg-palette-10 dark:bg-palette-2 flex items-center justify-center">
-              <span className="text-palette-2 dark:text-palette-900 font-medium">
-                B
-              </span>
-            </div>
-            <span className="font-medium text-palette-1">
-              BledBonds
-            </span>
-          </div>
-          <Link href={`/blog/delete`} className="inline-flex items-center font-medium text-palette-1 hover:underline">
-            Read more
-            <svg className="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
-            </svg>
-          </Link>
-        </div>
-      </article>
 
-      <article className="p-6 bg-palette-11 dark:bg-palette-900 rounded-lg border border-palette-9 dark:border-palette-800 shadow-md">
-        <div className="flex justify-between items-center mb-5 text-palette-2">
-          <span className="bg-palette-10 dark:bg-palette-9 text-palette-2 dark:text-palette-50 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
-            <Category category='gestion de usuarios' />
-          </span>
-        </div>
-        <Subtitle margin bold traking className="text-palette-50">
-          <a href={`/blog/update`}>ACTUALIZAR MI CUENTA</a>
-        </Subtitle>
-        <p className="mb-5 font-light text-palette-1">
-          Quiero actualizar mi cuenta de BledBonds, ¿cómo lo puedo hacer?
-        </p>
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <div className="w-7 h-7 rounded-full bg-palette-10 dark:bg-palette-2 flex items-center justify-center">
-              <span className="text-palette-2 dark:text-palette-900 font-medium">
-                B
-              </span>
-            </div>
-            <span className="font-medium text-palette-1">
-              BledBonds
-            </span>
-          </div>
-          <Link href={`/blog/update`} className="inline-flex items-center font-medium text-palette-1 hover:underline">
-            Read more
-            <svg className="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
-            </svg>
-          </Link>
-        </div>
-      </article>
+      <BlogData
+        category='gestion de usuarios'
+        subtitle='ELIMINAR MI CUENTA'
+        url={`/blog/delete`}
+        resume='Quiero eliminar mi cuenta de BledBonds, ¿cómo lo puedo hacer?'
+        name='BledBonds'
+      />
 
-      <article className="p-6 bg-palette-11 dark:bg-palette-900 rounded-lg border border-palette-9 dark:border-palette-800 shadow-md">
-        <div className="flex justify-between items-center mb-5 text-palette-2">
-          <span className="bg-palette-10 dark:bg-palette-9 text-palette-2 dark:text-palette-50 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
-            <Category category='FUNCIONES' />
-          </span>
-        </div>
-        <Subtitle margin bold traking className="text-palette-50">
-          <a href={`/events`}>EVENTOS</a>
-        </Subtitle>
-        <p className="mb-5 font-light text-palette-1">
-          Descubre eventos inclusivos para personas con discapacidad y conoce gente nueva
-        </p>
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <div className="w-7 h-7 rounded-full bg-palette-10 dark:bg-palette-2 flex items-center justify-center">
-              <span className="text-palette-2 dark:text-palette-900 font-medium">
-                B
-              </span>
-            </div>
-            <span className="font-medium text-palette-1">
-              BledBonds
-            </span>
-          </div>
-          <Link href={`/events`} className="inline-flex items-center font-medium text-palette-1 hover:underline">
-            Read more
-            <svg className="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
-            </svg>
-          </Link>
-        </div>
-      </article>
+      <BlogData
+        category='gestion de usuarios'
+        subtitle='ACTUALIZAR MI CUENTA'
+        url={`/blog/update`}
+        resume='Quiero actualizar mi cuenta de BledBonds, ¿cómo lo puedo hacer?'
+        name='BledBonds'
+      />
 
-      <article className="p-6 bg-palette-11 dark:bg-palette-900 rounded-lg border border-palette-9 dark:border-palette-800 shadow-md">
-        <div className="flex justify-between items-center mb-5 text-palette-2">
-          <span className="bg-palette-10 dark:bg-palette-9 text-palette-2 dark:text-palette-50 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
-            <Category category='CONSULTORIA' />
-          </span>
-        </div>
-        <Subtitle margin bold traking className="text-palette-50">
-          <a href={`/blog/consultoria`}>CONSULTORIA DE EVENTOS</a>
-        </Subtitle>
-        <p className="mb-5 font-light text-palette-1">
-          Te preguntas en que consiste el servicio de consultoria de eventos?
-          <br />
-          La consultoria de eventos es un servicio que ofrecemos para ayudar a los organizadores a que sus eventos sean accesibles y acogedores para todas las personas.
-        </p>
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <div className="w-7 h-7 rounded-full bg-palette-10 dark:bg-palette-2 flex items-center justify-center">
-              <span className="text-palette-2 dark:text-palette-900 font-medium">
-                B
-              </span>
-            </div>
-            <span className="font-medium text-palette-1">
-              BledBonds
-            </span>
-          </div>
-          <Link href={`/blog/consultoria`} className="inline-flex items-center font-medium text-palette-1 hover:underline">
-            Read more
-            <svg className="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
-            </svg>
-          </Link>
-        </div>
-      </article>
+      <BlogData
+        category='FUNCIONES'
+        subtitle='EVENTOS'
+        url={`/events`}
+        resume='Descubre eventos inclusivos para personas con discapacidad y conoce gente nueva'
+        name="BledBonds"
+      />
+
+      <BlogData
+        category='CONSULTORIA'
+        subtitle='CONSULTORIA DE EVENTOS'
+        url={`/blog/consultoria`}
+        resume={<>Te preguntas en que consiste el servicio de consultoria de eventos?<br />La consultoria de eventos es un servicio que ofrecemos para ayudar a los organizadores a que sus eventos sean accesibles y acogedores para todas las personas.</>}
+        name="BledBonds"
+      />
+
+      <BlogData
+        category='EVENTOS'
+        subtitle='Porque es importante que los eventos sean accesibles?'
+        url={`/blog/accesibilidad`}
+        resume={<>Segun el INE hay mas de <b>4 millones</b> de personas con discapacidad en España</>}
+        name="BledBonds"
+        />
     </div>
   )
 }
