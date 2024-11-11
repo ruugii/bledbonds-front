@@ -3,6 +3,20 @@ interface newsletterInterface {
 }
 
 const newsletterAPI = async (newsletter: newsletterInterface) => {
+  const API_URL = 'https://api.bledbonds.es/api/v1';
+  return await fetch(`${API_URL}/newsletters/create`, {
+    method: 'POST',
+    headers: {
+      'x-api-key': '6d83d4496c0010950eb2f3a0db79004c',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newsletter)
+  })
+    .then(resp => resp.json())
+    .catch(error => console.error(error));
+}
+
+const newsletterAPIOld = async (newsletter: newsletterInterface) => {
   try {
     const host = window.location.host;
     let API_URL = '';

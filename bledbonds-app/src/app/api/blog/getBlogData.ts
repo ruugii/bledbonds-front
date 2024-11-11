@@ -1,4 +1,16 @@
 const getBlogData = async () => {
+  const API_URL = 'https://api.bledbonds.es/api/v1';
+  return fetch(`${API_URL}/blog/`, {
+    method: 'GET',
+    headers: {
+      'x-api-key': '6d83d4496c0010950eb2f3a0db79004c'
+    }
+  })
+    .then(resp => resp.json())
+    .catch(error => console.error(error));
+}
+
+const getBlogDataLocal = async () => {
   try {
     const host = window.location.host;
     let API_URL = '';

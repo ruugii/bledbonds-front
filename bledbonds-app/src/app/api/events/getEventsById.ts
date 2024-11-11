@@ -1,6 +1,7 @@
-const fetchPostById = async (id:number) => {
+const getEventsById = async (id: string) => {
+
   const API_URL = 'https://api.bledbonds.es/api/v1';
-  return fetch(`${API_URL}/blog/${id}`, {
+  return await fetch(`${API_URL}/events/${id}`, {
     method: 'GET',
     headers: {
       'x-api-key': '6d83d4496c0010950eb2f3a0db79004c'
@@ -10,20 +11,19 @@ const fetchPostById = async (id:number) => {
     .catch(error => console.error(error));
 }
 
-const fetchPostByIdOld = async (id:number) => {
+const getEventsByIdOld = async (id: string) => {
   try {
-    let API_URL = '';
-    API_URL = 'https://api.bledbonds.es/api/v1';
-    console.log(id);
-    const resp = await fetch(`${API_URL}/blog/${id}`, {
+    const API_URL = 'https://api.bledbonds.es/api/v1';
+    const resp = await fetch(`${API_URL}/events/${id}`, {
       method: 'GET',
       headers: {
         'x-api-key': '6d83d4496c0010950eb2f3a0db79004c'
       }
     });
-    if (resp.ok) {
+    if (!resp.ok) {
+      throw new Error('Network response was not ok');
+    } else {
       const data = await resp.json();
-      console.log(data);
       return data;
     }
   } catch (error) {
@@ -31,4 +31,4 @@ const fetchPostByIdOld = async (id:number) => {
   }
 }
 
-export default fetchPostById;
+export default getEventsById;

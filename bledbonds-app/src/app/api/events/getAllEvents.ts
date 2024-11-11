@@ -1,4 +1,17 @@
 const getAllEvents = async () => {
+
+  const API_URL = 'https://api.bledbonds.es/api/v1';
+  return await fetch(`${API_URL}/events/all`, {
+    method: 'GET',
+    headers: {
+      'x-api-key': '6d83d4496c0010950eb2f3a0db79004c'
+    }
+  })
+    .then(resp => resp.json())
+    .catch(error => console.error(error));
+}
+
+const getAllEventsLocal = async () => {
   try {
     const host = window.location.host;
     let API_URL = '';
@@ -8,7 +21,7 @@ const getAllEvents = async () => {
     } else {
       API_URL = 'https://api.bledbonds.es/api/v1';
     }
-    const resp = await fetch(`${API_URL}/events/`, {
+    const resp = await fetch(`${API_URL}/events/all`, {
       method: 'GET',
       headers: {
         'x-api-key': '6d83d4496c0010950eb2f3a0db79004c'

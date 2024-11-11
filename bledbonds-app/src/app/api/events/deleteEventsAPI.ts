@@ -1,4 +1,19 @@
 const deleteEventAPI = async (id: number, token:string) => {
+
+  const API_URL = 'https://api.bledbonds.es/api/v1';
+  return await fetch(`${API_URL}/events/${id}/deleteEvent`, {
+    method: 'DELETE',
+    headers: {
+      'x-api-key': '6d83d4496c0010950eb2f3a0db79004c',
+      'user-key': token,
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(resp => resp.json())
+    .catch(error => console.error(error));
+}
+
+const deleteEventAPILocal = async (id: number, token:string) => {
   try {
     const host = window.location.host;
     let API_URL = '';

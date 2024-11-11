@@ -1,4 +1,17 @@
 const getChatByEvent = async (id: number) => {
+
+  const API_URL = 'https://api.bledbonds.es/api/v1';
+  return await fetch(`${API_URL}/events/${id}/chat`, {
+    method: 'GET',
+    headers: {
+      'x-api-key': '6d83d4496c0010950eb2f3a0db79004c'
+    }
+  })
+    .then(resp => resp.json())
+    .catch(error => console.error(error));
+}
+
+const getChatByEventOld = async (id: number) => {
   try {
     const host = window.location.host;
     let API_URL = '';

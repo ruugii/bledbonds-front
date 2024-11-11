@@ -4,6 +4,23 @@ interface RegisterInterface {
 }
 
 const menuUpdate = async (user: RegisterInterface) => {
+  const API_URL = 'https://api.bledbonds.es/api/v1';
+  return await fetch(`${API_URL}/masterdata/getAppOptionEnabled`, {
+    method: 'PUT',
+    headers: {
+      'x-api-key': '6d83d4496c0010950eb2f3a0db79004c',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      key: user.key,
+      value: user.value
+    })
+  })
+    .then(resp => resp.json())
+    .catch(error => console.error(error));
+}
+
+const menuUpdateOld = async (user: RegisterInterface) => {
   try {
     let API_URL = '';
     API_URL = 'https://api.bledbonds.es/api/v1';
