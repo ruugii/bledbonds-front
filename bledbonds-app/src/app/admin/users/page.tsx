@@ -2,7 +2,6 @@
 
 import ArrowAsc from "@/app/Icons/arrowAsc";
 import ArrowDes from "@/app/Icons/arrowDes";
-import getNewsletterAPI from "@/app/api/getNewsletter";
 import getUsersAPI from "@/app/api/getUsers";
 import Table from "@/app/components/Table";
 import Subtitle from "@/app/components/Text/Subtitle";
@@ -39,6 +38,7 @@ interface NewsletterData {
   bio: string | null;
   lat: number | null;
   lon: number | null;
+  eliminar: string | null;
 }
 
 export default function RegisterPage() {
@@ -70,6 +70,8 @@ export default function RegisterPage() {
   const [religionOrder, setReligionOrder] = useState<'asc' | 'desc'>('asc');
   const [latOrder, setLatOrder] = useState<'asc' | 'desc'>('asc');
   const [lonOrder, setLonOrder] = useState<'asc' | 'desc'>('asc');
+  const [eliminarOrder, setEliminarOrder] = useState<'asc' | 'desc'>('asc');
+  const [eliminar, setEliminar] = useState<string[]>([]);
 
   const [isClient, setIsClient] = useState(false);
 
@@ -140,6 +142,7 @@ export default function RegisterPage() {
   const sortReligion = () => sortData('id_religion', religionOrder, setReligionOrder);
   const sortLat = () => sortData('lat', latOrder, setLatOrder);
   const sortLon = () => sortData('lon', lonOrder, setLonOrder);
+  const sortEliminar = () => sortData('eliminar', eliminarOrder, setEliminarOrder);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -276,6 +279,11 @@ export default function RegisterPage() {
                 onClick: sortLon,
                 icon: lonOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
               },
+              {
+                name: 'eliminar',
+                onClick: sortEliminar,
+                icon: eliminarOrder === 'asc' ? <ArrowDes /> : <ArrowAsc />,
+              }
             ]}
             data={dataOrd}
             className="mt-3"

@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import Message from "./component/Message";
 
 import { io, Socket } from "socket.io-client";
-import getAllEvents from "@/app/api/events/getAllEvents";
 import getParticipantsEvent from "@/app/api/events/getParticipants";
 import getChatByEvent from "@/app/api/events/getChatByEvent";
 import updateEventAPI from "@/app/api/events/updateEvent";
@@ -17,6 +16,8 @@ import createEventAPI from "@/app/api/events/createEventAPI";
 import uploadImage from "@/app/api/uploadImage";
 import Subtitle from "@/app/components/Text/Subtitle";
 import SectionTitle from "@/app/components/Text/SectionTitle";
+import getChatData from "@/app/api/getChatData";
+import getAllEvents from "@/app/api/events/getAllEvents";
 
 export default function EventsPage() {
 
@@ -126,7 +127,17 @@ export default function EventsPage() {
   useEffect(() => {
     const socket = io('https://api.bledbonds.es');
     setSocket(socket);
+
+    seeChat(idEvent)
+    // return () => socket.disconnect();
   }, []);
+
+  useEffect(() => {
+    socket?.on(`chat message ${idEvent}`, (msg) => {
+      seeChat(idEvent)
+    });
+  }, [socket, idEvent]);
+
   useEffect(() => {
     if (file && description && name && place && date) {
       setDisabled(false);
@@ -134,13 +145,25 @@ export default function EventsPage() {
       setDisabled(true);
     }
   }, [file, description, name, place, date]);
-  useEffect(() => {
-    socket?.on(`chat message ${idEvent}`, (msg) => {
-      if (idEvent === msg.chatId) {
-        setChat([...chat, msg]);
-      }
-    });
-  }, [socket, chat, idEvent]);
+
+  const seeChat = async (idEvent: number) => {
+    const fetchChat = async (idEvent: number) => {
+      const token = await localStorage.getItem('token') ?? '';
+      const data = await getChatData(idEvent, await token);
+      setChat(
+        data?.messages?.map((item: {
+          ID_user: string;
+          message: string;
+          user: boolean;
+        }) => ({
+          sender: item.ID_user,
+          message: item.message,
+          user: item.user
+        })) || []
+      );
+    };
+    await fetchChat(idEvent);
+  };
 
   const [role, setRole] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
@@ -206,8 +229,9 @@ export default function EventsPage() {
       newEvent.url = url;
       await createEventAPI(newEvent, localStorage.getItem('token') ?? '');
       const eventsArray = events;
+      const newId = events[events.length - 1]?.id ? events[events.length - 1].id + 1 : 1;
       const aux = {
-        id: events[events.length - 1].id + 1,
+        id: newId,
         event_name: name,
         event_date: date,
         event_location: place,
@@ -274,11 +298,13 @@ export default function EventsPage() {
       setModalConfirm(false);
     }
 
-    const sendMessage = () => {
+    const sendMessage = async () => {
+      const token = await localStorage.getItem('token') ?? '';
       socket?.emit(`chat message`, {
         sender: idUser,
         message: newMessage,
         chatId: idEvent,
+        token: token
       });
       setNewMessage("");
     }
@@ -517,7 +543,7 @@ export default function EventsPage() {
     return (
       <div className="flex items-center content-center justify-center bg-palette-3 dark:bg-palette-11 flex-col">
         <Title center bold mayus>
-          Bled Bonds - Gestión de eventos
+          BledBonds - Gestión de eventos
         </Title>
         <Subtitle margin bold width grid center>
           Solo puedes acceder a esta página si eres un administrador
