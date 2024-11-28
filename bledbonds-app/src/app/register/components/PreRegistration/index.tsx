@@ -11,6 +11,7 @@ import { Autocomplete, createFilterOptions, styled, TextField } from "@mui/mater
 import { Dayjs } from "dayjs";
 import MuiDatePicker from "@/app/UX/MuiDatePicker";
 import AutocompleteMUI from "@/app/UX/Autocomplete";
+import Captcha from "@/app/components/Captcha";
 
 const StyledAutocomplete = styled(Autocomplete)({
   '& label.Mui-focused': {
@@ -57,6 +58,7 @@ export default function PreRegistration() {
   const [moreThan8, setMoreThan8] = useState(false);
   const [minPasswordLength] = useState(8);
   const [maxPasswordLength] = useState(12);
+  const [captcha, setCaptcha] = useState('');
 
 
   useEffect(() => {
@@ -238,6 +240,10 @@ export default function PreRegistration() {
               value={gender}
             />
           </div>
+          <Captcha
+            value={captcha}
+            onChange={setCaptcha}
+          />
         </div>
       </div>
       <div className="content-start items-start bg-palette-4 dark:bg-palette-10 shadow-md shadow-palette-11 dark:shadow-palette-50 border-solid border-palette-4 dark:border-palette-10 border-2 p-5 pl-0 mt-3 md:min-w-[80vh] md:w-[80vw] grid grid-cols-1 min-w-[80%] w-[80%]">
@@ -293,6 +299,8 @@ export default function PreRegistration() {
         }}
 
         className="mt-5 w-[80vw]"
+
+        disabled={captcha !== '' || !emailValid || !phoneValid || !passwordValid || !passwordConfirmValid || !nameValid || !birthDateValid || !genderValid}
       />
     </>
   );
