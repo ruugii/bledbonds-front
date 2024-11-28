@@ -13,8 +13,8 @@ import ChangeTheme from "./components/ChangeTheme";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bled Bonds - Citas para personas con discapacidad",
-  description: "Bled Bonds es la primera red social para conocer a personas con discapacidad",
+  title: "BledBonds - Citas para personas con discapacidad",
+  description: "BledBonds es la primera red social para conocer a personas con discapacidad",
 };
 
 export default function RootLayout({
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   const menu = [
     {
-      name: 'Que es Bled Bonds',
+      name: 'Que es BledBonds',
       url: '/what-is'
     },
     {
@@ -77,10 +77,20 @@ export default function RootLayout({
     {
       name: "gestion menu app",
       url: '/admin/master-data',
+    },
+    {
+      name: "chats",
+      url: '',
+      dropdown: [
+        {
+          name: "consultar chats",
+          url: '/admin/chats',
+        }
+      ]
     }
   ] as Menu[]
   return (
-    <html lang="en">
+    <html lang="es">
       <body className={`${inter.className} min-h-screen grid grid-rows-layout`}>
         <Header
           menu={menu}
