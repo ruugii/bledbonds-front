@@ -59,11 +59,30 @@ export default function Table<T extends object>(props: TableProps<T>) {
               console.log(item);
               return (
                 <tr key={i}>
-                  {Object.values(item).map((value, i) => (
-                    <td key={i} className=" p-3 ">
-                      <div>{String(value)}</div>
-                    </td>
-                  ))}
+                  {Object.values(item).map((value, j) => {
+                    return (
+                      <td key={j} className=" p-3 ">
+                        <div>
+                          {j === Object.values(item).length - 1 && value === 1 ? (
+                            <Button
+                              onClick={() => {
+                                const sendEmailDelete = async () => {
+                                  // await sendDeleteEmailAPI(item.id);
+                                  console.log('Estamos trabajando en esto');
+                                  
+                                }
+                                sendEmailDelete();
+                              }}
+                              className="w-fit"
+                              label="Eliminar"
+                            />
+                          ) : (
+                            String(value)
+                          )}
+                        </div>
+                      </td>
+                    )
+                  })}
                 </tr>
               )
             })}

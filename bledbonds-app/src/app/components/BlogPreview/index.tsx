@@ -78,7 +78,23 @@ export default function BlogPreview() {
         url={`/blog/accesibilidad`}
         resume={<>Segun el INE hay mas de <b>4 millones</b> de personas con discapacidad en España</>}
         name="BledBonds"
-        />
+      />
+
+      <BlogData
+        category='CONSULTORIA'
+        subtitle='Analisis accesibilidad web'
+        url={`/blog/consultoria/web`}
+        resume={<>Analizamos tu pagina web para que sea accesible a todas las personas con discapacidad</>}
+        name="BledBonds"
+      />
+
+      <BlogData
+        category='CERTIFICADOS'
+        subtitle='Tarjeta Europea de Discapacidad'
+        url={`/blog/certificados`}
+        resume={<>En este post, vamos a hablar sobre un avance importante: la Tarjeta Europea de Discapacidad, una iniciativa que busca mejorar la vida de millones de personas con discapacidad en la Unión Europea. ¡Te contamos todo lo que necesitas saber!</>}
+        name="BledBonds"
+      />
     </div>
   )
 }
