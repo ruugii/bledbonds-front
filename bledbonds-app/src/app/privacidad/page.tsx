@@ -1,6 +1,13 @@
+import { Metadata } from "next";
 import Subtitle from "../components/Text/Subtitle";
 import Text from "../components/Text/Text";
 import Title from "../components/Text/Title";
+
+export const metadata: Metadata = {
+  title: "Politica de privacidad - Citas para personas con discapacidad",
+  description: "BledBonds es la primera red social para conocer a personas con discapacidad. Si quieres saber mas sobre nosotros, visita esta pagina.",
+  keywords: "discapacidad, citas, red social, bledbonds, citas para personas con discapacidad, bledbonds citas, bledbonds red social, bledbonds discapacidad, bledbonds discapacidad citas, bledbonds discapacidad red social, bledbonds personas con discapacidad, bledbonds personas con discapacidad citas, bledbonds personas con discapacidad red social, bledbonds personas discapacidad, bledbonds personas discapacidad citas, bledbonds personas discapacidad red social, bledbonds personas con discapacidad citas, bledbonds personas con discapacidad red social, bledbonds personas con discapacidad red social citas, bledbonds personas con discapacidad citas red social, bledbonds personas con discapacidad red social citas, bledbonds personas con discapacidad citas red social",
+};
 
 export default function Page() {
   return (
