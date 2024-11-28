@@ -1,11 +1,11 @@
 interface SectionTitleProps {
-  children: React.ReactNode;
-  bold?: boolean;
-  width?: boolean;
-  margin?: boolean;
-  lg?: boolean;
-  left?: boolean;
-  className?: string;
+  readonly children: React.ReactNode;
+  readonly bold?: boolean;
+  readonly width?: boolean;
+  readonly margin?: boolean;
+  readonly lg?: boolean;
+  readonly left?: boolean;
+  readonly className?: string;
 }
 
 export default function SectionTitle(props:SectionTitleProps) {
