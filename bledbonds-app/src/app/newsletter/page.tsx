@@ -3,9 +3,9 @@ import EmailInput from "../components/EmailInput";
 import SectionTitle from "../components/Text/SectionTitle";
 
 export const metadata: Metadata = {
-  title: "Bled Bonds - Citas para personas con discapacidad - suscribete a nuestra newsletter",
-  description: "Bled Bonds es la primera red social para conocer a personas con discapacidad y suscribirte a nuestra newsletter para estar informado de todas nuestras novedades",
-  keywords: "discapacidad, citas, red social, bled bonds, citas para personas con discapacidad, bled bonds citas, bled bonds red social, bled bonds discapacidad",
+  title: "Suscribete a nuestra newsletter - Citas para personas con discapacidad",
+  description: "BledBonds es la primera red social para conocer a personas con discapacidad y suscribirte a nuestra newsletter para estar informado de todas nuestras novedades",
+  keywords: "discapacidad, citas, red social, bledbonds, citas para personas con discapacidad, bledbonds citas, bledbonds red social, bledbonds discapacidad",
 };
 
 export default function Page() {

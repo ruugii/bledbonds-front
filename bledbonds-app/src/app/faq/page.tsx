@@ -1,7 +1,14 @@
+import { Metadata } from "next";
 import Question from "../components/Question";
 import Subtitle from "../components/Text/Subtitle";
 import Text from "../components/Text/Text";
 import Title from "../components/Text/Title";
+
+export const metadata: Metadata = {
+  title: "Preguntas Frecuentes - Citas para personas con discapacidad",
+  description: "BledBonds es la primera red social para conocer a personas con discapacidad. Si quieres saber mas sobre nosotros, visita esta pagina.",
+  keywords: "discapacidad, citas, red social, bledbonds, citas para personas con discapacidad, bledbonds citas, bledbonds red social, bledbonds discapacidad, bledbonds discapacidad citas, bledbonds discapacidad red social, bledbonds personas con discapacidad, bledbonds personas con discapacidad citas, bledbonds personas con discapacidad red social, bledbonds personas discapacidad, bledbonds personas discapacidad citas, bledbonds personas discapacidad red social, bledbonds personas con discapacidad citas, bledbonds personas con discapacidad red social, bledbonds personas con discapacidad red social citas, bledbonds personas con discapacidad citas red social, bledbonds personas con discapacidad red social citas, bledbonds personas con discapacidad citas red social",
+};
 
 export default function FaqPage() {
 
@@ -10,15 +17,15 @@ export default function FaqPage() {
       <div className="md:min-w-[80vh] md:w-[80vw] min-w-[80%] w-[80%] mt-3">
         <div className="flex flex-col justify-between items-center">
           <Title bold mayus>
-            PREgunTAS FRECUENTES
+            PREGUNTAS FRECUENTES
           </Title>
           <section className="w-full mt-7">
             <Subtitle bold mayus left className="md:ml-5">
               Web
             </Subtitle>
-            <Question question="¿Qué tienes que hacer para pertenecer a Bled Bonds?">
+            <Question question="¿Qué tienes que hacer para pertenecer a BledBonds?">
               <Text left full>
-                Para pertanecer a Bled Bonds, a parte de ser mayor de 18, solo tienes que cumplir uno de los siguientes requisitos:
+                Para pertanecer a BledBonds, a parte de ser mayor de 18, solo tienes que cumplir uno de los siguientes requisitos:
               </Text>
               <ul className="list-disc list-inside">
                 <li className="w-full text-palette-11 dark:text-palette-50 text-left">Ser miembro de una entidad relacionada con la discapacidad</li>
@@ -33,17 +40,17 @@ export default function FaqPage() {
           </section>
           <section className="w-full mt-7">
           <Subtitle bold mayus left className="md:ml-5">
-              APP - BLED BONDS
+              APP - BLEDBONDS
             </Subtitle>
-            <Question question="¿Qué es Bled Bonds?">
+            <Question question="¿Qué es BledBonds?">
               <Text>
-                Bled Bonds es una aplicación que tiene el objetivo de poner en contacto a personas con discapacidad.
+                BledBonds es una aplicación que tiene el objetivo de poner en contacto a personas con discapacidad.
               </Text>
               <Text>
                 Esta aplicación quiere facilitar la creación de vínculos de amistad y/o amorosas entre personas con discapacidad.
               </Text>
               <Text>
-                Bled Bonds consta de un apartado de citas y uno de planes grupales.
+                BledBonds consta de un apartado de citas y uno de planes grupales.
               </Text>
             </Question>
             <Question question="¿Es una aplicación de pago?">
@@ -51,7 +58,7 @@ export default function FaqPage() {
                 No.
               </Text>
               <Text left full>
-                Bled Bonds es una aplicación gratuita, tanto para Android como para iOS.
+                BledBonds es una aplicación gratuita, tanto para Android como para iOS.
               </Text>
               <Text left full>
                 Tiene compras dentro de la aplicacion, para poder acceder a ciertas funcionalidades sin limitaciones. Estas funcionalidades son:
@@ -68,20 +75,20 @@ export default function FaqPage() {
                 Un rompehielos es una funcionalidad que te permite enviar un solo mensaje a una persona que te ha gustado, sin necesidad de que la otra persona te haya dado like. En caso de que la otra persona decida responder a tu mensaje, se creara un match y podreis hablar por el chat de la aplicacion.
               </Text>
             </Question>
-            <Question question="¿Puedo encontrar pareja en Bled Bonds?">
+            <Question question="¿Puedo encontrar pareja en BledBonds?">
               <Text left full>
                 Sí.
               </Text>
               <Text left full>
-                Bled Bonds es una plataforma para establecer relaciones amistosas y amorosas con personas que compartan intereses y aficiones. No dudes en descargarte la aplicación y comprobarlo tú mismo/a.
+                BledBonds es una plataforma para establecer relaciones amistosas y amorosas con personas que compartan intereses y aficiones. No dudes en descargarte la aplicación y comprobarlo tú mismo/a.
               </Text>
             </Question>
-            <Question question="¿Bled Bonds solo sirve para encontrar pareja?">
+            <Question question="¿BledBonds solo sirve para encontrar pareja?">
               <Text left full>
                 No.
               </Text>
               <Text left full>
-                Bled Bonds te ofrece 2 posibilidades:
+                BledBonds te ofrece 2 posibilidades:
               </Text>
               <ul className="list-disc list-inside">
                 <li className="w-full text-palette-11 dark:text-palette-50 text-left">Las citas</li>
@@ -93,7 +100,7 @@ export default function FaqPage() {
             </Question>
             <Question question="¿Si no pertenezco a una entidad social, me puedo registrar?">
               <Text left full>
-                Si, no es necesario pertenecer a una entidad social para registrarse en Bled Bonds. Solo tienes que cumplir uno de los siguientes requisitos:
+                Si, no es necesario pertenecer a una entidad social para registrarse en BledBonds. Solo tienes que cumplir uno de los siguientes requisitos:
                 <ul className="list-disc list-inside">
                   <li className="w-full text-palette-11 dark:text-palette-50 text-left">Ser miembro de una entidad relacionada con la discapacidad</li>
                   <li className="w-full text-palette-11 dark:text-palette-50 text-left">Tener una discapacidad</li>
@@ -103,7 +110,7 @@ export default function FaqPage() {
           </section>
           <section className="w-full mt-7">
           <Subtitle bold mayus left className="md:ml-5">
-              APP - MI PERFIL - BLED BONDS
+              APP - MI PERFIL - BLEDBONDS
             </Subtitle>
             <Question question="¿Qué tipo de fotos tengo que poner en mi perfil?">
               <Text>
@@ -138,7 +145,7 @@ export default function FaqPage() {
             </Question>
             <Question question="¿Qué tendría que explicar en mi biografía?">
               <Text left full>
-                Mi biografía es un espacio dentro de mi perfil donde puedes explicar cualquier aspecto de tu vida que quieras compartir con las otras personas, siempre respetando las normas de Bled Bonds.
+                Mi biografía es un espacio dentro de mi perfil donde puedes explicar cualquier aspecto de tu vida que quieras compartir con las otras personas, siempre respetando las normas de BledBonds.
               </Text>
             </Question>
             <Question question="¿Puedo cerrar mi cuenta?">
@@ -149,7 +156,7 @@ export default function FaqPage() {
           </section>
           <section className="w-full mt-7">
           <Subtitle bold mayus left className="md:ml-5">
-              APP - PLANES - BLED BONDS
+              APP - PLANES - BLEDBONDS
             </Subtitle>
             <Question question="¿Qué ocurre si me quedo sin plaza para un plan?">
               <Text left full>
@@ -187,9 +194,9 @@ export default function FaqPage() {
           </section>
           <section className="w-full mt-7">
           <Subtitle bold mayus left className="md:ml-5">
-              APP - CITAS - BLED BONDS
+              APP - CITAS - BLEDBONDS
             </Subtitle>
-            <Question question="¿Cuándo conectas con otra persona en Dinder Club?">
+            <Question question="¿Cuándo conectas con otra persona en BledBonds?">
               <Text full left>
                 Te conectas con otra persona cuando tú y esta persona os ponéis &quotme gusta&quot la una a la otra.
               </Text>
@@ -204,7 +211,7 @@ export default function FaqPage() {
                 No
               </Text>
               <Text left full>
-                El chat de Bled Bonds no permite enviar fotografías.
+                El chat de BledBonds no permite enviar fotografías.
               </Text>
             </Question>
           </section>

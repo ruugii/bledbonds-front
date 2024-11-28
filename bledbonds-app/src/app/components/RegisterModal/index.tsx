@@ -308,7 +308,7 @@ export default function RegisterModal(props: RegisterInterface) {
               </div>
               <div className="flex flex-col w-full">
                 <SectionTitle bold>
-                  REGISTRATE EN BLED BONDS
+                  REGISTRATE EN BLEDBONDS
                 </SectionTitle>
                 <div className="flex flex-row content-center justify-center items-center">
                   {input}

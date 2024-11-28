@@ -15,7 +15,7 @@ export default function Header(props: HeaderProps) {
       <nav className="border-palette-1 dark:border-palette-10 bg-palette-3 dark:bg-palette-950">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <Image src="/logo.png" alt="Flowbite Logo" width={32} height={32} className="h-8" />
+            <Image src="/logo.png" alt="BledBonds Logo" title="BledBonds Logo" width={32} height={32} className="h-8" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-palette-1 text-palette-950">BLEDBONDS</span>
           </a>
           <div className={`w-full md:block md:w-auto hidden`} id="navbar-dropdown">

@@ -7,9 +7,9 @@ import Title from "../components/Text/Title";
 
 
 export const metadata: Metadata = {
-  title: "Bled Bonds - Citas para personas con discapacidad - Citas a ciegas",
-  description: "Bled Bonds es la primera red social para conocer a personas con discapacidad, en esta pagina, descubriras mas sobre las citas a ciegas",
-  keywords: "discapacidad, citas, red social, bled bonds, citas para personas con discapacidad, bled bonds citas, bled bonds red social, bled bonds discapacidad, citas a ciegas",
+  title: "Citas a ciegas - Citas para personas con discapacidad",
+  description: "BledBonds es la primera red social para conocer a personas con discapacidad, en esta pagina, descubriras mas sobre las citas a ciegas",
+  keywords: "discapacidad, citas, red social, bledbonds, citas para personas con discapacidad, bledbonds citas, bledbonds red social, bledbonds discapacidad, citas a ciegas",
 };
 export default function Ciegas() {
   return (
@@ -21,13 +21,13 @@ export default function Ciegas() {
           </Title>
           <section className="w-full mt-2">
             <Text>
-              En Bled Bonds, queremos que tengas la oportunidad de conocer a alguien, sin necesidad de tener una conexion simplemente por el fisico. Por eso, hemos creado las <b>citas a ciegas</b>, diseñadas para ofrecer una experiencia divertida.
+              En BledBonds, queremos que tengas la oportunidad de conocer a alguien, sin necesidad de tener una conexion simplemente por el fisico. Por eso, hemos creado las <b>citas a ciegas</b>, diseñadas para ofrecer una experiencia divertida.
             </Text>
           </section>
           <section className="w-full mt-2">
-            <SectionTitle bold left>
+            <Subtitle bold left>
               ¿Cómo funciona?
-            </SectionTitle>
+            </Subtitle>
             <Text justify left full>
               <ul className="list-disc ml-4">
                 <li><b>Conexion Aleatoria y Segura:</b> Al abrir la pagina de citas a ciegas, te emparejaremos de manera aleatoria y segura.</li>

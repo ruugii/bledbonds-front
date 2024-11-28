@@ -24,7 +24,7 @@ export default function HeaderMovil(props: HeaderProps) {
       <nav className="border-palette-1 dark:border-palette-10 bg-palette-3 dark:bg-palette-11">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <Image src="/logo.png" alt="Flowbite Logo" width={32} height={32} className="h-8" />
+            <Image src="/logo.png" alt="BledBonds Logo" title="BledBonds Logo" width={32} height={32} className="h-8" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-palette-50 text-palette-950">BLEDBONDS</span>
           </a>
           <button data-collapse-toggle="navbar-dropdown" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-palette-11 dark:text-palette-1 rounded-lg md:hidden hover:bg-palette-1 focus:outline-none focus:ring-2 focus:ring-palette-1 dark:hover:bg-palette-10 dark:focus:ring-palette-10" aria-controls="navbar-dropdown" aria-expanded="false" onClick={() => setOpenMovilMenu(!openMovilMenu)}>

@@ -7,9 +7,9 @@ import { Metadata } from "next";
 import Link from "../UX/Link";
 
 export const metadata: Metadata = {
-  title: "Bled Bonds - Citas para personas con discapacidad - FAQs - Preguntas frequentes?",
-  description: "Bled Bonds es la primera red social para conocer a personas con discapacidad. Si quieres saber mas sobre nosotros, visita esta pagina. Aqui encontraras las preguntas mas frecuentes que nos hacen nuestros usuarios.",
-  keywords: "discapacidad, citas, red social, bled bonds, citas para personas con discapacidad, bled bonds citas, bled bonds red social, bled bonds discapacidad, bled bonds discapacidad citas, bled bonds discapacidad red social, bled bonds personas con discapacidad, bled bonds personas con discapacidad citas, bled bonds personas con discapacidad red social, bled bonds personas discapacidad, bled bonds personas discapacidad citas, bled bonds personas discapacidad red social, bled bonds personas con discapacidad citas, bled bonds personas con discapacidad red social, bled bonds personas con discapacidad red social citas, bled bonds personas con discapacidad citas red social, bled bonds personas con discapacidad red social citas, bled bonds personas con discapacidad citas red social, bled bonds personas con discapacidad citas red social",
+  title: "Sobre la aplicación - Citas para personas con discapacidad",
+  description: "BledBonds es la primera red social para conocer a personas con discapacidad. Si quieres saber mas sobre nosotros, visita esta pagina. Aqui encontraras las preguntas mas frecuentes que nos hacen nuestros usuarios.",
+  keywords: "discapacidad, citas, red social, bledbonds, citas para personas con discapacidad, bledbonds citas, bledbonds red social, bledbonds discapacidad, bledbonds discapacidad citas, bledbonds discapacidad red social, bledbonds personas con discapacidad, bledbonds personas con discapacidad citas, bledbonds personas con discapacidad red social, bledbonds personas discapacidad, bledbonds personas discapacidad citas, bledbonds personas discapacidad red social, bledbonds personas con discapacidad citas, bledbonds personas con discapacidad red social, bledbonds personas con discapacidad red social citas, bledbonds personas con discapacidad citas red social, bledbonds personas con discapacidad red social citas, bledbonds personas con discapacidad citas red social, bledbonds personas con discapacidad citas red social",
 };
 
 export default function AppPage() {
@@ -18,12 +18,12 @@ export default function AppPage() {
       <div className="md:min-w-[80vh] md:w-[80vw] min-w-[80%] w-[80%] mt-3">
         <div className="flex flex-col justify-between items-center">
           <Title bold mayus>
-            Unete a Bled Bonds
+            Unete a BledBonds
           </Title>
           <Subtitle bold left lg>
-            Crea tu perfil personal en la aplicacion, expica tus intereses y descubre todo lo que Bled Bonds te puede ofrecer.
+            Crea tu perfil personal en la aplicacion, expica tus intereses y descubre todo lo que BledBonds te puede ofrecer.
           </Subtitle>
-          <section className="mt-4">
+          <section className="mt-4 w-full">
             <SectionTitle bold left>
               Apuntate a los planes
             </SectionTitle>
@@ -32,7 +32,7 @@ export default function AppPage() {
             </Text>
           </section>
 
-          <section className="mt-4">
+          <section className="mt-4 w-full">
             <SectionTitle bold left>
               Conoce a gente nueva
             </SectionTitle>
@@ -41,7 +41,7 @@ export default function AppPage() {
             </Text>
           </section>
 
-          <section className="mt-4">
+          <section className="mt-4 w-full">
             <SectionTitle bold left>
               Chatea con tus conexiones
             </SectionTitle>
@@ -68,7 +68,7 @@ export default function AppPage() {
                 Tienes alguna duda?
               </SectionTitle>
               <Text left full>
-                Consulta nuestra pagina de preguntas frecuentes y conoce que hacemos en Bled Bonds
+                Consulta nuestra pagina de preguntas frecuentes y conoce que hacemos en BledBonds
               </Text>
             </div>
             <div className="flex flex-col content-center justify-center items-center">

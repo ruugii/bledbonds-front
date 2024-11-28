@@ -34,7 +34,7 @@ export default function ButtonSendMail() {
               <div className="flex flex-row content-center items-center gap-3">
                 <div className="flex flex-col w-full">
                   <SectionTitle bold>
-                    REGISTRATE EN BLED BONDS
+                    REGISTRATE EN BLEDBONDS
                   </SectionTitle>
                 </div>
               </div>

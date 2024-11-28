@@ -26,7 +26,7 @@ export default function Dropdown(props: DropdownProps) {
       <button
         id="dropdownNavbarLink"
         data-dropdown-toggle="dropdownNavbar"
-        className="flex items-center justify-between w-full py-2 px-3 text-palette-11 dark:text-palette-1 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:dark:text-palette-2 hover:underline"
+        className="flex items-center justify-between w-full py-2 px-3 text-palette-11 dark:text-palette-1 rounded md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent uppercase hover:text-palette-10 hover:dark:text-palette-2 hover:underline h-full"
         onClick={toggleDropdown}
       >
         {item.name}
