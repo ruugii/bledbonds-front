@@ -7,9 +7,9 @@ import SectionTitle from "../components/Text/SectionTitle";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Bled Bonds - Citas para personas con discapacidad - Eventos",
-  description: "Bled Bonds es la primera red social para conocer a personas con discapacidad, como actualizar tu cuenta y conoce a personas con discapacidad cerca de ti.",
-  keywords: "discapacidad, citas, red social, bled bonds, citas para personas con discapacidad, bled bonds citas, bled bonds red social, bled bonds discapacidad, bled bonds discapacidad citas, bled bonds discapacidad red social, bled bonds personas con discapacidad, bled bonds personas con discapacidad citas, bled bonds personas con discapacidad red social, bled bonds personas discapacidad, bled bonds personas discapacidad citas, bled bonds personas discapacidad red social, bled bonds personas con discapacidad citas, bled bonds personas con discapacidad red social, bled bonds personas con discapacidad red social citas, bled bonds personas con discapacidad citas red social, bled bonds personas con discapacidad red social citas, bled bonds personas con discapacidad citas red social",
+  title: "Eventos de BledBonds - Citas para personas con discapacidad",
+  description: "BledBonds es la primera red social para conocer a personas con discapacidad, como actualizar tu cuenta y conoce a personas con discapacidad cerca de ti.",
+  keywords: "discapacidad, citas, red social, bledbonds, citas para personas con discapacidad, bledbonds citas, bledbonds red social, bledbonds discapacidad, bledbonds discapacidad citas, bledbonds discapacidad red social, bledbonds personas con discapacidad, bledbonds personas con discapacidad citas, bledbonds personas con discapacidad red social, bledbonds personas discapacidad, bledbonds personas discapacidad citas, bledbonds personas discapacidad red social, bledbonds personas con discapacidad citas, bledbonds personas con discapacidad red social, bledbonds personas con discapacidad red social citas, bledbonds personas con discapacidad citas red social, bledbonds personas con discapacidad red social citas, bledbonds personas con discapacidad citas red social",
 };
 
 export default function BetaPage() {
@@ -40,6 +40,12 @@ export default function BetaPage() {
         </SectionTitle>
         <Text className="mt-4">
           En BledBonds events, somos especialistas en organizar eventos inclusivos de alta calidad para que los puedan disprutar tanto personas con discapacidad como personas sin.
+        </Text>
+        <Text className="mt-4">
+          Quieres ver los proximos eventos? <Link href='/events/next' className=" text-palette-900 hover:text-palette-950 underline dark:text-palette-100 hover:dark:text-palette-50">Accede aquí</Link>
+        </Text>
+        <Text className="mt-4">
+          Quieres ver los ultimos eventos realizados? <Link href='/events/prev' className=" text-palette-900 hover:text-palette-950 underline dark:text-palette-100 hover:dark:text-palette-50">Accede aquí</Link> 
         </Text>
         <SectionTitle bold left width className="mt-4">
           Servicio de Consultoria
