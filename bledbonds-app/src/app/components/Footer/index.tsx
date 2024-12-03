@@ -1,6 +1,6 @@
 import Instagram from "@/app/Icons/instagram"
 import Linkedin from "@/app/Icons/linkedin"
-import Twitter from "@/app/Icons/Twitter"
+import Twitter from "@/app/Icons/twitter"
 import Menu from "@/app/interfaces/menu"
 import Image from "next/image"
 import Link from "next/link"
