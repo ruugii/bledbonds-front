@@ -26,6 +26,15 @@ export default function BetaPage() {
           Para acceder a la fase de prueba, debes completar el siguiente formulario que recibira nuestro equipo de soporte. Una vez que recibas tu correo, te contactaremos con un enlace para que puedas acceder a la fase de prueba. El email sera mandado en un maxmo de 5 dias.
         </Text>
         <BetaForm />
+        <Text full right className=" text-red-900 dark:text-red-50">
+          ALERTA: ESTO ES UNA FASE DE PRUEBA. DEBIDO A ESO Y PARA QUE HAYA SUFICIENTES USUARIOS
+          <br />
+          HAY DISTINTOS USUARIOS DE PRUEBA &quot;TEST -&quot; Y HAY USUARIOS REALES.
+          <br />
+          EN CUANTO HAYA SUFICIENTES USUARIOS COMO PARA ELIMINARLOS EN LAS PRUEBAS
+          <br />
+          O DEJE DE SER LA FASE DE PRUEBA SE ELIMINARAN TODOS LOS USUARIOS TEST
+        </Text>
       </div>
     </div>
   )
