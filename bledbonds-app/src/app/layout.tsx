@@ -57,6 +57,10 @@ export default function RootLayout({
         {
           name: 'Usuarios susctritos a la newsletter',
           url: '/admin/newsletter'
+        },
+        {
+          name: 'usuarios apuntados a la beta',
+          url: '/admin/beta-users'
         }
       ],
     },
