@@ -7,6 +7,7 @@ import Subtitle from "../Text/Subtitle"
 import phoneValidation from "@/app/utilities/validation/phoneValidation"
 import Button from "@/app/UX/button/button"
 import deleteUserAPI from "@/app/api/delete/deleteUserAPI"
+import accesBetaAPI from "@/app/api/beta/accesBetaAPI"
 
 export default function BetaForm() {
 
@@ -20,21 +21,16 @@ export default function BetaForm() {
     return () => clearTimeout(validator)
   }, [email])
 
-  const handleDelete = () => {
-    setCount(count + 1);
-    const deleteUser = async () => {
-      const user = {
-        email
-      }
-      // const resp = await uploadToBeta(user)
-      const resp = true
-      if (resp) {
-        window.location.href = '/'
-      }
-    }
+  const handleAccesBeta = async () => {
+    const response = await accesBetaAPI(email)
+    .then(res => {
+      setEmail('')
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    console.log(response)
   }
-
-  const [count, setCount] = useState(0);
 
   return (
     <div className=" border-solid border-palette-11 dark:border-palette-50 border-2 p-5 mt-8 ">
@@ -58,7 +54,7 @@ export default function BetaForm() {
             label="Eliminar"
             onClick={() => {
               console.log('aaa');
-              handleDelete()
+              handleAccesBeta()
             }}
             className="w-full"
             mui
