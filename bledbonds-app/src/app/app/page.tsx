@@ -61,7 +61,6 @@ export default function AppPage() {
               ESTA FUNCION ES DE PAGO
             </Text>
           </section> */}
-
           <section className="mt-10 w-full p-4 bg-palette-1 dark:bg-palette-800 text-palette-11 dark:text-palette-50 shadow-md shadow-palette-11 dark:shadow-palette-50 grid grid-cols-1 md:grid-cols-2 rounded-lg">
             <div>
               <SectionTitle bold left>
@@ -82,7 +81,7 @@ export default function AppPage() {
             </div>
           </section>
 
-          {/* <section className=" mt-14 w-full p-4 bg-palette-1 dark:bg-palette-800 text-palette-11 dark:text-palette-50 shadow-md shadow-palette-11 dark:shadow-palette-50 grid grid-cols-1 md:grid-cols-2 rounded-lg">
+          <section className=" mt-14 w-full p-4 bg-palette-1 dark:bg-palette-800 text-palette-11 dark:text-palette-50 shadow-md shadow-palette-11 dark:shadow-palette-50 grid grid-cols-1 md:grid-cols-2 rounded-lg">
             <div>
               <SectionTitle bold left>
                 Prueba antes que nadie nuestra aplicacion
@@ -101,7 +100,7 @@ export default function AppPage() {
                 </Link>
               </div>
             </div>
-          </section> */}
+          </section>
         </div>
       </div>
     </main>
